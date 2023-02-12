@@ -67,15 +67,17 @@
 
 #####  Run docker as non-root user then you need to add it to the docker group. https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
 
-- Create the docker group if it does not exist: $ _sudo groupadd docker_
-
-- Add your user to the docker group:$ _sudo usermod -aG docker $USER_
-
-- Log in to the new docker group (to avoid having to log out / log in again; but if not enough, try to reboot):$ _newgrp docker_
-
-- Check if docker can be run without root: $ _docker run hello-world_
+- Create the docker group if it does not exist: 
+> sudo groupadd docker
+- Add your user to the docker group:
+>sudo usermod -aG docker $USER
+- Log in to the new docker group (to avoid having to log out / log in again; but if not enough, try to reboot):
+>newgrp docker
+- Check if docker can be run without root: 
+>docker run hello-world
 
 - Reboot if still got error: $ _reboot_ ***(Пропустил, т.к. отработало без ошибок)***
+
 #### Создание контейнеров Docker 
 #####Создаем docker-сеть: $ _sudo docker network create pg-net_
 - Развернуть контейнер с PostgreSQL 14 смонтировав в него /var/lib/postgres:  $ _docker pull postgres:14_ 
@@ -125,5 +127,5 @@ select * from persons;_
 _psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
 ***(видим те 2 строчки)***
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMDQ0NTM0NDFdfQ==
+eyJoaXN0b3J5IjpbNzY1NTA2ODYzXX0=
 -->
