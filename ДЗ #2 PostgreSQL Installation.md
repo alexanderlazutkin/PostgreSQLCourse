@@ -76,14 +76,14 @@ insert into persons(first_name, second_name) values('ivan', 'ivanov');
 insert into persons(first_name, second_name) values('petr', 'petrov');_
 
 - подключится к контейнеру с сервером с ноутбука/компьютера извне инстансов GCP/ЯО/места установки докера
--Установка клиентской части psql на своем ПК (WSL2) и ВМ
-sudo apt install postgresql-client-common
-sudo apt-get install postgresql-client
+== Установка клиентской части psql на своем ПК (WSL2) и ВМ
+_sudo apt install postgresql-client-common_
+_sudo apt-get install postgresql-client_
 
---Проверяем с ВМ локально
+== Проверяем с ВМ локально (удачно)
 psql -h localhost -U postgres -d postgres
 
--- с ноута
+== Проверяем с ПК из Ubuntu WSL2 (удачно)
 psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 • удалить контейнер с сервером
@@ -106,5 +106,5 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTY5NDkyMDE2NywtMTkwNzI5OTY0N119
+eyJoaXN0b3J5IjpbMjEwOTcwMjM0OSwtMTkwNzI5OTY0N119
 -->
