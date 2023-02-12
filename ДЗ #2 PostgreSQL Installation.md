@@ -100,10 +100,12 @@ $ docker rm b58cae3343f5
 $ _sudo docker run --name pg-docker --network pg-net -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v /var/lib/postgres:/var/lib/postgresql/data postgres:14_
 - Подключится снова из контейнера с клиентом к контейнеру с сервером
 _sudo docker run -it --rm --network pg-net --name pg-client postgres:14 psql -h pg-docker -U postgres_
-• проверить, что данные остались на месте
-select * from persons;
-psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
-
+- Проверить, что данные остались на месте
+_postgres#
+select * from persons;_
+То же самое с ПК
+_psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
+***(видим те 2 строчки)***
 • оставляйте в ЛК ДЗ комментарии что и как вы делали и как боролись с проблемами 
 >> Пока не нашел в интернете основы работы с лдокером и примеры развертывания в нем PostgreSQL решить ДЗ не представлялось возможным (как слепой котенок раза 4 делал не осознавая что)
 
@@ -111,6 +113,6 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMDI2NzMyNzQsLTE5MDcyOTk2NDddfQ
+eyJoaXN0b3J5IjpbLTEwMTQ4NjcxMDIsLTE5MDcyOTk2NDddfQ
 ==
 -->
