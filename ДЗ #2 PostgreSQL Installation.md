@@ -63,14 +63,11 @@ sudo mkdir /var/lib/postgresql/data_
 - Создаем docker-сеть: $ _sudo docker network create pg-net_
 - Развернуть контейнер с PostgreSQL 14 смонтировав в него /var/lib/postgres:  $ _docker pull postgres:14_ 
 - Подключаем созданную сеть к контейнеру сервера Postgres:
- $ sudo docker run --name pg-docker --network pg-net -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v /var/lib/postgres:/var/lib/postgresql/data postgres:14
-
-развернуть контейнер с клиентом postgres (Запускаем отдельный контейнер с клиентом в общей сети с БД):
- $ sudo docker run -it --rm --network pg-net --name pg-client postgres:14 psql -h pg-docker -U postgres
-PGPASSWORD=postgres psql -U postgres
-
- -- Проверяем, что подключились через отдельный контейнер|  -- выводит на экран список всех запущенных контейнеров.
- $ sudo docker ps -a
+ $ _sudo docker run --name pg-docker --network pg-net -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v /var/lib/postgres:/var/lib/postgresql/data postgres:14_
+ - Развернуть контейнер с клиентом postgres (Запускаем отдельный контейнер с клиентом в общей сети с БД):
+ $ _sudo docker run -it --rm --network pg-net --name pg-client postgres:14 psql -h pg-docker -U postgres PGPASSWORD=postgres psql -U postgres_
+- Проверяем, что подключились через отдельный контейнер|  -- выводит на экран список всех запущенных контейнеров.
+ $ _sudo docker ps -a_
 
 
 
@@ -110,6 +107,6 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMDc2NTI0MDAsLTE5MDcyOTk2NDddfQ
+eyJoaXN0b3J5IjpbLTE4MTI2MjYxMTIsLTE5MDcyOTk2NDddfQ
 ==
 -->
