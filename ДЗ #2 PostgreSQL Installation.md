@@ -93,14 +93,13 @@ select * from persons;_ ***(видим 2 строчки)***
 - Удалить контейнер с сервером.
 $ _sudo docker ps -a
 $ docker stop b58cae3343f5_
+$ docker rm b58cae3343f5
+***Удаление получилось только после остановки. Так же попробовал  выполнить $ docker rm $(docker ps -a -q -f status=exited) - зачистка всех контейнеров)***
 
-***Удаление получилось только после остановки. 
-Так же попробовал    ($ docker rm $(docker ps -a -q -f status=exited) - зачистка всех контейнеров)***
-
-• создать его заново
-$ sudo docker run --name pg-docker --network pg-net -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v /var/lib/postgres:/var/lib/postgresql/data postgres:14
-• подключится снова из контейнера с клиентом к контейнеру с сервером
-sudo docker run -it --rm --network pg-net --name pg-client postgres:14 psql -h pg-docker -U postgres
+- Создать его заново
+$ _sudo docker run --name pg-docker --network pg-net -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v /var/lib/postgres:/var/lib/postgresql/data postgres:14_
+- Подключится снова из контейнера с клиентом к контейнеру с сервером
+_sudo docker run -it --rm --network pg-net --name pg-client postgres:14 psql -h pg-docker -U postgres_
 • проверить, что данные остались на месте
 select * from persons;
 psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
@@ -112,6 +111,6 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MjQwNDg2MDcsLTE5MDcyOTk2NDddfQ
+eyJoaXN0b3J5IjpbLTEwMDI2NzMyNzQsLTE5MDcyOTk2NDddfQ
 ==
 -->
