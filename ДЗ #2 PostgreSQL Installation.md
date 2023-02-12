@@ -35,8 +35,7 @@
 
 #####  Use the following command to set up the repository: :
 
-_echo \\
-
+>_echo \\
 "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \\
 
 $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null_
@@ -143,5 +142,5 @@ select * from persons;_
 _psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
 ***(видим те 2 строчки)***
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNjI0NDY0MjddfQ==
+eyJoaXN0b3J5IjpbMjg4NDk1NTVdfQ==
 -->
