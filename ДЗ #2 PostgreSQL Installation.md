@@ -7,12 +7,13 @@
 #### Сделано в Yandex Cloud :
 _yc compute instance create --name pg-instance --hostname pg-instance --create-boot-disk size=15G,type=network-ssd,image-folder-id=standard-images,image-family=ubuntu-2204-lts --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 --zone ru-central1-a --metadata-from-file ssh-keys=C:/Users/User/.ssh/sshkeys.txt_
   
- ----------------------- Terminal PowerShell ---------------
+++++++++++++++ Terminal PowerShell ++++++++++++++++
  
   ssh-agent
   ssh user@158.160.27.72
   
- ------ Set up the repository: https://docs.docker.com/engine/install/ubuntu/
+ #### Установка и настройка по документации ttps://docs.docker.com/engine/install/ubuntu/ 
+ ------ Set up the repository: h
  sudo apt-get update
  sudo apt-get install \
     ca-certificates \
@@ -106,5 +107,6 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMyMjUyNDU0NCwtMTkwNzI5OTY0N119
+eyJoaXN0b3J5IjpbLTExMjk3NTI1MjIsLTE5MDcyOTk2NDddfQ
+==
 -->
