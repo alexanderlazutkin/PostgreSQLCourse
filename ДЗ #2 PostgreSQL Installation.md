@@ -33,20 +33,20 @@ _echo \\
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null_
 
 ##### Install Docker Engine
- -- Update the apt package index:
+ - Update the apt package index:
  _sudo apt-get update_
 
- --Install Docker Engine, containerd, and Docker Compose (lastest verion)
+ - Install Docker Engine, containerd, and Docker Compose (lastest verion)
  _sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin_
  
- --Verify that the Docker Engine installation is successful by running the hello-world image:
+ - Verify that the Docker Engine installation is successful by running the hello-world image:
  _sudo docker run hello-world_
 ***(Успешно отработало)***
 
 ***--Альтернативно указано в курсе (но мне пока непонятно и я так не делал):*** _curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh && rm get-docker.sh && sudo usermod -aG docker $USER_
 
 
- #### Создание контейнеров Docker 
+ #### Подготовка к созданию контейнеров Docker 
  -Сделать каталог /var/lib/postgres
 _sudo mkdir /var/lib/postgresql
 sudo mkdir /var/lib/postgresql/data_
@@ -59,14 +59,13 @@ sudo mkdir /var/lib/postgresql/data_
 - Check if docker can be run without root: $ _docker run hello-world_
 - Reboot if still got error: $ _reboot_  ***(Пропустил, т.к. отработало без ошибок)***
 
+ #### Создание контейнеров Docker 
 - Создаем docker-сеть: $ _sudo docker network create pg-net_
-
 - Развернуть контейнер с PostgreSQL 14 смонтировав в него /var/lib/postgres:  $ _docker pull postgres:14_ 
- 
 - Подключаем созданную сеть к контейнеру сервера Postgres:
  $ sudo docker run --name pg-docker --network pg-net -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v /var/lib/postgres:/var/lib/postgresql/data postgres:14
 
-• развернуть контейнер с клиентом postgres (Запускаем отдельный контейнер с клиентом в общей сети с БД):
+развернуть контейнер с клиентом postgres (Запускаем отдельный контейнер с клиентом в общей сети с БД):
  $ sudo docker run -it --rm --network pg-net --name pg-client postgres:14 psql -h pg-docker -U postgres
 PGPASSWORD=postgres psql -U postgres
 
@@ -111,5 +110,6 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMxMTc0MTU3NSwtMTkwNzI5OTY0N119
+eyJoaXN0b3J5IjpbLTIwMDc2NTI0MDAsLTE5MDcyOTk2NDddfQ
+==
 -->
