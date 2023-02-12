@@ -87,11 +87,15 @@ select * from persons;_ ***(видим 2 строчки)***
 
 ***== Проверяем с ПК из Ubuntu WSL2 (удачно)***
 psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
+postgres#
+select * from persons;_ ***(видим 2 строчки)***
 
-• удалить контейнер с сервером
-$ sudo docker ps -a
-$ docker stop b58cae3343f5 
-$ docker rm b58cae3343f5   ($ docker rm $(docker ps -a -q -f status=exited) - зачистка всех контейнеров)
+- Удалить контейнер с сервером.
+$ _sudo docker ps -a
+$ docker stop b58cae3343f5_
+
+***Удаление получилось только после остановки. 
+Так же попробовал    ($ docker rm $(docker ps -a -q -f status=exited) - зачистка всех контейнеров)***
 
 • создать его заново
 $ sudo docker run --name pg-docker --network pg-net -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v /var/lib/postgres:/var/lib/postgresql/data postgres:14
@@ -108,5 +112,6 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjExMDI4Mjk1LC0xOTA3Mjk5NjQ3XX0=
+eyJoaXN0b3J5IjpbLTE1MjQwNDg2MDcsLTE5MDcyOTk2NDddfQ
+==
 -->
