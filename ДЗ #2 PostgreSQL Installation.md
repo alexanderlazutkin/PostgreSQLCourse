@@ -1,9 +1,5 @@
 ##  Домашнее задание 2
-_______________________
-
 ###  Установка PostgreSQL
-
-***
 
 оставляйте в ЛК ДЗ комментарии что и как вы делали и как боролись с проблемами
 
@@ -11,11 +7,9 @@ _______________________
 
   
 
-- создать ВМ с Ubuntu 20.04/22.04 или развернуть докер любым удобным способом и поставить на нем Docker Engine
-
-####  Сделано в Yandex Cloud :
-
-_yc compute instance create --name pg-instance --hostname pg-instance --create-boot-disk size=15G,type=network-ssd,image-folder-id=standard-images,image-family=ubuntu-2204-lts --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 --zone ru-central1-a --metadata-from-file ssh-keys=C:/Users/User/.ssh/sshkeys.txt_
+##### Создать ВМ с Ubuntu 20.04/22.04 или развернуть докер любым удобным способом и поставить на нем Docker Engine
+> Сделано в Yandex Cloud :
+> _yc compute instance create --name pg-instance --hostname pg-instance --create-boot-disk size=15G,type=network-ssd,image-folder-id=standard-images,image-family=ubuntu-2204-lts --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 --zone ru-central1-a --metadata-from-file ssh-keys=C:/Users/User/.ssh/sshkeys.txt_
 
   
 
@@ -23,8 +17,7 @@ _yc compute instance create --name pg-instance --hostname pg-instance --create-b
 
   
 
-ssh-agent
-
+>ssh-agent
 ssh user@158.160.27.72
 
   
@@ -167,5 +160,5 @@ select * from persons;_
 _psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
 ***(видим те 2 строчки)***
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbODIyMTE3MzEyXX0=
+eyJoaXN0b3J5IjpbMTYwOTYzOTE5OV19
 -->
