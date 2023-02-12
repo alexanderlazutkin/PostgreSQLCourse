@@ -30,10 +30,7 @@
 
 #####  Add Docker’s official GPG key:
 >_sudo mkdir -m 0755 -p /etc/apt/keyrings
-
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg_
-
-  
+>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg_
 
 #####  Use the following command to set up the repository: :
 
@@ -145,5 +142,5 @@ select * from persons;_
 _psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
 ***(видим те 2 строчки)***
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMyNjI4Nzg2NV19
+eyJoaXN0b3J5IjpbMTMwNTQwMzczMV19
 -->
