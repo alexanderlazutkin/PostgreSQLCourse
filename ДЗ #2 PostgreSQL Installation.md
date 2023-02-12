@@ -2,7 +2,7 @@
 ## Домашнее задание 2
 
 ###   Установка PostgreSQL
-- Указанный сценарий выстра
+***Предисловие: Указанный сценарий выстрадан с 5-6 попытки без ошибок. После изучения основ по Docker, поиска примеров ра***
 
  - создать ВМ с Ubuntu 20.04/22.04 или развернуть докер любым удобным способом и поставить на нем Docker Engine
 #### Сделано в Yandex Cloud :
@@ -109,6 +109,5 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NjkxNDE0NjUsLTE5MDcyOTk2NDddfQ
-==
+eyJoaXN0b3J5IjpbMTcyNzAxMjQ0MywtMTkwNzI5OTY0N119
 -->
