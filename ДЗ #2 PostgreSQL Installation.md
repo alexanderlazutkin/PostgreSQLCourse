@@ -13,16 +13,16 @@ _yc compute instance create --name pg-instance --hostname pg-instance --create-b
   ssh user@158.160.27.72
   
  #### Установка и настройка по документации ttps://docs.docker.com/engine/install/ubuntu/ 
- ------ Set up the repository: h
- sudo apt-get update
- sudo apt-get install \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
 
- -- Add Docker’s official GPG key: https://docs.docker.com/engine/install/ubuntu/
- sudo mkdir -m 0755 -p /etc/apt/keyrings
+##### Set up the repository: 
+ _sudo apt-get update
+ sudo apt-get install \\
+    ca-certificates \\
+    curl \\
+    gnupg \\
+    lsb-release_
+
+ -- Add Docker’s official GPG key:  sudo mkdir -m 0755 -p /etc/apt/keyrings
  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
  -- Use the following command to set up the repository: : https://docs.docker.com/engine/install/ubuntu/
@@ -107,6 +107,5 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMjk3NTI1MjIsLTE5MDcyOTk2NDddfQ
-==
+eyJoaXN0b3J5IjpbLTU3MTc5NjQ5OCwtMTkwNzI5OTY0N119
 -->
