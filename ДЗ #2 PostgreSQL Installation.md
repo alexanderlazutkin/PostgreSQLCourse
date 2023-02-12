@@ -68,10 +68,8 @@ sudo mkdir /var/lib/postgresql/data_
  $ _sudo docker run -it --rm --network pg-net --name pg-client postgres:14 psql -h pg-docker -U postgres PGPASSWORD=postgres psql -U postgres_
 - Проверяем, что подключились через отдельный контейнер|  -- выводит на экран список всех запущенных контейнеров.
  $ _sudo docker ps -a_
-
-
-
-• подключится из контейнера с клиентом к контейнеру с сервером и сделать таблицу с парой строк
+***(Появился список контейнеров с установленным PostgreSQL 14  )***
+- Подключится из контейнера с клиентом к контейнеру с сервером и сделать таблицу с парой строк
 create table persons(id serial, first_name text, second_name text); 
 insert into persons(first_name, second_name) values('ivan', 'ivanov'); 
 insert into persons(first_name, second_name) values('petr', 'petrov'); 
@@ -107,6 +105,5 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4MTI2MjYxMTIsLTE5MDcyOTk2NDddfQ
-==
+eyJoaXN0b3J5IjpbMTgyODg5NDM3OSwtMTkwNzI5OTY0N119
 -->
