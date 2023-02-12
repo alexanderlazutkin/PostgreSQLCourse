@@ -48,7 +48,7 @@ _echo \\
 
  #### Сделать каталог /var/lib/postgres
 _sudo mkdir /var/lib/postgresql
-sudo mkdir /var/lib/postgresql/data_
+sudo mkdir /var/lib/postgresql/data_***(Пришлось выполнить эти две инструкции иначе пункт )***
 
 #####  Run docker as non-root user then you need to add it to the docker group. https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
 - Create the docker group if it does not exist: $ _sudo groupadd docker_
@@ -59,7 +59,7 @@ sudo mkdir /var/lib/postgresql/data_
 
 - Создаем docker-сеть: $ _sudo docker network create pg-net_
 
-- развернуть контейнер с PostgreSQL 14 смонтировав в него /var/lib/postgres:  $ docker pull postgres:14
+- Развернуть контейнер с PostgreSQL 14 смонтировав в него /var/lib/postgres:  $ _docker pull postgres:14_ 
  
  -- Команда run с флагом -it подключает интерактивный tty в контейнер. 
  -- Подключаем созданную сеть к контейнеру сервера Postgres:
@@ -110,5 +110,5 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUxMzQxNjc2MCwtMTkwNzI5OTY0N119
+eyJoaXN0b3J5IjpbLTY3NzQwMTM0MSwtMTkwNzI5OTY0N119
 -->
