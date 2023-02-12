@@ -36,46 +36,30 @@
 #####  Use the following command to set up the repository: :
 
 >echo \\
-"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \\
-$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null_
+>"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] >https://download.docker.com/linux/ubuntu \\
+>$(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
   
 
 #####  Install Docker Engine
-
 - Update the apt package index:
-
-_sudo apt-get update_
-
-  
-
+>sudo apt-get update
 - Install Docker Engine, containerd, and Docker Compose (lastest verion)
-
-_sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin_
-
-  
+>sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 - Verify that the Docker Engine installation is successful by running the hello-world image:
-
-_sudo docker run hello-world_
+>sudo docker run hello-world
 
 ***(Успешно отработало)***
+***--Альтернативно указано в курсе (но мне пока непонятно и я так не делал):*** curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh && rm get-docker.sh && sudo usermod -aG docker $USER
 
   
-
-***--Альтернативно указано в курсе (но мне пока непонятно и я так не делал):*** _curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh && rm get-docker.sh && sudo usermod -aG docker $USER_
-
-  
-
-  
-
 #### Подготовка к созданию контейнеров Docker
 
--Сделать каталог /var/lib/postgres
-
-_sudo mkdir /var/lib/postgresql
-
-sudo mkdir /var/lib/postgresql/data_
+- Сделать каталог /var/lib/postgres
+>sudo mkdir /var/lib/postgresql
+>
+>sudo mkdir /var/lib/postgresql/data
 
 ***(Пришлось выполнить эти две инструкции иначе пункт "Подключаем созданную сеть к контейнеру сервера Postgres: " не работал)***
 
@@ -141,5 +125,5 @@ select * from persons;_
 _psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
 ***(видим те 2 строчки)***
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkyNDQ5NTA4NF19
+eyJoaXN0b3J5IjpbLTE4NjQ4ODcwMTNdfQ==
 -->
