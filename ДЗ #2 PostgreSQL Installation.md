@@ -4,8 +4,8 @@
 ###   Установка PostgreSQL
 
  - создать ВМ с Ubuntu 20.04/22.04 или развернуть докер любым удобным способом и поставить на нем Docker Engine
-*** Сделано d Yandex Cloud :
-  yc compute instance create --name pg-instance --hostname pg-instance --create-boot-disk size=15G,type=network-ssd,image-folder-id=standard-images,image-family=ubuntu-2204-lts --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 --zone ru-central1-a --metadata-from-file ssh-keys=C:/Users/User/.ssh/sshkeys.txt
+#### Сделано в Yandex Cloud :
+_yc compute instance create --name pg-instance --hostname pg-instance --create-boot-disk size=15G,type=network-ssd,image-folder-id=standard-images,image-family=ubuntu-2204-lts --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 --zone ru-central1-a --metadata-from-file ssh-keys=C:/Users/User/.ssh/sshkeys.txt_
   
  ----------------------- Terminal PowerShell ---------------
  
@@ -106,5 +106,5 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTAxNzczMDMwLC0xOTA3Mjk5NjQ3XX0=
+eyJoaXN0b3J5IjpbLTMyMjUyNDU0NCwtMTkwNzI5OTY0N119
 -->
