@@ -58,7 +58,7 @@
 
 - Сделать каталог /var/lib/postgres
 >sudo mkdir /var/lib/postgresql
->
+
 >sudo mkdir /var/lib/postgresql/data
 
 ***(Пришлось выполнить эти две инструкции иначе пункт "Подключаем созданную сеть к контейнеру сервера Postgres: " не работал)***
@@ -125,5 +125,5 @@ select * from persons;_
 _psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
 ***(видим те 2 строчки)***
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NjQ4ODcwMTNdfQ==
+eyJoaXN0b3J5IjpbLTIxMDQ0NTM0NDFdfQ==
 -->
