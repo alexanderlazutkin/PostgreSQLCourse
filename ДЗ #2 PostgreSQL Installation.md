@@ -41,11 +41,12 @@ _echo \\
  
  --Verify that the Docker Engine installation is successful by running the hello-world image:
  _sudo docker run hello-world_
-**(Успешно отработало)**
+***(Успешно отработало)***
 
---Альтернативно указано в курсе (но мне непонятно, я так не делал): curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh && rm get-docker.sh && sudo usermod -aG docker $USER
+***--Альтернативно указано в курсе (но мне пока непонятно и я так не делал):*** _curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh && rm get-docker.sh && sudo usermod -aG docker $USER_
 
-• сделать каталог /var/lib/postgres
+
+ #### Сделать каталог /var/lib/postgres
 sudo mkdir /var/lib/postgresql
 sudo mkdir /var/lib/postgresql/data
 
@@ -109,5 +110,6 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMzNDI5NjYzOSwtMTkwNzI5OTY0N119
+eyJoaXN0b3J5IjpbLTExNzc4MTIxNjYsLTE5MDcyOTk2NDddfQ
+==
 -->
