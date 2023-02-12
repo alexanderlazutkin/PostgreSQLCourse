@@ -110,27 +110,29 @@
 ***(видим 2 строчки)***
 
 ***== Проверяем с ПК из Ubuntu WSL2 (удачно)***
-psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
-postgres#
-select * from persons;_ ***(видим 2 строчки)***
+>psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
+>postgres#
+>select * from persons;
+
+***(видим 2 строчки)***
 
 - Удалить контейнер с сервером.
-_$ sudo docker ps -a_
-_$ docker stop b58cae3343f5_
-_$ docker rm b58cae3343f5_
+>sudo docker ps -a
+>docker stop b58cae3343f5
+>docker rm b58cae3343f5
 
 ***Удаление получилось только после остановки. Так же попробовал  выполнить $ docker rm $(docker ps -a -q -f status=exited) - зачистка всех контейнеров)***
 
-- Создать его заново
-$ _sudo docker run --name pg-docker --network pg-net -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v /var/lib/postgres:/var/lib/postgresql/data postgres:14_
+- Создать контейнер заново
+>sudo docker run --name pg-docker --network pg-net -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v /var/lib/postgres:/var/lib/postgresql/data postgres:14
 - Подключится снова из контейнера с клиентом к контейнеру с сервером
-_sudo docker run -it --rm --network pg-net --name pg-client postgres:14 psql -h pg-docker -U postgres_
+>sudo docker run -it --rm --network pg-net --name pg-client postgres:14 psql -h pg-docker -U postgres
 - Проверить, что данные остались на месте
-_postgres#
+>postgres#
 select * from persons;_
 - То же самое с ПК из Ubuntu WSL2:
 _psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
 ***(видим те 2 строчки)***
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM2OTQ5NzAwN119
+eyJoaXN0b3J5IjpbLTEzNDA2NTE4NTJdfQ==
 -->
