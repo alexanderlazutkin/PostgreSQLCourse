@@ -21,23 +21,22 @@
 #### Установка и настройка по документации ttps://docs.docker.com/engine/install/ubuntu/
 #####  Set up the repository:
 
->_sudo apt-get update
+>sudo apt-get update
 >sudo apt-get install \\
 	ca-certificates \\
 	curl \\
 	gnupg \\
-	lsb-release_
+	lsb-release
 
 #####  Add Docker’s official GPG key:
->_sudo mkdir -m 0755 -p /etc/apt/keyrings
+>sudo mkdir -m 0755 -p /etc/apt/keyrings
 
->curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg_
+>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
 #####  Use the following command to set up the repository: :
 
->_echo \\
+>echo \\
 "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \\
-
 $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null_
 
   
@@ -142,5 +141,5 @@ select * from persons;_
 _psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
 ***(видим те 2 строчки)***
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjg4NDk1NTVdfQ==
+eyJoaXN0b3J5IjpbMTkyNDQ5NTA4NF19
 -->
