@@ -2,6 +2,7 @@
 ## Домашнее задание 2
 
 ###   Установка PostgreSQL
+- Указанный сценарий выстра
 
  - создать ВМ с Ubuntu 20.04/22.04 или развернуть докер любым удобным способом и поставить на нем Docker Engine
 #### Сделано в Yandex Cloud :
@@ -31,16 +32,16 @@ _echo \\
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \\
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null_
 
- ==== Install Docker Engine
+##### Install Docker Engine
  -- Update the apt package index:
- sudo apt-get update
+ _sudo apt-get update_
 
  --Install Docker Engine, containerd, and Docker Compose (lastest verion)
- sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+ _sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin_
  
  --Verify that the Docker Engine installation is successful by running the hello-world image:
- sudo docker run hello-world
-
+ _sudo docker run hello-world_
+(Успешно отработало)
 
 --Альтернативно указано в курсе (но мне непонятно, я так не делал): curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh && rm get-docker.sh && sudo usermod -aG docker $USER
 
@@ -108,6 +109,6 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyOTc5OTgwMzksLTE5MDcyOTk2NDddfQ
+eyJoaXN0b3J5IjpbLTE3NjkxNDE0NjUsLTE5MDcyOTk2NDddfQ
 ==
 -->
