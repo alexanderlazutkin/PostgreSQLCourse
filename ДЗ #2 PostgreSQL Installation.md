@@ -4,7 +4,9 @@
 ###   Установка PostgreSQL
 ***
 оставляйте в ЛК ДЗ комментарии что и как вы делали и как боролись с проблемами 
->> Предисловие: Указанный сценарий выстрадан с 5-6 попытки без ошибок. Пока не нашел в интернете основы работы с окером и примеры развертывания в нем PostgreSQL решить ДЗ не представлялось возможным (как слепой котенок раза 4 делал не осознавая что)
+> Предисловие: Указанный сценарий выстрадан с 5-6 попытки без ошибок как слепой котенок делал не осознавая что. Пока не нашел в интернете основы работы с докером и примеры развертывания в нем PostgreSQL решить ДЗ не представлялось возможным
+
+
  - создать ВМ с Ubuntu 20.04/22.04 или развернуть докер любым удобным способом и поставить на нем Docker Engine
 #### Сделано в Yandex Cloud :
 _yc compute instance create --name pg-instance --hostname pg-instance --create-boot-disk size=15G,type=network-ssd,image-folder-id=standard-images,image-family=ubuntu-2204-lts --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 --zone ru-central1-a --metadata-from-file ssh-keys=C:/Users/User/.ssh/sshkeys.txt_
@@ -115,5 +117,5 @@ _psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ0MzE0MjI2OSwtMTkwNzI5OTY0N119
+eyJoaXN0b3J5IjpbMTA0NzUyNzgwMywtMTkwNzI5OTY0N119
 -->
