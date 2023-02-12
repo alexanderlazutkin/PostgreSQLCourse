@@ -15,36 +15,21 @@
 
 ++++++++++++++ Terminal PowerShell ++++++++++++++++
 
-  
-
 >ssh-agent
-ssh user@158.160.27.72
-
-  
+>ssh user@158.160.27.72
 
 #### Установка и настройка по документации ttps://docs.docker.com/engine/install/ubuntu/
-
-  
-
 #####  Set up the repository:
 
-_sudo apt-get update
-
-sudo apt-get install \\
-
-ca-certificates \\
-
-curl \\
-
-gnupg \\
-
-lsb-release_
-
-  
+>_sudo apt-get update
+>sudo apt-get install \\
+	ca-certificates \\
+	curl \\
+	gnupg \\
+	lsb-release_
 
 #####  Add Docker’s official GPG key:
-
-_sudo mkdir -m 0755 -p /etc/apt/keyrings
+>_sudo mkdir -m 0755 -p /etc/apt/keyrings
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg_
 
@@ -160,5 +145,5 @@ select * from persons;_
 _psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
 ***(видим те 2 строчки)***
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYwOTYzOTE5OV19
+eyJoaXN0b3J5IjpbMTMyNjI4Nzg2NV19
 -->
