@@ -98,8 +98,8 @@
 
 - Подключится к контейнеру с сервером с ноутбука/компьютера извне инстансов GCP/ЯО/места установки докера
 ***== Установка клиентской части psql на своем ПК (WSL2) и ВМ***
-_sudo apt install postgresql-client-common_
-_sudo apt-get install postgresql-client_
+>sudo apt install postgresql-client-common
+>sudo apt-get install postgresql-client
 
 ***== Проверяем с ВМ локально (удачно)***
 _psql -h localhost -U postgres -d postgres
@@ -129,5 +129,5 @@ select * from persons;_
 _psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
 ***(видим те 2 строчки)***
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjE0NDYxMDcyN119
+eyJoaXN0b3J5IjpbLTEzMDMyMzI3NzVdfQ==
 -->
