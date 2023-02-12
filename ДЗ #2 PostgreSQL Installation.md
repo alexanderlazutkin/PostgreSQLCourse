@@ -129,10 +129,13 @@
 >sudo docker run -it --rm --network pg-net --name pg-client postgres:14 psql -h pg-docker -U postgres
 - Проверить, что данные остались на месте
 >postgres#
-select * from persons;_
+>select * from persons;
+
+***(видим 2 строчки)***
 - То же самое с ПК из Ubuntu WSL2:
-_psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
+>psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
+
 ***(видим те 2 строчки)***
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNDA2NTE4NTJdfQ==
+eyJoaXN0b3J5IjpbODU0MjMzNjE2XX0=
 -->
