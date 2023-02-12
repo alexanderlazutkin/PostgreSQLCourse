@@ -70,12 +70,13 @@ sudo mkdir /var/lib/postgresql/data_
  $ _sudo docker ps -a_
 ***(Появился список контейнеров с установленным PostgreSQL 14  )***
 - Подключится из контейнера с клиентом к контейнеру с сервером и сделать таблицу с парой строк
+_postgres#
 create table persons(id serial, first_name text, second_name text); 
 insert into persons(first_name, second_name) values('ivan', 'ivanov'); 
-insert into persons(first_name, second_name) values('petr', 'petrov'); 
+insert into persons(first_name, second_name) values('petr', 'petrov');_
 
-• подключится к контейнеру с сервером с ноутбука/компьютера извне инстансов GCP/ЯО/места установки докера
---Установка клиентской части psql на своем ПК (WSL2) и ВМ
+- подключится к контейнеру с сервером с ноутбука/компьютера извне инстансов GCP/ЯО/места установки докера
+-Установка клиентской части psql на своем ПК (WSL2) и ВМ
 sudo apt install postgresql-client-common
 sudo apt-get install postgresql-client
 
@@ -105,5 +106,5 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgyODg5NDM3OSwtMTkwNzI5OTY0N119
+eyJoaXN0b3J5IjpbLTY5NDkyMDE2NywtMTkwNzI5OTY0N119
 -->
