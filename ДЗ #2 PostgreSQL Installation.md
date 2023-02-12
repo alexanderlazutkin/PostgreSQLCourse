@@ -80,7 +80,7 @@
 
 #### Создание контейнеров Docker 
 #####Создаем docker-сеть: $ _sudo docker network create pg-net_
-- Развернуть контейнер с PostgreSQL 14 смонтировав в него /var/lib/postgres:  $ _docker pull postgres:14_ 
+- Развернуть контейнер с PostgreSQL 14 смонтировав в него /var/lib/postgres:  $ _docker pull postgres:14
 - Подключаем созданную сеть к контейнеру сервера Postgres:
  $ _sudo docker run --name pg-docker --network pg-net -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v /var/lib/postgres:/var/lib/postgresql/data postgres:14_
  - Развернуть контейнер с клиентом postgres (Запускаем отдельный контейнер с клиентом в общей сети с БД):
@@ -127,5 +127,5 @@ select * from persons;_
 _psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
 ***(видим те 2 строчки)***
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzY1NTA2ODYzXX0=
+eyJoaXN0b3J5IjpbMTgwODM4OTI2XX0=
 -->
