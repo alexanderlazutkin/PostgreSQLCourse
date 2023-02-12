@@ -2,7 +2,7 @@
 ## Домашнее задание 2
 
 ###   Установка PostgreSQL
-***Предисловие: Указанный сценарий выстрадан с 5-6 попытки без ошибок. После изучения основ по Docker, поиска примеров ра***
+***Предисловие: Указанный сценарий выстрадан с 5-6 попытки без ошибок. После изучения основ по Docker и поиска примеров развертывания PostgreSQL в интернете***
 
  - создать ВМ с Ubuntu 20.04/22.04 или развернуть докер любым удобным способом и поставить на нем Docker Engine
 #### Сделано в Yandex Cloud :
@@ -41,7 +41,7 @@ _echo \\
  
  --Verify that the Docker Engine installation is successful by running the hello-world image:
  _sudo docker run hello-world_
-(Успешно отработало)
+**(Успешно отработало)**
 
 --Альтернативно указано в курсе (но мне непонятно, я так не делал): curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh && rm get-docker.sh && sudo usermod -aG docker $USER
 
@@ -109,5 +109,5 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcyNzAxMjQ0MywtMTkwNzI5OTY0N119
+eyJoaXN0b3J5IjpbMTMzNDI5NjYzOSwtMTkwNzI5OTY0N119
 -->
