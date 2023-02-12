@@ -22,13 +22,14 @@ _yc compute instance create --name pg-instance --hostname pg-instance --create-b
     gnupg \\
     lsb-release_
 
- -- Add Docker’s official GPG key:  sudo mkdir -m 0755 -p /etc/apt/keyrings
- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+##### Add Docker’s official GPG key:  
+_sudo mkdir -m 0755 -p /etc/apt/keyrings
+ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg_
 
- -- Use the following command to set up the repository: : https://docs.docker.com/engine/install/ubuntu/
- echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+##### Use the following command to set up the repository: : 
+_echo \\
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \\
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null_
 
  ==== Install Docker Engine
  -- Update the apt package index:
@@ -107,5 +108,6 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU3MTc5NjQ5OCwtMTkwNzI5OTY0N119
+eyJoaXN0b3J5IjpbLTEyOTc5OTgwMzksLTE5MDcyOTk2NDddfQ
+==
 -->
