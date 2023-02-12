@@ -2,8 +2,9 @@
 ## Домашнее задание 2
 
 ###   Установка PostgreSQL
-***Предисловие: Указанный сценарий выстрадан с 5-6 попытки без ошибок. После изучения основ по Docker и поиска примеров развертывания PostgreSQL в интернете***
-
+***
+оставляйте в ЛК ДЗ комментарии что и как вы делали и как боролись с проблемами 
+>> Предисловие: Указанный сценарий выстрадан с 5-6 попытки без ошибок. Пока не нашел в интернете основы работы с окером и примеры развертывания в нем PostgreSQL решить ДЗ не представлялось возможным (как слепой котенок раза 4 делал не осознавая что)
  - создать ВМ с Ubuntu 20.04/22.04 или развернуть докер любым удобным способом и поставить на нем Docker Engine
 #### Сделано в Yandex Cloud :
 _yc compute instance create --name pg-instance --hostname pg-instance --create-boot-disk size=15G,type=network-ssd,image-folder-id=standard-images,image-family=ubuntu-2204-lts --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 --zone ru-central1-a --metadata-from-file ssh-keys=C:/Users/User/.ssh/sshkeys.txt_
@@ -103,16 +104,16 @@ _sudo docker run -it --rm --network pg-net --name pg-client postgres:14 psql -h 
 - Проверить, что данные остались на месте
 _postgres#
 select * from persons;_
-То же самое с ПК
+- То же самое с ПК из Ubuntu WSL2:
 _psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
 ***(видим те 2 строчки)***
-• оставляйте в ЛК ДЗ комментарии что и как вы делали и как боролись с проблемами 
->> Пока не нашел в интернете основы работы с лдокером и примеры развертывания в нем PostgreSQL решить ДЗ не представлялось возможным (как слепой котенок раза 4 делал не осознавая что)
+
+
+
 
 
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMTQ4NjcxMDIsLTE5MDcyOTk2NDddfQ
-==
+eyJoaXN0b3J5IjpbMTQ0MzE0MjI2OSwtMTkwNzI5OTY0N119
 -->
