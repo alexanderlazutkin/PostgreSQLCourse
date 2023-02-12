@@ -55,11 +55,11 @@ sudo mkdir /var/lib/postgresql/data_
 - Add your user to the docker group:$ _sudo usermod -aG docker $USER_
  - Log in to the new docker group (to avoid having to log out / log in again; but if not enough, try to reboot):$ _newgrp docker_
 - Check if docker can be run without root: $ _docker run hello-world_
-Reboot if still got error: $ reboot
+- Reboot if still got error: $ _reboot_  ***(Пропустил, т.к. отработало без ошибок)***
 
--- Создаем docker-сеть: $ sudo docker network create pg-net
+- Создаем docker-сеть: $ _sudo docker network create pg-net_
 
-• развернуть контейнер с PostgreSQL 14 смонтировав в него /var/lib/postgres:  $ docker pull postgres:14
+- развернуть контейнер с PostgreSQL 14 смонтировав в него /var/lib/postgres:  $ docker pull postgres:14
  
  -- Команда run с флагом -it подключает интерактивный tty в контейнер. 
  -- Подключаем созданную сеть к контейнеру сервера Postgres:
@@ -110,5 +110,5 @@ psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTczNjc1NTY5LC0xOTA3Mjk5NjQ3XX0=
+eyJoaXN0b3J5IjpbLTUxMzQxNjc2MCwtMTkwNzI5OTY0N119
 -->
