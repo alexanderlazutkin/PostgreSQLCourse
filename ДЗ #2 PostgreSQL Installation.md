@@ -94,9 +94,10 @@ postgres#
 select * from persons;_ ***(видим 2 строчки)***
 
 - Удалить контейнер с сервером.
-$ _sudo docker ps -a
-$ docker stop b58cae3343f5
-$ docker rm b58cae3343f5_
+>$ sudo docker ps -a
+>$ docker stop b58cae3343f5
+>$ docker rm b58cae3343f5
+
 ***Удаление получилось только после остановки. Так же попробовал  выполнить $ docker rm $(docker ps -a -q -f status=exited) - зачистка всех контейнеров)***
 
 - Создать его заново
@@ -117,5 +118,5 @@ _psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTQ4NDkzNjY1LC0xOTA3Mjk5NjQ3XX0=
+eyJoaXN0b3J5IjpbLTgzNTg0MzIzNywtMTkwNzI5OTY0N119
 -->
