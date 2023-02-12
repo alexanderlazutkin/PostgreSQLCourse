@@ -79,10 +79,11 @@
 - Reboot if still got error: $ _reboot_ ***(Пропустил, т.к. отработало без ошибок)***
 
 #### Создание контейнеров Docker 
-#####Создаем docker-сеть: $ _sudo docker network create pg-net_
-- Развернуть контейнер с PostgreSQL 14 смонтировав в него /var/lib/postgres:  $ _docker pull postgres:14
+##### Создаем docker-сеть: $ _sudo docker network create pg-net_
+- Развернуть контейнер с PostgreSQL 14 смонтировав в него /var/lib/postgres:  
+$ _docker pull postgres:14
 - Подключаем созданную сеть к контейнеру сервера Postgres:
- $ _sudo docker run --name pg-docker --network pg-net -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v /var/lib/postgres:/var/lib/postgresql/data postgres:14_
+$ _sudo docker run --name pg-docker --network pg-net -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v /var/lib/postgres:/var/lib/postgresql/data postgres:14_
  - Развернуть контейнер с клиентом postgres (Запускаем отдельный контейнер с клиентом в общей сети с БД):
  $ _sudo docker run -it --rm --network pg-net --name pg-client postgres:14 psql -h pg-docker -U postgres PGPASSWORD=postgres psql -U postgres_
 - Проверяем, что подключились через отдельный контейнер|  -- выводит на экран список всех запущенных контейнеров.
@@ -127,5 +128,5 @@ select * from persons;_
 _psql -p 5432 -U postgres -h 158.160.27.72 -d postgres -W_
 ***(видим те 2 строчки)***
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTgwODM4OTI2XX0=
+eyJoaXN0b3J5IjpbMTA0OTY4NDEwNl19
 -->
