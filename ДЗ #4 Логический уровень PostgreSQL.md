@@ -61,7 +61,7 @@ testdb=# SELECT * FROM testnm.t1;
 (1 row)
 ### 16 получилось? (могло если вы делали сами не по шпаргалке и не упустили один существенный момент про который позже)  
 #### в названии таблицы пропустили схему. в шпаркалке вы сознательно повели по ложному следу и таблицв создалась в схеме по умолчанию PUBLIC. Ай-ай-ай
-
+>
 17 напишите что именно произошло в тексте домашнего задания  
 18 у вас есть идеи почему? ведь права то дали?  
 19 посмотрите на список таблиц  
@@ -82,6 +82,8 @@ testdb=# SELECT * FROM testnm.t1;
 31 сделайте select * from testnm.t1;  
 32 получилось?  
 33 ура!  
+
+
 34 теперь попробуйте выполнить команду create table t2(c1 integer); insert into t2 values (2);  
 35 а как так? нам же никто прав на создание таблиц и insert в них под ролью readonly?  
 36 есть идеи как убрать эти права? если нет - смотрите шпаргалку  
@@ -89,6 +91,6 @@ testdb=# SELECT * FROM testnm.t1;
 38 теперь попробуйте выполнить команду create table t3(c1 integer); insert into t2 values (2);  
 39 расскажите что получилось и почему
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTMwOTkwMTIxLC00NTM2NjYzMTgsLTExNT
-M2OTA0MTVdfQ==
+eyJoaXN0b3J5IjpbMTEyMzUzMjk4MSwtNDUzNjY2MzE4LC0xMT
+UzNjkwNDE1XX0=
 -->
