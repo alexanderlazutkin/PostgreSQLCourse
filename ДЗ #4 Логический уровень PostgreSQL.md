@@ -129,9 +129,34 @@ testdb=> select * from t2;
 36 есть идеи как убрать эти права? если нет - смотрите шпаргалку  
 37 если вы справились сами то расскажите что сделали и почему, если смотрели шпаргалку - объясните что сделали и почему выполнив указанные в ней команды  
 38 теперь попробуйте выполнить команду create table t3(c1 integer); insert into t2 values (2);  
-39 расскажите что получилось и почему
+### 39 расскажите что получилось и почему
+Поясните почему при отзыве прав 
+> testdb=> \c testdb postgres;
+Password for user postgres:
+connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+Previous connection kept
+testdb=> revoke CREATE on SCHEMA public FROM public;
+WARNING:  no privileges could be revoked for "public"
+REVOKE
+testdb=> revoke all on DATABASE testdb FROM public;
+WARNING:  no privileges could be revoked for "testdb"
+REVOKE
+testdb=> \c testdb testread;
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+You are now connected to database "testdb" as user "testread".
+testdb=> create table t3(c1 integer);
+CREATE TABLE
+testdb=> insert into t3 values (2);
+INSERT 0 1
+testdb=> select * from t3;
+ c1
+----
+  2
+(1 row)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU4MzE0NTg1NiwxNTc1ODIzODg2LDQ1OT
-UyMTM3NiwxMzk3Njk3OTgyLC03ODI4MjQ2OTcsMTEyMzUzMjk4
-MSwtNDUzNjY2MzE4LC0xMTUzNjkwNDE1XX0=
+eyJoaXN0b3J5IjpbLTk2NTc3NDk2NSwtNTgzMTQ1ODU2LDE1Nz
+U4MjM4ODYsNDU5NTIxMzc2LDEzOTc2OTc5ODIsLTc4MjgyNDY5
+NywxMTIzNTMyOTgxLC00NTM2NjYzMTgsLTExNTM2OTA0MTVdfQ
+==
 -->
