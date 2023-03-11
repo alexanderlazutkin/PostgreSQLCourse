@@ -39,6 +39,7 @@ Warning: stopping the cluster using pg_ctlcluster will mark the systemd unit as 
 #####   создайте новый standard persistent диск GKE через ЯО
 > остановлена ВМ, добавлен диск и присоединенен, ВМ запущена
 #####  проинициализируйте диск согласно инструкции и подмонтировать файловую систему, только не забывайте менять имя диска на актуальное, в вашем случае это скорее всего будет /dev/sdb -  [https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux](https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux "https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux")
+
 -   перезагрузите инстанс и убедитесь, что диск остается примонтированным (если не так смотрим в сторону fstab)
 -   сделайте пользователя postgres владельцем /mnt/data - chown -R postgres:postgres /mnt/data/
 -   перенесите содержимое /var/lib/postgres/14 в /mnt/data - mv /var/lib/postgresql/14 /mnt/data
@@ -51,7 +52,7 @@ Warning: stopping the cluster using pg_ctlcluster will mark the systemd unit as 
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzODI4OTQ5MjEsLTE4MDI0NTA3MTEsLT
+eyJoaXN0b3J5IjpbLTE0NzE3OTIyODMsLTE4MDI0NTA3MTEsLT
 EwMzU3NDYwNDMsMTkwMTE5Mzg5OCwtMTU3ODYyMDU3OCwxNTk0
 NDc4Mjg5XX0=
 -->
