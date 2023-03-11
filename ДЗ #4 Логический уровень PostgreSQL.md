@@ -132,11 +132,9 @@ testdb=> select * from t2;
 ### 39 расскажите что получилось и почему
 ***Встречный вопрос: Поясните почему после отзыва прав на схему public и попытке создания таблицы t3 повторно права доступа не применились, с чем это связано? см код ниже:***
 > testdb=> \c testdb postgres;
-Password for user postgres:
-connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
-connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+> Password for user postgres:  connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"  connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
 Previous connection kept
-testdb=> revoke CREATE on SCHEMA public FROM public;
+> testdb=> revoke CREATE on SCHEMA public FROM public;
 WARNING:  no privileges could be revoked for "public"
 REVOKE
 testdb=> revoke all on DATABASE testdb FROM public;
@@ -155,8 +153,7 @@ testdb=> select * from t3;
   2
 (1 row)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3ODAwNDE1MDAsLTU4MzE0NTg1NiwxNT
-c1ODIzODg2LDQ1OTUyMTM3NiwxMzk3Njk3OTgyLC03ODI4MjQ2
-OTcsMTEyMzUzMjk4MSwtNDUzNjY2MzE4LC0xMTUzNjkwNDE1XX
-0=
+eyJoaXN0b3J5IjpbNzI3OTE0MTQ4LC01ODMxNDU4NTYsMTU3NT
+gyMzg4Niw0NTk1MjEzNzYsMTM5NzY5Nzk4MiwtNzgyODI0Njk3
+LDExMjM1MzI5ODEsLTQ1MzY2NjMxOCwtMTE1MzY5MDQxNV19
 -->
