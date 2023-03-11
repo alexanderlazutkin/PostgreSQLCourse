@@ -83,6 +83,7 @@ testdb=> select * from testnm.t1;
 ERROR:  permission denied for table t1
 
 29 есть идеи почему? если нет - смотрите шпаргалку  
+ALTER default privileges in SCHEMA testnm grant SELECT on TABLEs to readonly;
 30 как сделать так чтобы такое больше не повторялось? если нет идей - смотрите шпаргалку  
 31 сделайте select * from testnm.t1;  
 32 получилось?  
@@ -99,6 +100,6 @@ ERROR:  permission denied for table t1
 38 теперь попробуйте выполнить команду create table t3(c1 integer); insert into t2 values (2);  
 39 расскажите что получилось и почему
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjQwODA5OTgyLC03ODI4MjQ2OTcsMTEyMz
-UzMjk4MSwtNDUzNjY2MzE4LC0xMTUzNjkwNDE1XX0=
+eyJoaXN0b3J5IjpbMTM5NzY5Nzk4MiwtNzgyODI0Njk3LDExMj
+M1MzI5ODEsLTQ1MzY2NjMxOCwtMTE1MzY5MDQxNV19
 -->
