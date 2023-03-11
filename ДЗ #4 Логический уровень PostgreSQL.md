@@ -74,7 +74,14 @@ testdb=# SELECT * FROM testnm.t1;
 25 вставьте строку со значением c1=1  
 26 зайдите под пользователем testread в базу данных testdb  
 27 сделайте select * from testnm.t1;  
-28 получилось?  
+### 28 получилось?  
+>testdb=# \c testdb testread;
+Password for user testread:
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+You are now connected to database "testdb" as user "testread".
+testdb=> select * from testnm.t1;
+ERROR:  permission denied for table t1
+
 29 есть идеи почему? если нет - смотрите шпаргалку  
 30 как сделать так чтобы такое больше не повторялось? если нет идей - смотрите шпаргалку  
 31 сделайте select * from testnm.t1;  
@@ -92,6 +99,6 @@ testdb=# SELECT * FROM testnm.t1;
 38 теперь попробуйте выполнить команду create table t3(c1 integer); insert into t2 values (2);  
 39 расскажите что получилось и почему
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc4MjgyNDY5NywxMTIzNTMyOTgxLC00NT
-M2NjYzMTgsLTExNTM2OTA0MTVdfQ==
+eyJoaXN0b3J5IjpbNjQwODA5OTgyLC03ODI4MjQ2OTcsMTEyMz
+UzMjk4MSwtNDUzNjY2MzE4LC0xMTUzNjkwNDE1XX0=
 -->
