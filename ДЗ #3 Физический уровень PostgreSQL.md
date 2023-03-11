@@ -27,13 +27,11 @@ user@postgresql:~$ sudo -u postgres pg_lsclusters
 >Ver Cluster Port Status Owner    Data directory              Log file
 14  main    5432 online postgres /var/lib/postgresql/14/main /var/log/postgresql/postgresql-14-main.log
 ##### зайдите из под пользователя postgres в psql и сделайте произвольную таблицу с произвольным содержимым  
-    sudo -u postgres psql
+sudo -u postgres psql
 postgres=# create table test(c1 text);
->CREATE TABLE
 postgres=# insert into test values('1');
->INSERT 0 1
-postgres=#
--   остановите postgres например через sudo -u postgres pg_ctlcluster 14 main stop
+
+##### остановите postgres например через sudo -u postgres pg_ctlcluster 14 main stop
 -   создайте новый standard persistent диск GKE через Compute Engine -> Disks в том же регионе и зоне что GCE инстанс размером например 10GB
 -   добавьте свеже-созданный диск к виртуальной машине - надо зайти в режим ее редактирования и дальше выбрать пункт attach existing disk
 -   проинициализируйте диск согласно инструкции и подмонтировать файловую систему, только не забывайте менять имя диска на актуальное, в вашем случае это скорее всего будет /dev/sdb -  [https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux](https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux "https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux")
@@ -49,6 +47,6 @@ postgres=#
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIwMDQ4NTY1NTksLTEwMzU3NDYwNDMsMT
+eyJoaXN0b3J5IjpbLTE4Mzc0MTEwODAsLTEwMzU3NDYwNDMsMT
 kwMTE5Mzg5OCwtMTU3ODYyMDU3OCwxNTk0NDc4Mjg5XX0=
 -->
