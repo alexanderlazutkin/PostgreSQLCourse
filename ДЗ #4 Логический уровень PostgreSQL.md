@@ -43,11 +43,15 @@ CREATE role readonly;
 ### 9 дайте новой роли право на подключение к базе данных testdb  
 grant connect on DATABASE testdb TO readonly;
 ### 10 дайте новой роли право на использование схемы testnm  
-
+grant usage on SCHEMA testnm to readonly;
 ### 11 дайте новой роли право на select для всех таблиц схемы testnm  
+grant SELECT on all TABLEs in SCHEMA testnm TO readonly;
 ### 12 создайте пользователя testread с паролем test123  
+CREATE USER testread with password 'test123';
 ### 13 дайте роль readonly пользователю testread  
+grant readonly TO testread;
 ### 14 зайдите под пользователем testread в базу данных testdb  
+
 ### 15 сделайте select * from t1;  
 ### 16 получилось? (могло если вы делали сами не по шпаргалке и не упустили один существенный момент про который позже)  
 17 напишите что именно произошло в тексте домашнего задания  
@@ -77,5 +81,5 @@ grant connect on DATABASE testdb TO readonly;
 38 теперь попробуйте выполнить команду create table t3(c1 integer); insert into t2 values (2);  
 39 расскажите что получилось и почему
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MzQ3MTgyMCwtMTE1MzY5MDQxNV19
+eyJoaXN0b3J5IjpbODAyNzE5MzM3LC0xMTUzNjkwNDE1XX0=
 -->
