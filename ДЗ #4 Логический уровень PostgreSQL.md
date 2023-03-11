@@ -83,10 +83,25 @@ testdb=> select * from testnm.t1;
 ERROR:  permission denied for table t1
 
 29 есть идеи почему? если нет - смотрите шпаргалку  
-ALTER default privileges in SCHEMA testnm grant SELECT on TABLEs to readonly;
-30 как сделать так чтобы такое больше не повторялось? если нет идей - смотрите шпаргалку  
+>testdb=> \c testdb postgres
+Password for user postgres:
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+You are now connected to database "testdb" as user "postgres".
+testdb=# grant SELECT on all TABLEs in SCHEMA testnm TO readonly;
+GRANT
+testdb=# \c testdb testread;
+Password for user testread:
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+You are now connected to database "testdb" as user "testread".
+testdb=> select * from testnm.t1;
+ c1
+----
+  1
+(1 row)
+### 30 как сделать так чтобы такое больше не повторялось? если нет идей - смотрите шпаргалку  
 31 сделайте select * from testnm.t1;  
 32 получилось?  
+да
 33 есть идеи почему? если нет - смотрите шпаргалку  
 31 сделайте select * from testnm.t1;  
 32 получилось?  
@@ -100,6 +115,7 @@ ALTER default privileges in SCHEMA testnm grant SELECT on TABLEs to readonly;
 38 теперь попробуйте выполнить команду create table t3(c1 integer); insert into t2 values (2);  
 39 расскажите что получилось и почему
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM5NzY5Nzk4MiwtNzgyODI0Njk3LDExMj
-M1MzI5ODEsLTQ1MzY2NjMxOCwtMTE1MzY5MDQxNV19
+eyJoaXN0b3J5IjpbLTk4ODI2NTc0MSwxMzk3Njk3OTgyLC03OD
+I4MjQ2OTcsMTEyMzUzMjk4MSwtNDUzNjY2MzE4LC0xMTUzNjkw
+NDE1XX0=
 -->
