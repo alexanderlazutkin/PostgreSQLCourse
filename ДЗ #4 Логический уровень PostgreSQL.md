@@ -11,6 +11,17 @@ sudo -u postgres psql
 ALTER USER postgres WITH PASSWORD 'postgres';
 
 ### 3 создайте новую базу данных testdb  
+psql -h localhost -U postgres
+>postgres=# CREATE DATABASE testdb;
+CREATE DATABASE
+postgres=# \q
+user@postgrevm:~$ psql -h localhost -d testdb -U postgres
+>Password for user postgres:
+psql (14.7 (Ubuntu 14.7-0ubuntu0.22.04.1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type "help" for help.
+testdb=#
+
 4 зайдите в созданную базу данных под пользователем postgres  
 5 создайте новую схему testnm  
 6 создайте новую таблицу t1 с одной колонкой c1 типа integer  
@@ -51,5 +62,5 @@ ALTER USER postgres WITH PASSWORD 'postgres';
 38 теперь попробуйте выполнить команду create table t3(c1 integer); insert into t2 values (2);  
 39 расскажите что получилось и почему
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNTM2OTA0MTVdfQ==
+eyJoaXN0b3J5IjpbMTk4NTkxMjcyMywtMTE1MzY5MDQxNV19
 -->
