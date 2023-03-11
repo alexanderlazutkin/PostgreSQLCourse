@@ -114,7 +114,7 @@ user@postgresql:~$ df -h -x tmpfs
 /dev/vda2        15G  4.0G   11G  29% /
 /dev/vdb         20G   24K   19G   1% /mnt/data
 
--   перезагрузите инстанс и убедитесь, что диск остается примонтированным (если не так смотрим в сторону fstab)
+##### перезагрузите инстанс и убедитесь, что диск остается примонтированным (если не так смотрим в сторону fstab)
 user@postgresql:~$ sudo reboot now
 >Connection to 51.250.29.213 closed by remote host.
 Connection to 51.250.29.213 closed.
@@ -124,8 +124,10 @@ user@postgresql:~$ df -h -x tmpfs
 /dev/vda2        15G  4.0G   11G  29% /
 /dev/vdb         20G   24K   19G   1% /mnt/data
 
--   сделайте пользователя postgres владельцем /mnt/data - chown -R postgres:postgres /mnt/data/
--   перенесите содержимое /var/lib/postgres/14 в /mnt/data - mv /var/lib/postgresql/14 /mnt/data
+##### сделайте пользователя postgres владельцем /mnt/data - chown -R postgres:postgres /mnt/data/
+sudo chown -R postgres:postgres /mnt/data/
+
+##### перенесите содержимое /var/lib/postgres/14 в /mnt/data - mv /var/lib/postgresql/14 /mnt/data
 -   попытайтесь запустить кластер - sudo -u postgres pg_ctlcluster 14 main start
 -   напишите получилось или нет и почему
 -   задание: найти конфигурационный параметр в файлах раположенных в /etc/postgresql/14/main который надо поменять и поменяйте его
@@ -135,7 +137,7 @@ user@postgresql:~$ df -h -x tmpfs
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTE2MDk5MjYyLDE2NzY3NzU2NTMsLTE4MD
-I0NTA3MTEsLTEwMzU3NDYwNDMsMTkwMTE5Mzg5OCwtMTU3ODYy
-MDU3OCwxNTk0NDc4Mjg5XX0=
+eyJoaXN0b3J5IjpbLTk4MTIwNDA1Nyw1MTYwOTkyNjIsMTY3Nj
+c3NTY1MywtMTgwMjQ1MDcxMSwtMTAzNTc0NjA0MywxOTAxMTkz
+ODk4LC0xNTc4NjIwNTc4LDE1OTQ0NzgyODldfQ==
 -->
