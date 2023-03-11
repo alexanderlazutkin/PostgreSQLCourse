@@ -8,7 +8,8 @@
 > _yc compute instance create --name pg-instance --hostname pg-instance --create-boot-disk size=15G,type=network-ssd,image-folder-id=standard-images,image-family=ubuntu-2204-lts --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 --zone ru-central1-a --metadata-from-file ssh-keys=C:/Users/User/.ssh/sshkeys.txt_
 > ssh user@130.193.41.225
 #####  поставьте на нее PostgreSQL 14 через sudo apt
-> ssh user@158.160.27.62
+> sudo apt -y install postgresql-14
+> 
 #####  проверьте что кластер запущен через sudo -u postgres pg_lsclusters
 -   зайдите из под пользователя postgres в psql и сделайте произвольную таблицу с произвольным содержимым  
     postgres=# create table test(c1 text);  
@@ -30,5 +31,5 @@
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk4NTM0MDEwLDE1OTQ0NzgyODldfQ==
+eyJoaXN0b3J5IjpbLTE1Nzg2MjA1NzgsMTU5NDQ3ODI4OV19
 -->
