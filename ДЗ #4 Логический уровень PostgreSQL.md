@@ -110,6 +110,19 @@ testdb=> select * from testnm.t1;
 
 
 34 теперь попробуйте выполнить команду create table t2(c1 integer); insert into t2 values (2);  
+testdb=# \c testdb testread;
+>Password for user testread:
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+You are now connected to database "testdb" as user "testread".
+testdb=> create table t2(c1 integer);
+CREATE TABLE
+testdb=> insert into t2 values (2);
+INSERT 0 1
+testdb=> select * from t2;
+ c
+----
+>  2
+(1 row)
 
 35 а как так? нам же никто прав на создание таблиц и insert в них под ролью readonly?  
 36 есть идеи как убрать эти права? если нет - смотрите шпаргалку  
@@ -117,7 +130,7 @@ testdb=> select * from testnm.t1;
 38 теперь попробуйте выполнить команду create table t3(c1 integer); insert into t2 values (2);  
 39 расскажите что получилось и почему
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU3NTgyMzg4Niw0NTk1MjEzNzYsMTM5Nz
-Y5Nzk4MiwtNzgyODI0Njk3LDExMjM1MzI5ODEsLTQ1MzY2NjMx
-OCwtMTE1MzY5MDQxNV19
+eyJoaXN0b3J5IjpbMTg1MzM1NjIwNiwxNTc1ODIzODg2LDQ1OT
+UyMTM3NiwxMzk3Njk3OTgyLC03ODI4MjQ2OTcsMTEyMzUzMjk4
+MSwtNDUzNjY2MzE4LC0xMTUzNjkwNDE1XX0=
 -->
