@@ -7,7 +7,8 @@
 > Сделано в Yandex Cloud :
 > _yc compute instance create --name pg-instance --hostname pg-instance --create-boot-disk size=15G,type=network-ssd,image-folder-id=standard-images,image-family=ubuntu-2204-lts --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 --zone ru-central1-a --metadata-from-file ssh-keys=C:/Users/User/.ssh/sshkeys.txt_
 > 
--   поставьте на нее PostgreSQL 14 через sudo apt
+#####  поставьте на нее PostgreSQL 14 через sudo apt
+
 -   проверьте что кластер запущен через sudo -u postgres pg_lsclusters
 -   зайдите из под пользователя postgres в psql и сделайте произвольную таблицу с произвольным содержимым  
     postgres=# create table test(c1 text);  
@@ -29,5 +30,5 @@
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU5NDQ3ODI4OV19
+eyJoaXN0b3J5IjpbMjA2OTM4ODU1MSwxNTk0NDc4Mjg5XX0=
 -->
