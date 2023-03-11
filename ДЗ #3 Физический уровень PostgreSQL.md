@@ -50,8 +50,72 @@ vda                15G
 └─vda2 ext4        15G /
 vdb                20G
 #####  проинициализируйте диск согласно инструкции и подмонтировать файловую систему, только не забывайте менять имя диска на актуальное, в вашем случае это скорее всего будет /dev/sdb -  [https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux](https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux "https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux")
+https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux
+Подготовка к разметке нового диска
+sudo apt update
+sudo apt install parted
+
+user@postgresql:~$ sudo parted -l | grep Error
+Error: /dev/vdb: unrecognised disk label
+
+Разметка нового диска для GPT
+sudo parted /dev/vdb mklabel gpt
+
+Создание нового раздела
+>sudo parted -a opt /dev/vdb mkpart primary ext4 0% 100%
+
+user@postgresql:~$ lsblk
+>NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+loop0    7:0    0  61.9M  1 loop /snap/core20/1405
+loop1    7:1    0  63.3M  1 loop /snap/core20/1828
+loop2    7:2    0  79.9M  1 loop /snap/lxd/22923
+loop3    7:3    0 111.9M  1 loop /snap/lxd/24322
+loop4    7:4    0  49.8M  1 loop /snap/snapd/18357
+vda    252:0    0    15G  0 disk
++-vda1 252:1    0     1M  0 part
+L-vda2 252:2    0    15G  0 part /
+vdb    252:16   0    20G  0 disk
+L-vdb1 252:17   0    20G  0 part
+
+Create a Filesystem on the New Partition
+>sudo mkfs.ext4 -L datapartition /dev/vdb
+
+user@postgresql:~$ sudo lsblk --fs
+>NAME   FSTYPE   FSVER LABEL         UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+loop0  squashfs 4.0                                                            0   100% /snap/core20/1405
+loop1  squashfs 4.0                                                            0   100% /snap/core20/1828
+loop2  squashfs 4.0                                                            0   100% /snap/lxd/22923
+loop3  squashfs 4.0                                                            0   100% /snap/lxd/24322
+loop4  squashfs 4.0                                                            0   100% /snap/snapd/18357
+vda
++-vda1
+L-vda2 ext4     1.0                 82aeea96-6d42-49e6-85d5-9071d3c9b6aa     10G    27% /
+vdb    ext4     1.0   datapartition 93786567-5bc4-4a39-a113-b328dad05a2b
+
+user@postgresql:~$ sudo lsblk -o NAME,FSTYPE,LABEL,UUID,MOUNTPOINT
+>NAME   FSTYPE   LABEL         UUID                                 MOUNTPOINT
+loop0  squashfs                                                    /snap/core20/1405
+loop1  squashfs                                                    /snap/core20/1828
+loop2  squashfs                                                    /snap/lxd/22923
+loop3  squashfs                                                    /snap/lxd/24322
+loop4  squashfs                                                    /snap/snapd/18357
+vda
++-vda1
+L-vda2 ext4                   82aeea96-6d42-49e6-85d5-9071d3c9b6aa /
+vdb    ext4     datapartition 93786567-5bc4-4a39-a113-b328dad05a2b
+
+Mount the New Filesystem
+>sudo mkdir -p /mnt/data
+sudo mount -o defaults /dev/vdb /mnt/data
+sudo mount -a
+
+user@postgresql:~$ df -h -x tmpfs
+>Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda2        15G  4.0G   11G  29% /
+/dev/vdb         20G   24K   19G   1% /mnt/data
 
 -   перезагрузите инстанс и убедитесь, что диск остается примонтированным (если не так смотрим в сторону fstab)
+
 -   сделайте пользователя postgres владельцем /mnt/data - chown -R postgres:postgres /mnt/data/
 -   перенесите содержимое /var/lib/postgres/14 в /mnt/data - mv /var/lib/postgresql/14 /mnt/data
 -   попытайтесь запустить кластер - sudo -u postgres pg_ctlcluster 14 main start
@@ -63,7 +127,7 @@ vdb                20G
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY3Njc3NTY1MywtMTgwMjQ1MDcxMSwtMT
-AzNTc0NjA0MywxOTAxMTkzODk4LC0xNTc4NjIwNTc4LDE1OTQ0
-NzgyODldfQ==
+eyJoaXN0b3J5IjpbMTU0NjQxNDc1NywxNjc2Nzc1NjUzLC0xOD
+AyNDUwNzExLC0xMDM1NzQ2MDQzLDE5MDExOTM4OTgsLTE1Nzg2
+MjA1NzgsMTU5NDQ3ODI4OV19
 -->
