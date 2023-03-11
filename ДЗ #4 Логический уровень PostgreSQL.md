@@ -105,11 +105,12 @@ testdb=> select * from testnm.t1;
 ### 33 есть идеи почему? если нет - смотрите шпаргалку  
 >потому что ALTER default будет действовать для новых таблиц а grant SELECT on all TABLEs in SCHEMA testnm TO readonly отработал только для существующих на тот момент времени. надо сделать снова или grant SELECT или пересоздать таблицу
 ### 31 сделайте select * from testnm.t1;  
-32 получилось?  
+### 32 получилось?  
+да
 33 ура!  
 
 
-34 теперь попробуйте выполнить команду create table t2(c1 integer); insert into t2 values (2);  
+### 34 теперь попробуйте выполнить команду create table t2(c1 integer); insert into t2 values (2);  
 testdb=# \c testdb testread;
 >Password for user testread:
 SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
@@ -130,7 +131,7 @@ testdb=> select * from t2;
 38 теперь попробуйте выполнить команду create table t3(c1 integer); insert into t2 values (2);  
 39 расскажите что получилось и почему
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg1MzM1NjIwNiwxNTc1ODIzODg2LDQ1OT
+eyJoaXN0b3J5IjpbLTU4MzE0NTg1NiwxNTc1ODIzODg2LDQ1OT
 UyMTM3NiwxMzk3Njk3OTgyLC03ODI4MjQ2OTcsMTEyMzUzMjk4
 MSwtNDUzNjY2MzE4LC0xMTUzNjkwNDE1XX0=
 -->
