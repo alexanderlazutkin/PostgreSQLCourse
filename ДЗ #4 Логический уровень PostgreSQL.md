@@ -130,7 +130,7 @@ testdb=> select * from t2;
 37 если вы справились сами то расскажите что сделали и почему, если смотрели шпаргалку - объясните что сделали и почему выполнив указанные в ней команды  
 38 теперь попробуйте выполнить команду create table t3(c1 integer); insert into t2 values (2);  
 ### 39 расскажите что получилось и почему
-***Встречный вопрос: Поясните почему при отзыве прав и попытке создания таблицы t3 повторно права доступа не применились, с чем это связано? см код ниже:***
+***Встречный вопрос: Поясните почему после отзыва прав на схему public и попытке создания таблицы t3 повторно права доступа не применились, с чем это связано? см код ниже:***
 > testdb=> \c testdb postgres;
 Password for user postgres:
 connection to server at "localhost" (::1), port 5432 failed: FATAL:  password authentication failed for user "postgres"
@@ -155,7 +155,8 @@ testdb=> select * from t3;
   2
 (1 row)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg5MTkwODkyLC01ODMxNDU4NTYsMTU3NT
-gyMzg4Niw0NTk1MjEzNzYsMTM5NzY5Nzk4MiwtNzgyODI0Njk3
-LDExMjM1MzI5ODEsLTQ1MzY2NjMxOCwtMTE1MzY5MDQxNV19
+eyJoaXN0b3J5IjpbLTE3ODAwNDE1MDAsLTU4MzE0NTg1NiwxNT
+c1ODIzODg2LDQ1OTUyMTM3NiwxMzk3Njk3OTgyLC03ODI4MjQ2
+OTcsMTEyMzUzMjk4MSwtNDUzNjY2MzE4LC0xMTUzNjkwNDE1XX
+0=
 -->
