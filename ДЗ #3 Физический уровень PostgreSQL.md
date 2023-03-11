@@ -8,7 +8,24 @@
 > _yc compute instance create --name pg-instance --hostname pg-instance --create-boot-disk size=15G,type=network-ssd,image-folder-id=standard-images,image-family=ubuntu-2204-lts --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 --zone ru-central1-a --metadata-from-file ssh-keys=C:/Users/User/.ssh/sshkeys.txt_
 > ssh user@130.193.41.225
 #####  поставьте на нее PostgreSQL 14 через sudo apt
-> sudo apt -y install postgresql-14
+Step 1: Check requirements and update system
+
+Install the necessary packages:
+sudo apt -y install gnupg2 wget vim
+
+Step 2: Install PostgreSQL 14 on Ubuntu 20.04|18.04
+sudo apt -y update
+sudo apt -y install postgresql-14
+
+>user@postgresql:~$ systemctl status postgresql
+  postgresql.service - PostgreSQL RDBMS
+     Loaded: loaded (/lib/systemd/system/postgresql.service; enabled; vendor preset: enabled)
+     Active: active (exited) since Sat 2023-03-11 10:45:06 UTC; 33s ago
+    Process: 42418 ExecStart=/bin/true (code=exited, status=0/SUCCESS)
+   Main PID: 42418 (code=exited, status=0/SUCCESS)
+   
+>sudo -u postgres psql -c "SELECT version();"  
+PostgreSQL 14.7 (Ubuntu 14.7-0ubuntu0.22.04.1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0, 64-bit
 > 
 #####  проверьте что кластер запущен через sudo -u postgres pg_lsclusters
 -   зайдите из под пользователя postgres в psql и сделайте произвольную таблицу с произвольным содержимым  
@@ -31,5 +48,6 @@
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1Nzg2MjA1NzgsMTU5NDQ3ODI4OV19
+eyJoaXN0b3J5IjpbLTIzNDIwNjE4NywtMTU3ODYyMDU3OCwxNT
+k0NDc4Mjg5XX0=
 -->
