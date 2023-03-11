@@ -67,6 +67,7 @@ testdb=# SELECT * FROM testnm.t1;
 19 посмотрите на список таблиц  
 20 подсказка в шпаргалке под пунктом 20  
 21 а почему так получилось с таблицей (если делали сами и без шпаргалки то может у вас все нормально)  
+
 22 вернитесь в базу данных testdb под пользователем postgres  
 23 удалите таблицу t1  
 24 создайте ее заново но уже с явным указанием имени схемы testnm  
@@ -91,6 +92,6 @@ testdb=# SELECT * FROM testnm.t1;
 38 теперь попробуйте выполнить команду create table t3(c1 integer); insert into t2 values (2);  
 39 расскажите что получилось и почему
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEyMzUzMjk4MSwtNDUzNjY2MzE4LC0xMT
-UzNjkwNDE1XX0=
+eyJoaXN0b3J5IjpbLTc4MjgyNDY5NywxMTIzNTMyOTgxLC00NT
+M2NjYzMTgsLTExNTM2OTA0MTVdfQ==
 -->
