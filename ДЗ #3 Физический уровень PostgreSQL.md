@@ -132,13 +132,19 @@ user@postgresql:~$ sudo chown -R postgres:postgres /mnt/data/
 user@postgresql:~$ sudo -u postgres pg_ctlcluster 14 main stop
 
 user@postgresql:~$ sudo mv /var/lib/postgresql/14 /mnt/data
-вывел сообщения. Почему и как решить?
+## вывел сообщения. Почему и как решить?
 >mv: cannot remove '/var/lib/postgresql/14/main/postmaster.opts': Read-only file system
 mv: cannot remove '/var/lib/postgresql/14/main/pg_replslot': Read-only file system
 mv: cannot remove '/var/lib/postgresql/14/main/pg_stat_tmp': Read-only file system
 ....
--   попытайтесь запустить кластер - sudo -u postgres pg_ctlcluster 14 main start
--   напишите получилось или нет и почему
+##### попытайтесь запустить кластер - sudo -u postgres pg_ctlcluster 14 main start
+#####  напишите получилось или нет и почему
+user@postgresql:~$ sudo -u postgres pg_ctlcluster 14 main start
+>Warning: the cluster will not be running as a systemd service. Consider using systemctl:
+  sudo systemctl start postgresql@14-main
+Error: Could not open logfile /var/log/postgresql/postgresql-14-main.log
+Error: /usr/lib/postgresql/14/bin/pg_ctl /usr/lib/postgresql/14/bin/pg_ctl start -D /var/lib/postgresql/14/main -l /var/log/postgresql/postgresql-14-main.log -s -o  -c config_file="/etc/postgresql/14/main/postgresql.conf"  exited with status 1:
+
 -   задание: найти конфигурационный параметр в файлах раположенных в /etc/postgresql/14/main который надо поменять и поменяйте его
 -   напишите что и почему поменяли
 -   попытайтесь запустить кластер - sudo -u postgres pg_ctlcluster 14 main start
@@ -146,8 +152,8 @@ mv: cannot remove '/var/lib/postgresql/14/main/pg_stat_tmp': Read-only file syst
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3OTYzODIxMjAsLTk4MTIwNDA1Nyw1MT
-YwOTkyNjIsMTY3Njc3NTY1MywtMTgwMjQ1MDcxMSwtMTAzNTc0
-NjA0MywxOTAxMTkzODk4LC0xNTc4NjIwNTc4LDE1OTQ0NzgyOD
-ldfQ==
+eyJoaXN0b3J5IjpbMjEyMDUyNzY5OCwtOTgxMjA0MDU3LDUxNj
+A5OTI2MiwxNjc2Nzc1NjUzLC0xODAyNDUwNzExLC0xMDM1NzQ2
+MDQzLDE5MDExOTM4OTgsLTE1Nzg2MjA1NzgsMTU5NDQ3ODI4OV
+19
 -->
