@@ -26,14 +26,17 @@ SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, co
 Type "help" for help.
 testdb=#
 
+или так:
 testdb=# \c testdb
 >SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
 You are now connected to database "testdb" as user "postgres".
 testdb=#
 
-5 создайте новую схему testnm  
-6 создайте новую таблицу t1 с одной колонкой c1 типа integer  
-7 вставьте строку со значением c1=1  
+### 5 создайте новую схему testnm  
+CREATE SCHEMA testnm;
+### 6 создайте новую таблицу t1 с одной колонкой c1 типа integer  
+CREATE TABLE t1(c1 integer);
+### 7 вставьте строку со значением c1=1  
 8 создайте новую роль readonly  
 9 дайте новой роли право на подключение к базе данных testdb  
 10 дайте новой роли право на использование схемы testnm  
@@ -70,5 +73,5 @@ testdb=#
 38 теперь попробуйте выполнить команду create table t3(c1 integer); insert into t2 values (2);  
 39 расскажите что получилось и почему
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk2NzcyODU4NSwtMTE1MzY5MDQxNV19
+eyJoaXN0b3J5IjpbLTc0NjM3NTMxMywtMTE1MzY5MDQxNV19
 -->
