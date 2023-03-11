@@ -99,11 +99,12 @@ testdb=> select * from testnm.t1;
   1
 (1 row)
 ### 30 как сделать так чтобы такое больше не повторялось? если нет идей - смотрите шпаргалку  
-31 сделайте select * from testnm.t1;  
-32 получилось?  
+### 31 сделайте select * from testnm.t1;  
+### 32 получилось?  
 да
-33 есть идеи почему? если нет - смотрите шпаргалку  
-31 сделайте select * from testnm.t1;  
+### 33 есть идеи почему? если нет - смотрите шпаргалку  
+>потому что ALTER default будет действовать для новых таблиц а grant SELECT on all TABLEs in SCHEMA testnm TO readonly отработал только для существующих на тот момент времени. надо сделать снова или grant SELECT или пересоздать таблицу
+### 31 сделайте select * from testnm.t1;  
 32 получилось?  
 33 ура!  
 
@@ -115,7 +116,7 @@ testdb=> select * from testnm.t1;
 38 теперь попробуйте выполнить команду create table t3(c1 integer); insert into t2 values (2);  
 39 расскажите что получилось и почему
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk4ODI2NTc0MSwxMzk3Njk3OTgyLC03OD
-I4MjQ2OTcsMTEyMzUzMjk4MSwtNDUzNjY2MzE4LC0xMTUzNjkw
-NDE1XX0=
+eyJoaXN0b3J5IjpbNDU5NTIxMzc2LDEzOTc2OTc5ODIsLTc4Mj
+gyNDY5NywxMTIzNTMyOTgxLC00NTM2NjYzMTgsLTExNTM2OTA0
+MTVdfQ==
 -->
