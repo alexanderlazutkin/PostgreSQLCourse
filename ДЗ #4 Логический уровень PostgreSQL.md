@@ -110,13 +110,14 @@ testdb=> select * from testnm.t1;
 
 
 34 теперь попробуйте выполнить команду create table t2(c1 integer); insert into t2 values (2);  
+
 35 а как так? нам же никто прав на создание таблиц и insert в них под ролью readonly?  
 36 есть идеи как убрать эти права? если нет - смотрите шпаргалку  
 37 если вы справились сами то расскажите что сделали и почему, если смотрели шпаргалку - объясните что сделали и почему выполнив указанные в ней команды  
 38 теперь попробуйте выполнить команду create table t3(c1 integer); insert into t2 values (2);  
 39 расскажите что получилось и почему
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDU5NTIxMzc2LDEzOTc2OTc5ODIsLTc4Mj
-gyNDY5NywxMTIzNTMyOTgxLC00NTM2NjYzMTgsLTExNTM2OTA0
-MTVdfQ==
+eyJoaXN0b3J5IjpbMTU3NTgyMzg4Niw0NTk1MjEzNzYsMTM5Nz
+Y5Nzk4MiwtNzgyODI0Njk3LDExMjM1MzI5ODEsLTQ1MzY2NjMx
+OCwtMTE1MzY5MDQxNV19
 -->
