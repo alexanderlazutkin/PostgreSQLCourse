@@ -81,9 +81,13 @@ tps = 570.925569 (without initial connection time)
 
 #### дальше настроить autovacuum максимально эффективно
 >построить график по получившимся значениям так чтобы получить максимально ровное значение tps
+
 >user@postgres:~$ sudo -u postgres pgbench -c8 -P 60 -T 600 -U postgres postgres
+
 >pgbench (14.7 (Ubuntu 14.7-0ubuntu0.22.04.1))
+
 >starting vacuum...end.
+
 > progress: 60.0 s, 580.2 tps, lat 13.782 ms stddev 9.852
 > progress: 120.0 s, 587.4 tps, lat 13.614 ms stddev 9.975
 > progress: 180.0 s, 578.0 tps, lat 13.845 ms stddev 10.054
@@ -184,8 +188,20 @@ sudo -u postgres psql
 ALTER SYSTEM SET autovacuum_vacuum_scale_factor = 0.04;
 SELECT pg_reload_conf();
 \q
+
+postgres=# select name,setting as current_value,reset_val,boot_val as original_default,sourcefile,sourceline from pg_settings where source <> 'default' and name like '%autovacuum%';
+              name               | current_value | reset_val | original_default |                    sourcefile                    | sourceline
+---------------------------------+---------------+-----------+------------------+--------------------------------------------------+------------
+ autovacuum_analyze_scale_factor | 0.02          | 0.02      | 0.1              | /var/lib/postgresql/14/main/postgresql.auto.conf |         16
+ autovacuum_analyze_threshold    | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         17
+ autovacuum_max_workers          | 3             | 3         | 3                | /var/lib/postgresql/14/main/postgresql.auto.conf |         20
+ autovacuum_naptime              | 10            | 10        | 60               | /var/lib/postgresql/14/main/postgresql.auto.conf |         19
+ autovacuum_vacuum_cost_delay    | 1             | 1         | 2                | /var/lib/postgresql/14/main/postgresql.auto.conf |         18
+ autovacuum_vacuum_scale_factor  | 0.04          | 0.04      | 0.2              | /var/lib/postgresql/14/main/postgresql.auto.conf |         21
+ autovacuum_vacuum_threshold     | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         15
+ 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1ODg2MzkxODAsLTEyODc0NDU2NzYsLT
-EyMTc3ODI3MzQsMTMwNTc0ODU0LC05OTA5OTkyOSwxMTY0NzM0
-NTM0XX0=
+eyJoaXN0b3J5IjpbOTY0OTc5Mjk1LC0xMjg3NDQ1Njc2LC0xMj
+E3NzgyNzM0LDEzMDU3NDg1NCwtOTkwOTk5MjksMTE2NDczNDUz
+NF19
 -->
