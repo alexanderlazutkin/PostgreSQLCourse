@@ -275,7 +275,7 @@ initial connection time = 17.758 ms
 tps = 566.390073 (without initial connection time)
 
 
-### Измененные параметры 
+### Измененные параметры в сравнении с установленными по умолчанию
 postgres=# select name,setting as current_value,reset_val,boot_val as original_default,sourcefile,sourceline from pg_settings where source <> 'default' and name like '%autovacuum%';
               name               | current_value | reset_val | original_default |                    sourcefile                    | sourceline
 ---------------------------------+---------------+-----------+------------------+--------------------------------------------------+------------
@@ -288,7 +288,7 @@ postgres=# select name,setting as current_value,reset_val,boot_val as original_d
  autovacuum_vacuum_threshold     | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         15
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjQ3MjEyMzMyLDEwMTczODYzMzksOTY0OT
-c5Mjk1LC0xMjg3NDQ1Njc2LC0xMjE3NzgyNzM0LDEzMDU3NDg1
-NCwtOTkwOTk5MjksMTE2NDczNDUzNF19
+eyJoaXN0b3J5IjpbLTE3MDQzNjM2MDgsMTAxNzM4NjMzOSw5Nj
+Q5NzkyOTUsLTEyODc0NDU2NzYsLTEyMTc3ODI3MzQsMTMwNTc0
+ODU0LC05OTA5OTkyOSwxMTY0NzM0NTM0XX0=
 -->
