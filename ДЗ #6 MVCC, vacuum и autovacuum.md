@@ -130,17 +130,29 @@ SELECT pg_reload_conf();
 
 
 user@postgres:~$ sudo -u postgres pgbench -c8 -P 60 -T 600 -U postgres postgres
+
 pgbench (14.7 (Ubuntu 14.7-0ubuntu0.22.04.1))
+
 starting vacuum...end.
+
 progress: 60.0 s, 565.8 tps, lat 14.134 ms stddev 10.636
+
 progress: 120.0 s, 579.1 tps, lat 13.813 ms stddev 11.009
+
 progress: 180.0 s, 574.2 tps, lat 13.930 ms stddev 11.443
+
 progress: 240.0 s, 555.6 tps, lat 14.398 ms stddev 11.865
+
 progress: 300.0 s, 591.7 tps, lat 13.520 ms stddev 10.071
+
 progress: 360.0 s, 574.7 tps, lat 13.922 ms stddev 10.374
+
 progress: 420.0 s, 603.1 tps, lat 13.265 ms stddev 10.479
+
 progress: 480.0 s, 565.3 tps, lat 14.151 ms stddev 11.172
+
 progress: 540.0 s, 599.4 tps, lat 13.345 ms stddev 9.563
+
 progress: 600.0 s, 581.1 tps, lat 13.765 ms stddev 10.388
 
 >transaction type: <builtin: TPC-B (sort of)>
@@ -209,7 +221,7 @@ postgres=# select name,setting as current_value,reset_val,boot_val as original_d
  autovacuum_vacuum_threshold     | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         15
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTc2NDE3NTgxNSwxMDE3Mzg2MzM5LDk2ND
+eyJoaXN0b3J5IjpbMTkzNzQ5NjYzMywxMDE3Mzg2MzM5LDk2ND
 k3OTI5NSwtMTI4NzQ0NTY3NiwtMTIxNzc4MjczNCwxMzA1NzQ4
 NTQsLTk5MDk5OTI5LDExNjQ3MzQ1MzRdfQ==
 -->
