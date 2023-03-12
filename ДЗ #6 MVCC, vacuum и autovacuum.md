@@ -39,12 +39,26 @@ ALTER SYSTEM SET max_wal_size TO '16GB';
 \q
 sudo systemctl restart postgresql
 
--   выполнить pgbench -i postgres
--   запустить pgbench -c8 -P 60 -T 600 -U postgres postgres
--   дать отработать до конца
+#### выполнить pgbench -i postgres
+user@postgres:~$ sudo -u postgres pgbench -i postgres
+dropping old tables...
+NOTICE:  table "pgbench_accounts" does not exist, skipping
+NOTICE:  table "pgbench_branches" does not exist, skipping
+NOTICE:  table "pgbench_history" does not exist, skipping
+NOTICE:  table "pgbench_tellers" does not exist, skipping
+creating tables...
+generating data (client-side)...
+100000 of 100000 tuples (100%) done (elapsed 0.07 s, remaining 0.00 s)
+vacuuming...
+creating primary keys...
+done in 0.52 s (drop tables 0.00 s, create tables 0.03 s, client-side generate 0.35 s, vacuum 0.06 s, primary keys 0.09 s).
+
+#### запустить pgbench -c8 -P 60 -T 600 -U postgres postgres и   дать отработать до конца
+
 -   дальше настроить autovacuum максимально эффективно
 -   построить график по получившимся значениям
 -   так чтобы получить максимально ровное значение tps
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk5MDk5OTI5LDExNjQ3MzQ1MzRdfQ==
+eyJoaXN0b3J5IjpbMTMwNTc0ODU0LC05OTA5OTkyOSwxMTY0Nz
+M0NTM0XX0=
 -->
