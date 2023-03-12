@@ -79,8 +79,7 @@ latency stddev = 10.146 ms
 initial connection time = 16.702 ms
 tps = 570.925569 (without initial connection time)
 
-#### дальше настроить autovacuum максимально эффективно
->построить график по получившимся значениям так чтобы получить максимально ровное значение tps
+#### дальше настроить autovacuum максимально эффективно. построить график по получившимся значениям так чтобы получить максимально ровное значение tps
 
 >user@postgres:~$ sudo -u postgres pgbench -c8 -P 60 -T 600 -U postgres postgres
 >
@@ -128,8 +127,6 @@ ALTER SYSTEM SET autovacuum_naptime TO 2; -- чтобы долго не ждат
 ALTER SYSTEM SET autovacuum_vacuum_scale_factor = 0.05;  
 ALTER SYSTEM SET autovacuum_vacuum_threshold = 0;
 SELECT pg_reload_conf();
-
-
 
 
 user@postgres:~$ sudo -u postgres pgbench -c8 -P 60 -T 600 -U postgres postgres
@@ -211,7 +208,7 @@ postgres=# select name,setting as current_value,reset_val,boot_val as original_d
  autovacuum_vacuum_threshold     | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         15
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzM1NTc1MDI5LDk2NDk3OTI5NSwtMTI4Nz
-Q0NTY3NiwtMTIxNzc4MjczNCwxMzA1NzQ4NTQsLTk5MDk5OTI5
-LDExNjQ3MzQ1MzRdfQ==
+eyJoaXN0b3J5IjpbMTAxNzM4NjMzOSw5NjQ5NzkyOTUsLTEyOD
+c0NDU2NzYsLTEyMTc3ODI3MzQsMTMwNTc0ODU0LC05OTA5OTky
+OSwxMTY0NzM0NTM0XX0=
 -->
