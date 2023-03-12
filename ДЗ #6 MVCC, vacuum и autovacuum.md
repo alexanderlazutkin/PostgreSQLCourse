@@ -111,7 +111,7 @@ SELECT name, setting, context, short_desc FROM pg_settings WHERE name like 'auto
 SELECT name, setting, context, short_desc FROM pg_settings WHERE name like 'vacuum%';
 
 ALTER SYSTEM SET autovacuum_naptime TO 2; -- чтобы долго не ждать
-ALTER SYSTEM SET autovacuum_vacuum_scale_factor = 0.05;  -- 3%
+ALTER SYSTEM SET autovacuum_vacuum_scale_factor = 0.05;  
 ALTER SYSTEM SET autovacuum_vacuum_threshold = 0;
 SELECT pg_reload_conf();
 
@@ -179,7 +179,13 @@ initial connection time = 17.589 ms
 tps = 585.292981 (without initial connection time)
 user@postgres:~$
 
+ssh user@158.160.17.236
+sudo -u postgres psql
+ALTER SYSTEM SET autovacuum_vacuum_scale_factor = 0.04;
+SELECT pg_reload_conf();
+\q
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyODc0NDU2NzYsLTEyMTc3ODI3MzQsMT
-MwNTc0ODU0LC05OTA5OTkyOSwxMTY0NzM0NTM0XX0=
+eyJoaXN0b3J5IjpbLTE1ODg2MzkxODAsLTEyODc0NDU2NzYsLT
+EyMTc3ODI3MzQsMTMwNTc0ODU0LC05OTA5OTkyOSwxMTY0NzM0
+NTM0XX0=
 -->
