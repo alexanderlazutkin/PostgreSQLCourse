@@ -83,11 +83,8 @@ tps = 570.925569 (without initial connection time)
 >построить график по получившимся значениям так чтобы получить максимально ровное значение tps
 
 >user@postgres:~$ sudo -u postgres pgbench -c8 -P 60 -T 600 -U postgres postgres
-
 >pgbench (14.7 (Ubuntu 14.7-0ubuntu0.22.04.1))
-
 >starting vacuum...end.
-
 > progress: 60.0 s, 580.2 tps, lat 13.782 ms stddev 9.852
 > progress: 120.0 s, 587.4 tps, lat 13.614 ms stddev 9.975
 > progress: 180.0 s, 578.0 tps, lat 13.845 ms stddev 10.054
@@ -201,7 +198,7 @@ postgres=# select name,setting as current_value,reset_val,boot_val as original_d
  autovacuum_vacuum_threshold     | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         15
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTY0OTc5Mjk1LC0xMjg3NDQ1Njc2LC0xMj
-E3NzgyNzM0LDEzMDU3NDg1NCwtOTkwOTk5MjksMTE2NDczNDUz
-NF19
+eyJoaXN0b3J5IjpbLTEzMjc1NDk4MzksOTY0OTc5Mjk1LC0xMj
+g3NDQ1Njc2LC0xMjE3NzgyNzM0LDEzMDU3NDg1NCwtOTkwOTk5
+MjksMTE2NDczNDUzNF19
 -->
