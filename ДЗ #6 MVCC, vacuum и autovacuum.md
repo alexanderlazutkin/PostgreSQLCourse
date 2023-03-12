@@ -80,8 +80,10 @@ initial connection time = 16.702 ms
 tps = 570.925569 (without initial connection time)
 
 #### дальше настроить autovacuum максимально эффективно
--   построить график по получившимся значениям так чтобы получить максимально ровное значение tps
+построить график по получившимся значениям так чтобы получить максимально ровное значение tps
+
 user@postgres:~$ sudo -u postgres pgbench -c8 -P 60 -T 600 -U postgres postgres
+
 pgbench (14.7 (Ubuntu 14.7-0ubuntu0.22.04.1))
 starting vacuum...end.
 progress: 60.0 s, 580.2 tps, lat 13.782 ms stddev 9.852
@@ -180,6 +182,6 @@ tps = 585.292981 (without initial connection time)
 user@postgres:~$
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkzMTQ5Mzc4MSwtMTIxNzc4MjczNCwxMz
+eyJoaXN0b3J5IjpbMTkzMzQ2MDM1NCwtMTIxNzc4MjczNCwxMz
 A1NzQ4NTQsLTk5MDk5OTI5LDExNjQ3MzQ1MzRdfQ==
 -->
