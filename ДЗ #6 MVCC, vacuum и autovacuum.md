@@ -81,43 +81,43 @@ tps = 570.925569 (without initial connection time)
 
 #### дальше настроить autovacuum максимально эффективно. построить график по получившимся значениям так чтобы получить максимально ровное значение tps
 
->user@postgres:~$ sudo -u postgres pgbench -c8 -P 60 -T 600 -U postgres postgres
->
->pgbench (14.7 (Ubuntu 14.7-0ubuntu0.22.04.1))
->
->starting vacuum...end.
->
-> progress: 60.0 s, 580.2 tps, lat 13.782 ms stddev 9.852
-> 
-> progress: 120.0 s, 587.4 tps, lat 13.614 ms stddev 9.975
-> 
-> progress: 180.0 s, 578.0 tps, lat 13.845 ms stddev 10.054
-> 
-> progress: 240.0 s, 582.5 tps, lat 13.733 ms stddev 9.995
-> 
-> progress: 300.0 s, 596.4 tps, lat 13.415 ms stddev 9.731
-> 
-> progress: 360.0 s, 533.3 tps, lat 15.000 ms stddev 11.676
-> 
-> progress: 420.0 s, 572.5 tps, lat 13.974 ms stddev 9.837
-> 
-> progress: 480.0 s, 532.8 tps, lat 15.015 ms stddev 10.778
-> 
-> progress: 540.0 s, 579.9 tps, lat 13.796 ms stddev 9.632
-> 
-> progress: 600.0 s, 566.3 tps, lat 14.124 ms stddev 9.815
-> 
-> transaction type: <builtin: TPC-B (sort of)>
-> scaling factor: 1
-> query mode: simple
-> number of clients: 8
-> number of threads: 1
-> duration: 600 s
-> number of transactions actually processed: 342560
-> latency average = 14.012 ms
-> latency stddev = 10.146 ms
-> initial connection time = 16.702 ms
-> tps = 570.925569 (without initial connection time)
+user@postgres:~$ sudo -u postgres pgbench -c8 -P 60 -T 600 -U postgres postgres
+
+pgbench (14.7 (Ubuntu 14.7-0ubuntu0.22.04.1))
+
+starting vacuum...end.
+
+progress: 60.0 s, 580.2 tps, lat 13.782 ms stddev 9.852
+
+progress: 120.0 s, 587.4 tps, lat 13.614 ms stddev 9.975
+
+progress: 180.0 s, 578.0 tps, lat 13.845 ms stddev 10.054
+
+progress: 240.0 s, 582.5 tps, lat 13.733 ms stddev 9.995
+
+progress: 300.0 s, 596.4 tps, lat 13.415 ms stddev 9.731
+
+progress: 360.0 s, 533.3 tps, lat 15.000 ms stddev 11.676
+
+progress: 420.0 s, 572.5 tps, lat 13.974 ms stddev 9.837
+
+progress: 480.0 s, 532.8 tps, lat 15.015 ms stddev 10.778
+
+progress: 540.0 s, 579.9 tps, lat 13.796 ms stddev 9.632
+
+progress: 600.0 s, 566.3 tps, lat 14.124 ms stddev 9.815
+
+>transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 1
+query mode: simple
+number of clients: 8
+number of threads: 1
+duration: 600 s
+number of transactions actually processed: 342560
+latency average = 14.012 ms
+latency stddev = 10.146 ms
+initial connection time = 16.702 ms
+tps = 570.925569 (without initial connection time)
 
 sudo -u postgres psql
 SELECT name, setting, context, short_desc FROM pg_settings WHERE name like 'autovacuum%';
@@ -221,7 +221,7 @@ postgres=# select name,setting as current_value,reset_val,boot_val as original_d
  autovacuum_vacuum_threshold     | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         15
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkzNzQ5NjYzMywxMDE3Mzg2MzM5LDk2ND
-k3OTI5NSwtMTI4NzQ0NTY3NiwtMTIxNzc4MjczNCwxMzA1NzQ4
-NTQsLTk5MDk5OTI5LDExNjQ3MzQ1MzRdfQ==
+eyJoaXN0b3J5IjpbLTEzNzI4MTU0ODcsMTAxNzM4NjMzOSw5Nj
+Q5NzkyOTUsLTEyODc0NDU2NzYsLTEyMTc3ODI3MzQsMTMwNTc0
+ODU0LC05OTA5OTkyOSwxMTY0NzM0NTM0XX0=
 -->
