@@ -237,19 +237,32 @@ SELECT pg_reload_conf();
 
 \q
 user@postgres:~$ sudo -u postgres pgbench -c8 -P 60 -T 600 -U postgres postgres
+
 pgbench (14.7 (Ubuntu 14.7-0ubuntu0.22.04.1))
+
 starting vacuum...end.
+
 progress: 60.0 s, 580.0 tps, lat 13.783 ms stddev 9.938
+
 progress: 120.0 s, 566.9 tps, lat 14.114 ms stddev 10.032
+
 progress: 180.0 s, 595.7 tps, lat 13.428 ms stddev 9.196
+
 progress: 240.0 s, 589.9 tps, lat 13.564 ms stddev 9.470
+
 progress: 300.0 s, 553.7 tps, lat 14.447 ms stddev 10.133
+
 progress: 360.0 s, 548.0 tps, lat 14.597 ms stddev 10.610
+
 progress: 420.0 s, 555.9 tps, lat 14.392 ms stddev 10.076
+
 progress: 480.0 s, 573.3 tps, lat 13.953 ms stddev 9.619
+
 progress: 540.0 s, 558.1 tps, lat 14.334 ms stddev 9.918
+
 progress: 600.0 s, 542.3 tps, lat 14.751 ms stddev 10.488
-transaction type: <builtin: TPC-B (sort of)>
+
+>transaction type: <builtin: TPC-B (sort of)>
 scaling factor: 1
 query mode: simple
 number of clients: 8
@@ -260,6 +273,8 @@ latency average = 14.124 ms
 latency stddev = 9.954 ms
 initial connection time = 17.758 ms
 tps = 566.390073 (without initial connection time)
+
+
 
 postgres=# select name,setting as current_value,reset_val,boot_val as original_default,sourcefile,sourceline from pg_settings where source <> 'default' and name like '%autovacuum%';
               name               | current_value | reset_val | original_default |                    sourcefile                    | sourceline
@@ -273,7 +288,7 @@ postgres=# select name,setting as current_value,reset_val,boot_val as original_d
  autovacuum_vacuum_threshold     | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         15
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MDU1NTkzOTAsMTAxNzM4NjMzOSw5Nj
+eyJoaXN0b3J5IjpbLTE3NzU5ODM4ODQsMTAxNzM4NjMzOSw5Nj
 Q5NzkyOTUsLTEyODc0NDU2NzYsLTEyMTc3ODI3MzQsMTMwNTc0
 ODU0LC05OTA5OTkyOSwxMTY0NzM0NTM0XX0=
 -->
