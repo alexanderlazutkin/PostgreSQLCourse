@@ -129,11 +129,15 @@ ALTER SYSTEM SET autovacuum_vacuum_threshold = 0;
 SELECT pg_reload_conf();
 
 
-user@postgres:~$ sudo -u postgres pgbench -c8 -P 60 -T 600 -U postgres postgres
-pgbench (14.7 (Ubuntu 14.7-0ubuntu0.22.04.1))
-starting vacuum...end.
-progress: 60.0 s, 565.8 tps, lat 14.134 ms stddev 10.636
-progress: 120.0 s, 579.1 tps, lat 13.813 ms stddev 11.009
+> user@postgres:~$ sudo -u postgres pgbench -c8 -P 60 -T 600 -U postgres postgres
+
+> pgbench (14.7 (Ubuntu 14.7-0ubuntu0.22.04.1))
+
+> starting vacuum...end.
+
+> progress: 60.0 s, 565.8 tps, lat 14.134 ms stddev 10.636
+
+> progress: 120.0 s, 579.1 tps, lat 13.813 ms stddev 11.009
 progress: 180.0 s, 574.2 tps, lat 13.930 ms stddev 11.443
 progress: 240.0 s, 555.6 tps, lat 14.398 ms stddev 11.865
 progress: 300.0 s, 591.7 tps, lat 13.520 ms stddev 10.071
@@ -208,7 +212,7 @@ postgres=# select name,setting as current_value,reset_val,boot_val as original_d
  autovacuum_vacuum_threshold     | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         15
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAxNzM4NjMzOSw5NjQ5NzkyOTUsLTEyOD
-c0NDU2NzYsLTEyMTc3ODI3MzQsMTMwNTc0ODU0LC05OTA5OTky
-OSwxMTY0NzM0NTM0XX0=
+eyJoaXN0b3J5IjpbLTE3MjU0MTUyMDcsMTAxNzM4NjMzOSw5Nj
+Q5NzkyOTUsLTEyODc0NDU2NzYsLTEyMTc3ODI3MzQsMTMwNTc0
+ODU0LC05OTA5OTkyOSwxMTY0NzM0NTM0XX0=
 -->
