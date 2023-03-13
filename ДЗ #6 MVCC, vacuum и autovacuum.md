@@ -55,11 +55,17 @@ sudo systemctl restart postgresql
 
 #### выполнить pgbench -i postgres
 user@postgres:~$ sudo -u postgres pgbench -i postgres
+
 dropping old tables...
+
 NOTICE:  table "pgbench_accounts" does not exist, skipping
+
 NOTICE:  table "pgbench_branches" does not exist, skipping
+
 NOTICE:  table "pgbench_history" does not exist, skipping
+
 NOTICE:  table "pgbench_tellers" does not exist, skipping
+
 creating tables...
 generating data (client-side)...
 100000 of 100000 tuples (100%) done (elapsed 0.07 s, remaining 0.00 s)
@@ -302,7 +308,8 @@ postgres=# select name,setting as current_value,reset_val,boot_val as original_d
  autovacuum_vacuum_threshold     | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         15
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDQ3NDgyMjgsLTE3MDQzNjM2MDgsMTAxNz
-M4NjMzOSw5NjQ5NzkyOTUsLTEyODc0NDU2NzYsLTEyMTc3ODI3
-MzQsMTMwNTc0ODU0LC05OTA5OTkyOSwxMTY0NzM0NTM0XX0=
+eyJoaXN0b3J5IjpbMTk5MTg1NTE2NCwtMTcwNDM2MzYwOCwxMD
+E3Mzg2MzM5LDk2NDk3OTI5NSwtMTI4NzQ0NTY3NiwtMTIxNzc4
+MjczNCwxMzA1NzQ4NTQsLTk5MDk5OTI5LDExNjQ3MzQ1MzRdfQ
+==
 -->
