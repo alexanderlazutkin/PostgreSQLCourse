@@ -24,19 +24,33 @@ postgres-# \c postgres
 #### Применить параметры настройки PostgreSQL из прикрепленного к материалам занятия файла
 
 SELECT name, setting, unit FROM pg_settings WHERE context = 'postmaster';
+
 ALTER SYSTEM SET max_connections TO 40;
+
 ALTER SYSTEM SET shared_buffers TO '1GB';
+
 ALTER SYSTEM SET effective_cache_size TO '3GB';
+
 ALTER SYSTEM SET maintenance_work_mem TO '512MB';
+
 ALTER SYSTEM SET checkpoint_completion_target TO 0.9;
+
 ALTER SYSTEM SET wal_buffers TO '16MB';
+
 ALTER SYSTEM SET default_statistics_target TO 500;
+
 ALTER SYSTEM SET random_page_cost TO 4;
+
 ALTER SYSTEM SET effective_io_concurrency TO 2;
+
 ALTER SYSTEM SET work_mem TO '6553kB';
+
 ALTER SYSTEM SET min_wal_size TO '4GB';
+
 ALTER SYSTEM SET max_wal_size TO '16GB';
+
 \q
+
 sudo systemctl restart postgresql
 
 #### выполнить pgbench -i postgres
@@ -288,7 +302,7 @@ postgres=# select name,setting as current_value,reset_val,boot_val as original_d
  autovacuum_vacuum_threshold     | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         15
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MDQzNjM2MDgsMTAxNzM4NjMzOSw5Nj
-Q5NzkyOTUsLTEyODc0NDU2NzYsLTEyMTc3ODI3MzQsMTMwNTc0
-ODU0LC05OTA5OTkyOSwxMTY0NzM0NTM0XX0=
+eyJoaXN0b3J5IjpbNDQ3NDgyMjgsLTE3MDQzNjM2MDgsMTAxNz
+M4NjMzOSw5NjQ5NzkyOTUsLTEyODc0NDU2NzYsLTEyMTc3ODI3
+MzQsMTMwNTc0ODU0LC05OTA5OTkyOSwxMTY0NzM0NTM0XX0=
 -->
