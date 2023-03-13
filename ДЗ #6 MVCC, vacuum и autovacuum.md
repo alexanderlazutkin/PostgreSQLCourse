@@ -312,7 +312,8 @@ tps = 566.390073 (without initial connection time)
 postgres=# select name,setting as current_value,reset_val,boot_val as original_default,sourcefile,sourceline from pg_settings where source <> 'default' and name like '%autovacuum%';
 
               name               | current_value | reset_val | original_default |                    sourcefile                    | sourceline
----------------------------------+---------------+-----------+------------------+--------------------------------------------------+------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+
  autovacuum_analyze_scale_factor | 0.02          | 0.02      | 0.1              | /var/lib/postgresql/14/main/postgresql.auto.conf |         16
  autovacuum_analyze_threshold    | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         17
  autovacuum_max_workers          | 3             | 3         | 3                | /var/lib/postgresql/14/main/postgresql.auto.conf |         20
@@ -322,8 +323,8 @@ postgres=# select name,setting as current_value,reset_val,boot_val as original_d
  autovacuum_vacuum_threshold     | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         15
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE0OTM5NTUxNDgsLTE3MDQzNjM2MDgsMT
-AxNzM4NjMzOSw5NjQ5NzkyOTUsLTEyODc0NDU2NzYsLTEyMTc3
-ODI3MzQsMTMwNTc0ODU0LC05OTA5OTkyOSwxMTY0NzM0NTM0XX
-0=
+eyJoaXN0b3J5IjpbLTIxMTM4MTc3NjQsLTE0OTM5NTUxNDgsLT
+E3MDQzNjM2MDgsMTAxNzM4NjMzOSw5NjQ5NzkyOTUsLTEyODc0
+NDU2NzYsLTEyMTc3ODI3MzQsMTMwNTc0ODU0LC05OTA5OTkyOS
+wxMTY0NzM0NTM0XX0=
 -->
