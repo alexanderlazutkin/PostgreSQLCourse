@@ -75,19 +75,33 @@ done in 0.52 s (drop tables 0.00 s, create tables 0.03 s, client-side generate 0
 
 #### запустить pgbench -c8 -P 60 -T 600 -U postgres postgres и   дать отработать до конца
 user@postgres:~$ sudo -u postgres pgbench -c8 -P 60 -T 600 -U postgres postgres
+
 pgbench (14.7 (Ubuntu 14.7-0ubuntu0.22.04.1))
+
 starting vacuum...end.
+
 progress: 60.0 s, 580.2 tps, lat 13.782 ms stddev 9.852
+
 progress: 120.0 s, 587.4 tps, lat 13.614 ms stddev 9.975
+
 progress: 180.0 s, 578.0 tps, lat 13.845 ms stddev 10.054
+
 progress: 240.0 s, 582.5 tps, lat 13.733 ms stddev 9.995
+
 progress: 300.0 s, 596.4 tps, lat 13.415 ms stddev 9.731
+
 progress: 360.0 s, 533.3 tps, lat 15.000 ms stddev 11.676
+
 progress: 420.0 s, 572.5 tps, lat 13.974 ms stddev 9.837
+
 progress: 480.0 s, 532.8 tps, lat 15.015 ms stddev 10.778
+
 progress: 540.0 s, 579.9 tps, lat 13.796 ms stddev 9.632
+
 progress: 600.0 s, 566.3 tps, lat 14.124 ms stddev 9.815
+
 transaction type: <builtin: TPC-B (sort of)>
+
 scaling factor: 1
 query mode: simple
 number of clients: 8
@@ -308,8 +322,7 @@ postgres=# select name,setting as current_value,reset_val,boot_val as original_d
  autovacuum_vacuum_threshold     | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         15
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk5MTg1NTE2NCwtMTcwNDM2MzYwOCwxMD
-E3Mzg2MzM5LDk2NDk3OTI5NSwtMTI4NzQ0NTY3NiwtMTIxNzc4
-MjczNCwxMzA1NzQ4NTQsLTk5MDk5OTI5LDExNjQ3MzQ1MzRdfQ
-==
+eyJoaXN0b3J5IjpbOTc0NTY1NTU2LC0xNzA0MzYzNjA4LDEwMT
+czODYzMzksOTY0OTc5Mjk1LC0xMjg3NDQ1Njc2LC0xMjE3Nzgy
+NzM0LDEzMDU3NDg1NCwtOTkwOTk5MjksMTE2NDczNDUzNF19
 -->
