@@ -10,7 +10,6 @@
 
 ### Описание/Пошаговая инструкция выполнения домашнего задания:
 
-####  создать GCE инстанс типа e2-medium и диском 10GB
 ####   установить на него PostgreSQL 14 с дефолтными настройками
 ssh user@158.160.17.236
 sudo apt -y install gnupg2 wget vim
@@ -322,8 +321,8 @@ postgres=# select name,setting as current_value,reset_val,boot_val as original_d
  autovacuum_vacuum_threshold     | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         15
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU2NzI3MDQ3MCwtMjExMzgxNzc2NCwtMT
-Q5Mzk1NTE0OCwtMTcwNDM2MzYwOCwxMDE3Mzg2MzM5LDk2NDk3
-OTI5NSwtMTI4NzQ0NTY3NiwtMTIxNzc4MjczNCwxMzA1NzQ4NT
-QsLTk5MDk5OTI5LDExNjQ3MzQ1MzRdfQ==
+eyJoaXN0b3J5IjpbLTU4MDMxNjYxNiwxNTY3MjcwNDcwLC0yMT
+EzODE3NzY0LC0xNDkzOTU1MTQ4LC0xNzA0MzYzNjA4LDEwMTcz
+ODYzMzksOTY0OTc5Mjk1LC0xMjg3NDQ1Njc2LC0xMjE3NzgyNz
+M0LDEzMDU3NDg1NCwtOTkwOTk5MjksMTE2NDczNDUzNF19
 -->
