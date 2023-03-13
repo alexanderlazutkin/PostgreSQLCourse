@@ -66,7 +66,7 @@ NOTICE:  table "pgbench_history" does not exist, skipping
 
 NOTICE:  table "pgbench_tellers" does not exist, skipping
 
-creating tables...
+>creating tables...
 generating data (client-side)...
 100000 of 100000 tuples (100%) done (elapsed 0.07 s, remaining 0.00 s)
 vacuuming...
@@ -100,8 +100,7 @@ progress: 540.0 s, 579.9 tps, lat 13.796 ms stddev 9.632
 
 progress: 600.0 s, 566.3 tps, lat 14.124 ms stddev 9.815
 
-transaction type: <builtin: TPC-B (sort of)>
-
+>transaction type: <builtin: TPC-B (sort of)>
 scaling factor: 1
 query mode: simple
 number of clients: 8
@@ -311,6 +310,7 @@ tps = 566.390073 (without initial connection time)
 
 ### Измененные параметры в сравнении с установленными по умолчанию
 postgres=# select name,setting as current_value,reset_val,boot_val as original_default,sourcefile,sourceline from pg_settings where source <> 'default' and name like '%autovacuum%';
+
               name               | current_value | reset_val | original_default |                    sourcefile                    | sourceline
 ---------------------------------+---------------+-----------+------------------+--------------------------------------------------+------------
  autovacuum_analyze_scale_factor | 0.02          | 0.02      | 0.1              | /var/lib/postgresql/14/main/postgresql.auto.conf |         16
@@ -322,7 +322,8 @@ postgres=# select name,setting as current_value,reset_val,boot_val as original_d
  autovacuum_vacuum_threshold     | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         15
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbOTc0NTY1NTU2LC0xNzA0MzYzNjA4LDEwMT
-czODYzMzksOTY0OTc5Mjk1LC0xMjg3NDQ1Njc2LC0xMjE3Nzgy
-NzM0LDEzMDU3NDg1NCwtOTkwOTk5MjksMTE2NDczNDUzNF19
+eyJoaXN0b3J5IjpbLTE0OTM5NTUxNDgsLTE3MDQzNjM2MDgsMT
+AxNzM4NjMzOSw5NjQ5NzkyOTUsLTEyODc0NDU2NzYsLTEyMTc3
+ODI3MzQsMTMwNTc0ODU0LC05OTA5OTkyOSwxMTY0NzM0NTM0XX
+0=
 -->
