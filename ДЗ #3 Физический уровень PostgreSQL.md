@@ -13,6 +13,7 @@ sudo apt -y update
 sudo apt -y install postgresql-14
 
 user@postgresql:~$ systemctl status postgresql
+
 >postgresql.service - PostgreSQL RDBMS
      Loaded: loaded (/lib/systemd/system/postgresql.service; enabled; vendor preset: enabled)
      Active: active (exited) since Sat 2023-03-11 10:45:06 UTC; 33s ago
@@ -20,13 +21,18 @@ user@postgresql:~$ systemctl status postgresql
    Main PID: 42418 (code=exited, status=0/SUCCESS)
    
 sudo -u postgres psql -c "SELECT version();"  
+
 >PostgreSQL 14.7 (Ubuntu 14.7-0ubuntu0.22.04.1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0, 64-bit
 > 
 #####  проверьте что кластер запущен через sudo -u postgres pg_lsclusters
+
 user@postgresql:~$ sudo -u postgres pg_lsclusters
+
 >Ver Cluster Port Status Owner    Data directory              Log file
 14  main    5432 online postgres /var/lib/postgresql/14/main /var/log/postgresql/postgresql-14-main.log
+
 ##### зайдите из под пользователя postgres в psql и сделайте произвольную таблицу с произвольным содержимым  
+
 sudo -u postgres psql
 postgres=# create table test(c1 text);
 postgres=# insert into test values('1');
@@ -173,10 +179,10 @@ postgres=# select * from test;
 --sudo rm -Rf /var/lib/postgresql/10/main.bak
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMzQ4MDczNzEsLTY2NTE1OTg0NywxNT
-k4NTgyMDQyLC0xNTYyNDMwOTQ5LDE3NDYxMjUzMTIsLTU0NTk2
-NDkxMCwtMTM1MTEwNTE5MCwtODI5ODU0NjUsMjEyMDUyNzY5OC
-wtOTgxMjA0MDU3LDUxNjA5OTI2MiwxNjc2Nzc1NjUzLC0xODAy
-NDUwNzExLC0xMDM1NzQ2MDQzLDE5MDExOTM4OTgsLTE1Nzg2Mj
-A1NzgsMTU5NDQ3ODI4OV19
+eyJoaXN0b3J5IjpbMTQxNjA5NTc5NywtNjY1MTU5ODQ3LDE1OT
+g1ODIwNDIsLTE1NjI0MzA5NDksMTc0NjEyNTMxMiwtNTQ1OTY0
+OTEwLC0xMzUxMTA1MTkwLC04Mjk4NTQ2NSwyMTIwNTI3Njk4LC
+05ODEyMDQwNTcsNTE2MDk5MjYyLDE2NzY3NzU2NTMsLTE4MDI0
+NTA3MTEsLTEwMzU3NDYwNDMsMTkwMTE5Mzg5OCwtMTU3ODYyMD
+U3OCwxNTk0NDc4Mjg5XX0=
 -->
