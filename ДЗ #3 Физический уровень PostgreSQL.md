@@ -222,9 +222,11 @@ Mar 15 19:59:41 postgres systemd[1]: Starting PostgreSQL RDBMS...
 Mar 15 19:59:41 postgres systemd[1]: Finished PostgreSQL RDBMS.
 
 ##### зайдите через через psql и проверьте содержимое ранее созданной таблицы
+
 созданная таблица на месте
 
 postgres=# select * from test;
+
  c1
  ----
  1
@@ -232,7 +234,7 @@ postgres=# select * from test;
 --sudo rm -Rf /var/lib/postgresql/10/main.bak
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg2NDUxNDg1NywtNjY1MTU5ODQ3LDE1OT
+eyJoaXN0b3J5IjpbMTAyMzU5MTQxMSwtNjY1MTU5ODQ3LDE1OT
 g1ODIwNDIsLTE1NjI0MzA5NDksMTc0NjEyNTMxMiwtNTQ1OTY0
 OTEwLC0xMzUxMTA1MTkwLC04Mjk4NTQ2NSwyMTIwNTI3Njk4LC
 05ODEyMDQwNTcsNTE2MDk5MjYyLDE2NzY3NzU2NTMsLTE4MDI0
