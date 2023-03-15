@@ -218,9 +218,9 @@ sudo systemctl status postgresql
     Process: 4446 ExecStart=/bin/true (code=exited, status=0/SUCCESS)
    Main PID: 4446 (code=exited, status=0/SUCCESS)
         CPU: 1ms
-
 Mar 15 19:59:41 postgres systemd[1]: Starting PostgreSQL RDBMS...
 Mar 15 19:59:41 postgres systemd[1]: Finished PostgreSQL RDBMS.
+
 ##### зайдите через через psql и проверьте содержимое ранее созданной таблицы
 созданная таблица на месте
 
@@ -232,10 +232,10 @@ postgres=# select * from test;
 --sudo rm -Rf /var/lib/postgresql/10/main.bak
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2Mzk1ODU3MDUsLTY2NTE1OTg0NywxNT
-k4NTgyMDQyLC0xNTYyNDMwOTQ5LDE3NDYxMjUzMTIsLTU0NTk2
-NDkxMCwtMTM1MTEwNTE5MCwtODI5ODU0NjUsMjEyMDUyNzY5OC
-wtOTgxMjA0MDU3LDUxNjA5OTI2MiwxNjc2Nzc1NjUzLC0xODAy
-NDUwNzExLC0xMDM1NzQ2MDQzLDE5MDExOTM4OTgsLTE1Nzg2Mj
-A1NzgsMTU5NDQ3ODI4OV19
+eyJoaXN0b3J5IjpbLTg2NDUxNDg1NywtNjY1MTU5ODQ3LDE1OT
+g1ODIwNDIsLTE1NjI0MzA5NDksMTc0NjEyNTMxMiwtNTQ1OTY0
+OTEwLC0xMzUxMTA1MTkwLC04Mjk4NTQ2NSwyMTIwNTI3Njk4LC
+05ODEyMDQwNTcsNTE2MDk5MjYyLDE2NzY3NzU2NTMsLTE4MDI0
+NTA3MTEsLTEwMzU3NDYwNDMsMTkwMTE5Mzg5OCwtMTU3ODYyMD
+U3OCwxNTk0NDc4Mjg5XX0=
 -->
