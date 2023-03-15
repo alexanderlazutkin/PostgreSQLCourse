@@ -85,13 +85,13 @@ user@postgresql:~$ sudo lsblk --fs
 >NAME   FSTYPE   FSVER LABEL         UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
 loop0  squashfs 4.0                                                            0   100% /snap/core20/1828
 loop1  squashfs 4.0                                                            0   100% /snap/core20/1405
-loop2  squashfs 4.0                                                            0   100% /snap/lxd/24322
-loop3  squashfs 4.0                                                            0   100% /snap/lxd/22923
+loop2  squashfs 4.0                                                            0   100% /snap/lxd/22923
+loop3  squashfs 4.0                                                            0   100% /snap/lxd/24322
 loop4  squashfs 4.0                                                            0   100% /snap/snapd/18357
 vda
 ├─vda1
 └─vda2 ext4     1.0                 82aeea96-6d42-49e6-85d5-9071d3c9b6aa    9.8G    29% /
-vdb    ext4     1.0   datapartition f1c9b96d-748c-4a6b-a2dc-0a34b7252b68
+vdb    ext4     1.0   datapartition ecceaf63-6127-4524-a8ab-b9b38db37845
 
 user@postgresql:~$ sudo lsblk -o NAME,FSTYPE,LABEL,UUID,MOUNTPOINT
 >NAME   FSTYPE   LABEL         UUID                                 MOUNTPOINT
@@ -103,7 +103,7 @@ loop4  squashfs                                                    /snap/snapd/1
 vda
 ├─vda1
 └─vda2 ext4                   82aeea96-6d42-49e6-85d5-9071d3c9b6aa /
-vdb    ext4     datapartition f1c9b96d-748c-4a6b-a2dc-0a34b7252b68
+vdb    ext4     datapartition ecceaf63-6127-4524-a8ab-b9b38db37845
 
 Mount the New Filesystem
 >sudo mkdir -p /mnt/data
@@ -153,8 +153,9 @@ Error: /usr/lib/postgresql/14/bin/pg_ctl /usr/lib/postgresql/14/bin/pg_ctl start
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU0NTk2NDkxMCwtMTM1MTEwNTE5MCwtOD
-I5ODU0NjUsMjEyMDUyNzY5OCwtOTgxMjA0MDU3LDUxNjA5OTI2
-MiwxNjc2Nzc1NjUzLC0xODAyNDUwNzExLC0xMDM1NzQ2MDQzLD
-E5MDExOTM4OTgsLTE1Nzg2MjA1NzgsMTU5NDQ3ODI4OV19
+eyJoaXN0b3J5IjpbMTc0NjEyNTMxMiwtNTQ1OTY0OTEwLC0xMz
+UxMTA1MTkwLC04Mjk4NTQ2NSwyMTIwNTI3Njk4LC05ODEyMDQw
+NTcsNTE2MDk5MjYyLDE2NzY3NzU2NTMsLTE4MDI0NTA3MTEsLT
+EwMzU3NDYwNDMsMTkwMTE5Mzg5OCwtMTU3ODYyMDU3OCwxNTk0
+NDc4Mjg5XX0=
 -->
