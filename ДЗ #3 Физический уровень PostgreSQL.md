@@ -148,7 +148,8 @@ user@postgresql:~$ sudo -u postgres pg_ctlcluster 14 main start
   sudo systemctl start postgresql@14-main
 Error: Could not open logfile /var/log/postgresql/postgresql-14-main.log
 Error: /usr/lib/postgresql/14/bin/pg_ctl /usr/lib/postgresql/14/bin/pg_ctl start -D /var/lib/postgresql/14/main -l /var/log/postgresql/postgresql-14-main.log -s -o  -c config_file="/etc/postgresql/14/main/postgresql.conf"  exited with status 1:
-Ошибка, т.к. предыдущий путь не измене
+Ошибка, т.к. предыдущий путь не изменен в конфигурации. Нужно поправить
+
 ##### задание: найти конфигурационный параметр в файлах раположенных в /etc/postgresql/14/main который надо поменять и поменяйте его
 
 sudo nano /etc/postgresql/14/main/postgresql.conf
@@ -159,7 +160,7 @@ sudo nano /etc/postgresql/14/main/postgresql.conf
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NzEyODQzLDE1OTg1ODIwNDIsLTE1Nj
+eyJoaXN0b3J5IjpbNjk3OTM2NjU0LDE1OTg1ODIwNDIsLTE1Nj
 I0MzA5NDksMTc0NjEyNTMxMiwtNTQ1OTY0OTEwLC0xMzUxMTA1
 MTkwLC04Mjk4NTQ2NSwyMTIwNTI3Njk4LC05ODEyMDQwNTcsNT
 E2MDk5MjYyLDE2NzY3NzU2NTMsLTE4MDI0NTA3MTEsLTEwMzU3
