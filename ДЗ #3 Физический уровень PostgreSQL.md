@@ -38,17 +38,18 @@ Warning: stopping the cluster using pg_ctlcluster will mark the systemd unit as 
 
 #####   создайте новый standard persistent диск GKE через ЯО
 - остановлена ВМ, добавлен диск и присоединенен, ВМ запущена
-> user@postgresql:~$ sudo lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
+> user@postgres:~$ sudo lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
 NAME   FSTYPE     SIZE MOUNTPOINT        LABEL
-loop0  squashfs  61.9M /snap/core20/1405
-loop1  squashfs  63.3M /snap/core20/1828
-loop2  squashfs  79.9M /snap/lxd/22923
-loop3  squashfs 111.9M /snap/lxd/24322
+loop0  squashfs  63.3M /snap/core20/1828
+loop1  squashfs  61.9M /snap/core20/1405
+loop2  squashfs 111.9M /snap/lxd/24322
+loop3  squashfs  79.9M /snap/lxd/22923
 loop4  squashfs  49.8M /snap/snapd/18357
 vda                15G
 ├─vda1              1M
 └─vda2 ext4        15G /
 vdb                20G
+
 #####  проинициализируйте диск согласно инструкции и подмонтировать файловую систему, только не забывайте менять имя диска на актуальное, в вашем случае это скорее всего будет /dev/sdb -  [https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux](https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux "https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux")
 https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux
 Подготовка к разметке нового диска
@@ -152,8 +153,8 @@ Error: /usr/lib/postgresql/14/bin/pg_ctl /usr/lib/postgresql/14/bin/pg_ctl start
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTgyOTg1NDY1LDIxMjA1Mjc2OTgsLTk4MT
-IwNDA1Nyw1MTYwOTkyNjIsMTY3Njc3NTY1MywtMTgwMjQ1MDcx
-MSwtMTAzNTc0NjA0MywxOTAxMTkzODk4LC0xNTc4NjIwNTc4LD
-E1OTQ0NzgyODldfQ==
+eyJoaXN0b3J5IjpbLTEzNTExMDUxOTAsLTgyOTg1NDY1LDIxMj
+A1Mjc2OTgsLTk4MTIwNDA1Nyw1MTYwOTkyNjIsMTY3Njc3NTY1
+MywtMTgwMjQ1MDcxMSwtMTAzNTc0NjA0MywxOTAxMTkzODk4LC
+0xNTc4NjIwNTc4LDE1OTQ0NzgyODldfQ==
 -->
