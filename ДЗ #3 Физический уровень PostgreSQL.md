@@ -71,20 +71,26 @@ vdb                20G
 
 #####  проинициализируйте диск согласно инструкции и подмонтировать файловую систему, только не забывайте менять имя диска на актуальное, в вашем случае это скорее всего будет /dev/sdb -  [https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux](https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux "https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux")
 https://www.digitalocean.com/community/tutorials/how-to-partition-and-format-storage-devices-in-linux
-Подготовка к разметке нового диска
+**Подготовка к разметке нового диска**
+
 sudo apt update
+
 sudo apt install parted
 
 user@postgresql:~$ sudo parted -l | grep Error
-Error: /dev/vdb: unrecognised disk label
 
-Разметка нового диска для GPT
+>Error: /dev/vdb: unrecognised disk label
+
+**Разметка нового диска для GPT**
+
 sudo parted /dev/vdb mklabel gpt
 
-Создание нового раздела
->sudo parted -a opt /dev/vdb mkpart primary ext4 0% 100%
+**Создание нового раздела**
+
+sudo parted -a opt /dev/vdb mkpart primary ext4 0% 100%
 
 user@postgresql:~$ lsblk
+
 >NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
 loop0    7:0    0  63.3M  1 loop /snap/core20/1828
 loop1    7:1    0  61.9M  1 loop /snap/core20/1405
@@ -192,10 +198,10 @@ postgres=# select * from test;
 --sudo rm -Rf /var/lib/postgresql/10/main.bak
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk4ODU5ODUyNiwtNjY1MTU5ODQ3LDE1OT
-g1ODIwNDIsLTE1NjI0MzA5NDksMTc0NjEyNTMxMiwtNTQ1OTY0
-OTEwLC0xMzUxMTA1MTkwLC04Mjk4NTQ2NSwyMTIwNTI3Njk4LC
-05ODEyMDQwNTcsNTE2MDk5MjYyLDE2NzY3NzU2NTMsLTE4MDI0
-NTA3MTEsLTEwMzU3NDYwNDMsMTkwMTE5Mzg5OCwtMTU3ODYyMD
-U3OCwxNTk0NDc4Mjg5XX0=
+eyJoaXN0b3J5IjpbNjE3NDcyMDcwLC02NjUxNTk4NDcsMTU5OD
+U4MjA0MiwtMTU2MjQzMDk0OSwxNzQ2MTI1MzEyLC01NDU5NjQ5
+MTAsLTEzNTExMDUxOTAsLTgyOTg1NDY1LDIxMjA1Mjc2OTgsLT
+k4MTIwNDA1Nyw1MTYwOTkyNjIsMTY3Njc3NTY1MywtMTgwMjQ1
+MDcxMSwtMTAzNTc0NjA0MywxOTAxMTkzODk4LC0xNTc4NjIwNT
+c4LDE1OTQ0NzgyODldfQ==
 -->
