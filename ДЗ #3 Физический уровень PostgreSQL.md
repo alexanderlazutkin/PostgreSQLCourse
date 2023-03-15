@@ -133,7 +133,7 @@ user@postgresql:~$ df -h -x tmpfs
 sudo chown -R postgres:postgres /mnt/data/
 
 ##### перенесите содержимое /var/lib/postgres/14 в /mnt/data - mv /var/lib/postgresql/14 /mnt/data
-user@postgresql:~$ sudo chown -R postgres:postgres /mnt/data/
+sudo chown -R postgres:postgres /mnt/data/
 user@postgresql:~$ sudo -u postgres pg_ctlcluster 14 main stop
 user@postgresql:~$ sudo -u postgres mv /var/lib/postgresql/14 /mnt/data
 
@@ -152,9 +152,10 @@ Error: /usr/lib/postgresql/14/bin/pg_ctl /usr/lib/postgresql/14/bin/pg_ctl start
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU5ODU4MjA0MiwtMTU2MjQzMDk0OSwxNz
-Q2MTI1MzEyLC01NDU5NjQ5MTAsLTEzNTExMDUxOTAsLTgyOTg1
-NDY1LDIxMjA1Mjc2OTgsLTk4MTIwNDA1Nyw1MTYwOTkyNjIsMT
-Y3Njc3NTY1MywtMTgwMjQ1MDcxMSwtMTAzNTc0NjA0MywxOTAx
-MTkzODk4LC0xNTc4NjIwNTc4LDE1OTQ0NzgyODldfQ==
+eyJoaXN0b3J5IjpbLTE1NjIyMzc1MjUsMTU5ODU4MjA0MiwtMT
+U2MjQzMDk0OSwxNzQ2MTI1MzEyLC01NDU5NjQ5MTAsLTEzNTEx
+MDUxOTAsLTgyOTg1NDY1LDIxMjA1Mjc2OTgsLTk4MTIwNDA1Ny
+w1MTYwOTkyNjIsMTY3Njc3NTY1MywtMTgwMjQ1MDcxMSwtMTAz
+NTc0NjA0MywxOTAxMTkzODk4LC0xNTc4NjIwNTc4LDE1OTQ0Nz
+gyODldfQ==
 -->
