@@ -34,18 +34,25 @@ user@postgresql:~$ sudo -u postgres pg_lsclusters
 ##### зайдите из под пользователя postgres в psql и сделайте произвольную таблицу с произвольным содержимым  
 
 sudo -u postgres psql
+
 postgres=# create table test(c1 text);
+
 postgres=# insert into test values('1');
 
-##### остановите postgres например через sudo -u postgres pg_ctlcluster 14 main stop
 postgres-# \q
->user@postgresql:~$ sudo -u postgres pg_ctlcluster 14 main stop
-Warning: stopping the cluster using pg_ctlcluster will mark the systemd unit as failed. Consider using systemctl:
+
+##### остановите postgres например через sudo -u postgres pg_ctlcluster 14 main stop
+
+user@postgresql:~$ sudo -u postgres pg_ctlcluster 14 main stop
+
+>Warning: stopping the cluster using pg_ctlcluster will mark the systemd unit as failed. Consider using systemctl:
 
 #####   создайте новый standard persistent диск GKE через ЯО
 - остановлена ВМ, добавлен диск и присоединенен, ВМ запущена
-> user@postgres:~$ sudo lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
-NAME   FSTYPE     SIZE MOUNTPOINT        LABEL
+
+user@postgres:~$ sudo lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
+
+>NAME   FSTYPE     SIZE MOUNTPOINT        LABEL
 loop0  squashfs  63.3M /snap/core20/1828
 loop1  squashfs  61.9M /snap/core20/1405
 loop2  squashfs 111.9M /snap/lxd/24322
@@ -179,7 +186,7 @@ postgres=# select * from test;
 --sudo rm -Rf /var/lib/postgresql/10/main.bak
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQxNjA5NTc5NywtNjY1MTU5ODQ3LDE1OT
+eyJoaXN0b3J5IjpbMTg4NjI0OTM4NSwtNjY1MTU5ODQ3LDE1OT
 g1ODIwNDIsLTE1NjI0MzA5NDksMTc0NjEyNTMxMiwtNTQ1OTY0
 OTEwLC0xMzUxMTA1MTkwLC04Mjk4NTQ2NSwyMTIwNTI3Njk4LC
 05ODEyMDQwNTcsNTE2MDk5MjYyLDE2NzY3NzU2NTMsLTE4MDI0
