@@ -23,13 +23,15 @@ user@postgresql:~$ systemctl status postgresql
 sudo -u postgres psql -c "SELECT version();"  
 
 >PostgreSQL 14.7 (Ubuntu 14.7-0ubuntu0.22.04.1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0, 64-bit
-> 
+
+
 #####  проверьте что кластер запущен через sudo -u postgres pg_lsclusters
 
 user@postgresql:~$ sudo -u postgres pg_lsclusters
 
 >Ver Cluster Port Status Owner    Data directory              Log file
 14  main    5432 online postgres /var/lib/postgresql/14/main /var/log/postgresql/postgresql-14-main.log
+
 
 ##### зайдите из под пользователя postgres в psql и сделайте произвольную таблицу с произвольным содержимым  
 
@@ -41,11 +43,15 @@ postgres=# insert into test values('1');
 
 postgres-# \q
 
+
 ##### остановите postgres например через sudo -u postgres pg_ctlcluster 14 main stop
 
 user@postgresql:~$ sudo -u postgres pg_ctlcluster 14 main stop
 
 >Warning: stopping the cluster using pg_ctlcluster will mark the systemd unit as failed. Consider using systemctl:
+
+sudo systemctl stop postgresql
+
 
 #####   создайте новый standard persistent диск GKE через ЯО
 - остановлена ВМ, добавлен диск и присоединенен, ВМ запущена
@@ -186,7 +192,7 @@ postgres=# select * from test;
 --sudo rm -Rf /var/lib/postgresql/10/main.bak
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg4NjI0OTM4NSwtNjY1MTU5ODQ3LDE1OT
+eyJoaXN0b3J5IjpbMTk4ODU5ODUyNiwtNjY1MTU5ODQ3LDE1OT
 g1ODIwNDIsLTE1NjI0MzA5NDksMTc0NjEyNTMxMiwtNTQ1OTY0
 OTEwLC0xMzUxMTA1MTkwLC04Mjk4NTQ2NSwyMTIwNTI3Njk4LC
 05ODEyMDQwNTcsNTE2MDk5MjYyLDE2NzY3NzU2NTMsLTE4MDI0
