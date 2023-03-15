@@ -211,7 +211,16 @@ data_directory = '/mnt/data/postgresql/14/main'
 sudo systemctl start postgresql
 
 sudo systemctl status postgresql
+>user@postgres:~$ sudo systemctl status postgresql
+● postgresql.service - PostgreSQL RDBMS
+     Loaded: loaded (/lib/systemd/system/postgresql.service; enabled; vendor preset: enabled)
+     Active: active (exited) since Wed 2023-03-15 19:59:41 UTC; 27s ago
+    Process: 4446 ExecStart=/bin/true (code=exited, status=0/SUCCESS)
+   Main PID: 4446 (code=exited, status=0/SUCCESS)
+        CPU: 1ms
 
+Mar 15 19:59:41 postgres systemd[1]: Starting PostgreSQL RDBMS...
+Mar 15 19:59:41 postgres systemd[1]: Finished PostgreSQL RDBMS.
 ##### зайдите через через psql и проверьте содержимое ранее созданной таблицы
 созданная таблица на месте
 
@@ -223,7 +232,7 @@ postgres=# select * from test;
 --sudo rm -Rf /var/lib/postgresql/10/main.bak
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NzQ1ODY1OTUsLTY2NTE1OTg0NywxNT
+eyJoaXN0b3J5IjpbLTE2Mzk1ODU3MDUsLTY2NTE1OTg0NywxNT
 k4NTgyMDQyLC0xNTYyNDMwOTQ5LDE3NDYxMjUzMTIsLTU0NTk2
 NDkxMCwtMTM1MTEwNTE5MCwtODI5ODU0NjUsMjEyMDUyNzY5OC
 wtOTgxMjA0MDU3LDUxNjA5OTI2MiwxNjc2Nzc1NjUzLC0xODAy
