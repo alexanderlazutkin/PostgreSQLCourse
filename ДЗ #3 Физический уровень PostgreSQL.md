@@ -155,15 +155,17 @@ Error: /usr/lib/postgresql/14/bin/pg_ctl /usr/lib/postgresql/14/bin/pg_ctl start
 sudo nano /etc/postgresql/14/main/postgresql.conf
 
 -   напишите что и почему поменяли
+data_directory = '/mnt/data/var/lib/postgresql/14/main'
+
 -   попытайтесь запустить кластер - sudo -u postgres pg_ctlcluster 14 main start
 -   напишите получилось или нет и почему
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjk3OTM2NjU0LDE1OTg1ODIwNDIsLTE1Nj
-I0MzA5NDksMTc0NjEyNTMxMiwtNTQ1OTY0OTEwLC0xMzUxMTA1
-MTkwLC04Mjk4NTQ2NSwyMTIwNTI3Njk4LC05ODEyMDQwNTcsNT
-E2MDk5MjYyLDE2NzY3NzU2NTMsLTE4MDI0NTA3MTEsLTEwMzU3
-NDYwNDMsMTkwMTE5Mzg5OCwtMTU3ODYyMDU3OCwxNTk0NDc4Mj
-g5XX0=
+eyJoaXN0b3J5IjpbLTY2NTE1OTg0NywxNTk4NTgyMDQyLC0xNT
+YyNDMwOTQ5LDE3NDYxMjUzMTIsLTU0NTk2NDkxMCwtMTM1MTEw
+NTE5MCwtODI5ODU0NjUsMjEyMDUyNzY5OCwtOTgxMjA0MDU3LD
+UxNjA5OTI2MiwxNjc2Nzc1NjUzLC0xODAyNDUwNzExLC0xMDM1
+NzQ2MDQzLDE5MDExOTM4OTgsLTE1Nzg2MjA1NzgsMTU5NDQ3OD
+I4OV19
 -->
