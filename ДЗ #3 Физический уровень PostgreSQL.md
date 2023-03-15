@@ -135,13 +135,8 @@ sudo chown -R postgres:postgres /mnt/data/
 ##### перенесите содержимое /var/lib/postgres/14 в /mnt/data - mv /var/lib/postgresql/14 /mnt/data
 user@postgresql:~$ sudo chown -R postgres:postgres /mnt/data/
 user@postgresql:~$ sudo -u postgres pg_ctlcluster 14 main stop
+user@postgresql:~$ sudo -u postgres mv /var/lib/postgresql/14 /mnt/data
 
-user@postgresql:~$ sudo mv /var/lib/postgresql/14 /mnt/data
-## вывел сообщения. Почему и как решить?
->mv: cannot remove '/var/lib/postgresql/14/main/postmaster.opts': Read-only file system
-mv: cannot remove '/var/lib/postgresql/14/main/pg_replslot': Read-only file system
-mv: cannot remove '/var/lib/postgresql/14/main/pg_stat_tmp': Read-only file system
-....
 ##### попытайтесь запустить кластер - sudo -u postgres pg_ctlcluster 14 main start
 #####  напишите получилось или нет и почему
 user@postgresql:~$ sudo -u postgres pg_ctlcluster 14 main start
@@ -157,9 +152,9 @@ Error: /usr/lib/postgresql/14/bin/pg_ctl /usr/lib/postgresql/14/bin/pg_ctl start
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NjI0MzA5NDksMTc0NjEyNTMxMiwtNT
-Q1OTY0OTEwLC0xMzUxMTA1MTkwLC04Mjk4NTQ2NSwyMTIwNTI3
-Njk4LC05ODEyMDQwNTcsNTE2MDk5MjYyLDE2NzY3NzU2NTMsLT
-E4MDI0NTA3MTEsLTEwMzU3NDYwNDMsMTkwMTE5Mzg5OCwtMTU3
-ODYyMDU3OCwxNTk0NDc4Mjg5XX0=
+eyJoaXN0b3J5IjpbMTU5ODU4MjA0MiwtMTU2MjQzMDk0OSwxNz
+Q2MTI1MzEyLC01NDU5NjQ5MTAsLTEzNTExMDUxOTAsLTgyOTg1
+NDY1LDIxMjA1Mjc2OTgsLTk4MTIwNDA1Nyw1MTYwOTkyNjIsMT
+Y3Njc3NTY1MywtMTgwMjQ1MDcxMSwtMTAzNTc0NjA0MywxOTAx
+MTkzODk4LC0xNTc4NjIwNTc4LDE1OTQ0NzgyODldfQ==
 -->
