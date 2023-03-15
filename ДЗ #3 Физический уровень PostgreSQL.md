@@ -103,10 +103,12 @@ vda    252:0    0    15G  0 disk
 vdb    252:16   0    20G  0 disk
 └─vdb1 252:17   0    20G  0 part
 
-Create a Filesystem on the New Partition
->sudo mkfs.ext4 -L datapartition /dev/vdb
+***Create a Filesystem on the New Partition***
+
+sudo mkfs.ext4 -L datapartition /dev/vdb
 
 user@postgresql:~$ sudo lsblk --fs
+
 >NAME   FSTYPE   FSVER LABEL         UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
 loop0  squashfs 4.0                                                            0   100% /snap/core20/1828
 loop1  squashfs 4.0                                                            0   100% /snap/core20/1405
@@ -119,6 +121,7 @@ vda
 vdb    ext4     1.0   datapartition ecceaf63-6127-4524-a8ab-b9b38db37845
 
 user@postgresql:~$ sudo lsblk -o NAME,FSTYPE,LABEL,UUID,MOUNTPOINT
+
 >NAME   FSTYPE   LABEL         UUID                                 MOUNTPOINT
 loop0  squashfs                                                    /snap/core20/1828
 loop1  squashfs                                                    /snap/core20/1405
@@ -130,22 +133,27 @@ vda
 └─vda2 ext4                   82aeea96-6d42-49e6-85d5-9071d3c9b6aa /
 vdb    ext4     datapartition ecceaf63-6127-4524-a8ab-b9b38db37845
 
-Mount the New Filesystem
->sudo mkdir -p /mnt/data
+***Mount the New Filesystem***
+sudo mkdir -p /mnt/data
+
 sudo mount -o defaults /dev/vdb /mnt/data
+
 sudo mount -a
 
 
 user@postgresql:~$ df -h -x tmpfs
+
 >Filesystem      Size  Used Avail Use% Mounted on
 /dev/vda2        15G  4.2G  9.9G  30% /
 /dev/vdb         20G   24K   19G   1% /mnt/data
 
 sudo vi /etc/fstab
+
 добавить /dev/vdb /mnt/data ext4 defaults 0 1
 
 ##### перезагрузите инстанс и убедитесь, что диск остается примонтированным (если не так смотрим в сторону fstab)
 user@postgresql:~$ sudo reboot now
+
 >Connection to 51.250.29.213 closed by remote host.
 Connection to 51.250.29.213 closed.
 
@@ -198,10 +206,10 @@ postgres=# select * from test;
 --sudo rm -Rf /var/lib/postgresql/10/main.bak
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjE3NDcyMDcwLC02NjUxNTk4NDcsMTU5OD
-U4MjA0MiwtMTU2MjQzMDk0OSwxNzQ2MTI1MzEyLC01NDU5NjQ5
-MTAsLTEzNTExMDUxOTAsLTgyOTg1NDY1LDIxMjA1Mjc2OTgsLT
-k4MTIwNDA1Nyw1MTYwOTkyNjIsMTY3Njc3NTY1MywtMTgwMjQ1
-MDcxMSwtMTAzNTc0NjA0MywxOTAxMTkzODk4LC0xNTc4NjIwNT
-c4LDE1OTQ0NzgyODldfQ==
+eyJoaXN0b3J5IjpbMTI0NTkxNzM1NCwtNjY1MTU5ODQ3LDE1OT
+g1ODIwNDIsLTE1NjI0MzA5NDksMTc0NjEyNTMxMiwtNTQ1OTY0
+OTEwLC0xMzUxMTA1MTkwLC04Mjk4NTQ2NSwyMTIwNTI3Njk4LC
+05ODEyMDQwNTcsNTE2MDk5MjYyLDE2NzY3NzU2NTMsLTE4MDI0
+NTA3MTEsLTEwMzU3NDYwNDMsMTkwMTE5Mzg5OCwtMTU3ODYyMD
+U3OCwxNTk0NDc4Mjg5XX0=
 -->
