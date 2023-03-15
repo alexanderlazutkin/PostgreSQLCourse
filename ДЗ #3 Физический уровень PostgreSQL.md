@@ -135,6 +135,9 @@ sudo chown -R postgres:postgres /mnt/data/
 ##### перенесите содержимое /var/lib/postgres/14 в /mnt/data - mv /var/lib/postgresql/14 /mnt/data
 sudo chown -R postgres:postgres /mnt/data/
 sudo systemctl stop postgresql
+sudo systemctl status postgresql
+
+
 
 user@postgresql:~$ sudo -u postgres mv /var/lib/postgresql/14 /mnt/data
 
@@ -153,7 +156,7 @@ Error: /usr/lib/postgresql/14/bin/pg_ctl /usr/lib/postgresql/14/bin/pg_ctl start
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIwNTQ0MzcyMiwxNTk4NTgyMDQyLC0xNT
+eyJoaXN0b3J5IjpbLTk2OTA2MTEyNSwxNTk4NTgyMDQyLC0xNT
 YyNDMwOTQ5LDE3NDYxMjUzMTIsLTU0NTk2NDkxMCwtMTM1MTEw
 NTE5MCwtODI5ODU0NjUsMjEyMDUyNzY5OCwtOTgxMjA0MDU3LD
 UxNjA5OTI2MiwxNjc2Nzc1NjUzLC0xODAyNDUwNzExLC0xMDM1
