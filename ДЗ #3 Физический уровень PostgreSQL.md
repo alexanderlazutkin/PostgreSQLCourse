@@ -6,7 +6,7 @@
 ##### создайте виртуальную машину c Ubuntu 20.04 LTS (bionic) в GCE/ЯО
 > Сделано в Yandex Cloud :
 > _yc compute instance create --name pg-instance --hostname pg-instance --create-boot-disk size=15G,type=network-ssd,image-folder-id=standard-images,image-family=ubuntu-2204-lts --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 --zone ru-central1-a --metadata-from-file ssh-keys=C:/Users/User/.ssh/sshkeys.txt_
-> ssh user@130.193.41.225
+> ssh user@158.160.11.34
 #####  поставьте на нее PostgreSQL 14 через sudo apt https://techviewleo.com/how-to-install-postgresql-database-on-ubuntu/
 sudo apt -y install gnupg2 wget vim
 sudo apt -y update
@@ -152,8 +152,8 @@ Error: /usr/lib/postgresql/14/bin/pg_ctl /usr/lib/postgresql/14/bin/pg_ctl start
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjEyMDUyNzY5OCwtOTgxMjA0MDU3LDUxNj
-A5OTI2MiwxNjc2Nzc1NjUzLC0xODAyNDUwNzExLC0xMDM1NzQ2
-MDQzLDE5MDExOTM4OTgsLTE1Nzg2MjA1NzgsMTU5NDQ3ODI4OV
-19
+eyJoaXN0b3J5IjpbLTgyOTg1NDY1LDIxMjA1Mjc2OTgsLTk4MT
+IwNDA1Nyw1MTYwOTkyNjIsMTY3Njc3NTY1MywtMTgwMjQ1MDcx
+MSwtMTAzNTc0NjA0MywxOTAxMTkzODk4LC0xNTc4NjIwNTc4LD
+E1OTQ0NzgyODldfQ==
 -->
