@@ -150,7 +150,7 @@ user@postgresql:~$ df -h -x tmpfs
 
 sudo vi /etc/fstab
 
-добавить /dev/vdb /mnt/data ext4 defaults 0 1
+добавить в файл: /dev/vdb /mnt/data ext4 defaults 0 1
 
 ##### перезагрузите инстанс и убедитесь, что диск остается примонтированным (если не так смотрим в сторону fstab)
 
@@ -169,21 +169,31 @@ user@postgresql:~$ df -h -x tmpfs
 sudo chown -R postgres:postgres /mnt/data/
 
 ##### перенесите содержимое /var/lib/postgres/14 в /mnt/data - mv /var/lib/postgresql/14 /mnt/data
+
 sudo chown -R postgres:postgres /mnt/data/
+
 sudo systemctl stop postgresql
+
 sudo systemctl status postgresql
+
 sudo -u postgres mv /var/lib/postgresql/14 /mnt/data
+
 
 --sudo rsync -av /var/lib/postgresql /mnt/data
 --sudo mv /var/lib/postgresql/14/main /var/lib/postgresql/14/main.bak
 
 ##### попытайтесь запустить кластер - sudo -u postgres pg_ctlcluster 14 main start
 #####  напишите получилось или нет и почему
+
 user@postgresql:~$ sudo -u postgres pg_ctlcluster 14 main start
+
+--sudo systemctl start postgresql@14-main
+
 >Warning: the cluster will not be running as a systemd service. Consider using systemctl:
   sudo systemctl start postgresql@14-main
 Error: Could not open logfile /var/log/postgresql/postgresql-14-main.log
 Error: /usr/lib/postgresql/14/bin/pg_ctl /usr/lib/postgresql/14/bin/pg_ctl start -D /var/lib/postgresql/14/main -l /var/log/postgresql/postgresql-14-main.log -s -o  -c config_file="/etc/postgresql/14/main/postgresql.conf"  exited with status 1:
+
 Ошибка, т.к. предыдущий путь не изменен в конфигурации. Нужно поправить
 
 ##### задание: найти конфигурационный параметр в файлах раположенных в /etc/postgresql/14/main который надо поменять и поменяйте его
@@ -209,10 +219,10 @@ postgres=# select * from test;
 --sudo rm -Rf /var/lib/postgresql/10/main.bak
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY0MDQxOTYwOCwtNjY1MTU5ODQ3LDE1OT
-g1ODIwNDIsLTE1NjI0MzA5NDksMTc0NjEyNTMxMiwtNTQ1OTY0
-OTEwLC0xMzUxMTA1MTkwLC04Mjk4NTQ2NSwyMTIwNTI3Njk4LC
-05ODEyMDQwNTcsNTE2MDk5MjYyLDE2NzY3NzU2NTMsLTE4MDI0
-NTA3MTEsLTEwMzU3NDYwNDMsMTkwMTE5Mzg5OCwtMTU3ODYyMD
-U3OCwxNTk0NDc4Mjg5XX0=
+eyJoaXN0b3J5IjpbNzQwMTA2MDg0LC02NjUxNTk4NDcsMTU5OD
+U4MjA0MiwtMTU2MjQzMDk0OSwxNzQ2MTI1MzEyLC01NDU5NjQ5
+MTAsLTEzNTExMDUxOTAsLTgyOTg1NDY1LDIxMjA1Mjc2OTgsLT
+k4MTIwNDA1Nyw1MTYwOTkyNjIsMTY3Njc3NTY1MywtMTgwMjQ1
+MDcxMSwtMTAzNTc0NjA0MywxOTAxMTkzODk4LC0xNTc4NjIwNT
+c4LDE1OTQ0NzgyODldfQ==
 -->
