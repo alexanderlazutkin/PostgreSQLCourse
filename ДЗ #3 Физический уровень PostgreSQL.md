@@ -117,6 +117,7 @@ user@postgresql:~$ df -h -x tmpfs
 /dev/vdb         20G   24K   19G   1% /mnt/data
 
 sudo vi /etc/fstab
+добавить /dev/vdb /mnt/data ext4 defaults 0 1
 
 ##### перезагрузите инстанс и убедитесь, что диск остается примонтированным (если не так смотрим в сторону fstab)
 user@postgresql:~$ sudo reboot now
@@ -156,7 +157,7 @@ Error: /usr/lib/postgresql/14/bin/pg_ctl /usr/lib/postgresql/14/bin/pg_ctl start
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEyOTg4NjE0NzQsMTc0NjEyNTMxMiwtNT
+eyJoaXN0b3J5IjpbLTE1NjI0MzA5NDksMTc0NjEyNTMxMiwtNT
 Q1OTY0OTEwLC0xMzUxMTA1MTkwLC04Mjk4NTQ2NSwyMTIwNTI3
 Njk4LC05ODEyMDQwNTcsNTE2MDk5MjYyLDE2NzY3NzU2NTMsLT
 E4MDI0NTA3MTEsLTEwMzU3NDYwNDMsMTkwMTE5Mzg5OCwtMTU3
