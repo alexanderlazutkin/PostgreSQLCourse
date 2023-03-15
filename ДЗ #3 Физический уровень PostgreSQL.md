@@ -138,6 +138,9 @@ sudo systemctl stop postgresql
 sudo systemctl status postgresql
 sudo -u postgres mv /var/lib/postgresql/14 /mnt/data
 
+#sudo rsync -av /var/lib/postgresql /mnt/data
+#sudo mv /var/lib/postgresql/14/main /var/lib/postgresql/14/main.bak
+
 ##### попытайтесь запустить кластер - sudo -u postgres pg_ctlcluster 14 main start
 #####  напишите получилось или нет и почему
 user@postgresql:~$ sudo -u postgres pg_ctlcluster 14 main start
@@ -145,18 +148,21 @@ user@postgresql:~$ sudo -u postgres pg_ctlcluster 14 main start
   sudo systemctl start postgresql@14-main
 Error: Could not open logfile /var/log/postgresql/postgresql-14-main.log
 Error: /usr/lib/postgresql/14/bin/pg_ctl /usr/lib/postgresql/14/bin/pg_ctl start -D /var/lib/postgresql/14/main -l /var/log/postgresql/postgresql-14-main.log -s -o  -c config_file="/etc/postgresql/14/main/postgresql.conf"  exited with status 1:
+Ошибка, т.к. предыдущий путь не измене
+##### задание: найти конфигурационный параметр в файлах раположенных в /etc/postgresql/14/main который надо поменять и поменяйте его
 
--   задание: найти конфигурационный параметр в файлах раположенных в /etc/postgresql/14/main который надо поменять и поменяйте его
+sudo nano /etc/postgresql/14/main/postgresql.conf
+
 -   напишите что и почему поменяли
 -   попытайтесь запустить кластер - sudo -u postgres pg_ctlcluster 14 main start
 -   напишите получилось или нет и почему
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NTcyNzA2MTQsMTU5ODU4MjA0MiwtMT
-U2MjQzMDk0OSwxNzQ2MTI1MzEyLC01NDU5NjQ5MTAsLTEzNTEx
-MDUxOTAsLTgyOTg1NDY1LDIxMjA1Mjc2OTgsLTk4MTIwNDA1Ny
-w1MTYwOTkyNjIsMTY3Njc3NTY1MywtMTgwMjQ1MDcxMSwtMTAz
-NTc0NjA0MywxOTAxMTkzODk4LC0xNTc4NjIwNTc4LDE1OTQ0Nz
-gyODldfQ==
+eyJoaXN0b3J5IjpbLTE4NzEyODQzLDE1OTg1ODIwNDIsLTE1Nj
+I0MzA5NDksMTc0NjEyNTMxMiwtNTQ1OTY0OTEwLC0xMzUxMTA1
+MTkwLC04Mjk4NTQ2NSwyMTIwNTI3Njk4LC05ODEyMDQwNTcsNT
+E2MDk5MjYyLDE2NzY3NzU2NTMsLTE4MDI0NTA3MTEsLTEwMzU3
+NDYwNDMsMTkwMTE5Mzg5OCwtMTU3ODYyMDU3OCwxNTk0NDc4Mj
+g5XX0=
 -->
