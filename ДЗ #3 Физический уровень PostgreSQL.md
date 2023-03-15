@@ -67,31 +67,31 @@ sudo parted /dev/vdb mklabel gpt
 
 user@postgresql:~$ lsblk
 >NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
-loop0    7:0    0  61.9M  1 loop /snap/core20/1405
-loop1    7:1    0  63.3M  1 loop /snap/core20/1828
-loop2    7:2    0  79.9M  1 loop /snap/lxd/22923
-loop3    7:3    0 111.9M  1 loop /snap/lxd/24322
+loop0    7:0    0  63.3M  1 loop /snap/core20/1828
+loop1    7:1    0  61.9M  1 loop /snap/core20/1405
+loop2    7:2    0 111.9M  1 loop /snap/lxd/24322
+loop3    7:3    0  79.9M  1 loop /snap/lxd/22923
 loop4    7:4    0  49.8M  1 loop /snap/snapd/18357
 vda    252:0    0    15G  0 disk
-+-vda1 252:1    0     1M  0 part
-L-vda2 252:2    0    15G  0 part /
+├─vda1 252:1    0     1M  0 part
+└─vda2 252:2    0    15G  0 part /
 vdb    252:16   0    20G  0 disk
-L-vdb1 252:17   0    20G  0 part
+└─vdb1 252:17   0    20G  0 part
 
 Create a Filesystem on the New Partition
 >sudo mkfs.ext4 -L datapartition /dev/vdb
 
 user@postgresql:~$ sudo lsblk --fs
 >NAME   FSTYPE   FSVER LABEL         UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
-loop0  squashfs 4.0                                                            0   100% /snap/core20/1405
-loop1  squashfs 4.0                                                            0   100% /snap/core20/1828
-loop2  squashfs 4.0                                                            0   100% /snap/lxd/22923
-loop3  squashfs 4.0                                                            0   100% /snap/lxd/24322
+loop0  squashfs 4.0                                                            0   100% /snap/core20/1828
+loop1  squashfs 4.0                                                            0   100% /snap/core20/1405
+loop2  squashfs 4.0                                                            0   100% /snap/lxd/24322
+loop3  squashfs 4.0                                                            0   100% /snap/lxd/22923
 loop4  squashfs 4.0                                                            0   100% /snap/snapd/18357
 vda
-+-vda1
-L-vda2 ext4     1.0                 82aeea96-6d42-49e6-85d5-9071d3c9b6aa     10G    27% /
-vdb    ext4     1.0   datapartition 93786567-5bc4-4a39-a113-b328dad05a2b
+├─vda1
+└─vda2 ext4     1.0                 82aeea96-6d42-49e6-85d5-9071d3c9b6aa    9.8G    29% /
+vdb    ext4     1.0   datapartition f1c9b96d-748c-4a6b-a2dc-0a34b7252b68
 
 user@postgresql:~$ sudo lsblk -o NAME,FSTYPE,LABEL,UUID,MOUNTPOINT
 >NAME   FSTYPE   LABEL         UUID                                 MOUNTPOINT
@@ -153,8 +153,9 @@ Error: /usr/lib/postgresql/14/bin/pg_ctl /usr/lib/postgresql/14/bin/pg_ctl start
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 -   задание со звездочкой *: не удаляя существующий инстанс ВМ сделайте новый, поставьте на его PostgreSQL, удалите файлы с данными из /var/lib/postgres, перемонтируйте внешний диск который сделали ранее от первой виртуальной машины ко второй и запустите PostgreSQL на второй машине так чтобы он работал с данными на внешнем диске, расскажите как вы это сделали и что в итоге получилось.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzNTExMDUxOTAsLTgyOTg1NDY1LDIxMj
-A1Mjc2OTgsLTk4MTIwNDA1Nyw1MTYwOTkyNjIsMTY3Njc3NTY1
-MywtMTgwMjQ1MDcxMSwtMTAzNTc0NjA0MywxOTAxMTkzODk4LC
-0xNTc4NjIwNTc4LDE1OTQ0NzgyODldfQ==
+eyJoaXN0b3J5IjpbLTE0MzU5MjY3NzIsLTEzNTExMDUxOTAsLT
+gyOTg1NDY1LDIxMjA1Mjc2OTgsLTk4MTIwNDA1Nyw1MTYwOTky
+NjIsMTY3Njc3NTY1MywtMTgwMjQ1MDcxMSwtMTAzNTc0NjA0My
+wxOTAxMTkzODk4LC0xNTc4NjIwNTc4LDE1OTQ0NzgyODldfQ==
+
 -->
