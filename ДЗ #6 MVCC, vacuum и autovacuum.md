@@ -17,6 +17,11 @@ sudo apt -y update
 sudo apt -y install postgresql-14
 
 sudo -u postgres psql
+
+\password
+
+  либо
+
 ALTER USER postgres WITH PASSWORD 'postgres';
 postgres-# \c postgres
 
@@ -321,8 +326,9 @@ postgres=# select name,setting as current_value,reset_val,boot_val as original_d
  autovacuum_vacuum_threshold     | 0             | 0         | 50               | /var/lib/postgresql/14/main/postgresql.auto.conf |         15
  
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU4MDMxNjYxNiwxNTY3MjcwNDcwLC0yMT
-EzODE3NzY0LC0xNDkzOTU1MTQ4LC0xNzA0MzYzNjA4LDEwMTcz
-ODYzMzksOTY0OTc5Mjk1LC0xMjg3NDQ1Njc2LC0xMjE3NzgyNz
-M0LDEzMDU3NDg1NCwtOTkwOTk5MjksMTE2NDczNDUzNF19
+eyJoaXN0b3J5IjpbMjA2NjA2Mzc5OSwtNTgwMzE2NjE2LDE1Nj
+cyNzA0NzAsLTIxMTM4MTc3NjQsLTE0OTM5NTUxNDgsLTE3MDQz
+NjM2MDgsMTAxNzM4NjMzOSw5NjQ5NzkyOTUsLTEyODc0NDU2Nz
+YsLTEyMTc3ODI3MzQsMTMwNTc0ODU0LC05OTA5OTkyOSwxMTY0
+NzM0NTM0XX0=
 -->
