@@ -138,7 +138,7 @@ sudo systemctl stop postgresql
 sudo systemctl status postgresql
 sudo -u postgres mv /var/lib/postgresql/14 /mnt/data
 
-#sudo rsync -av /var/lib/postgresql /mnt/data
+--sudo rsync -av /var/lib/postgresql /mnt/data
 #sudo mv /var/lib/postgresql/14/main /var/lib/postgresql/14/main.bak
 
 ##### попытайтесь запустить кластер - sudo -u postgres pg_ctlcluster 14 main start
@@ -157,11 +157,8 @@ sudo nano /etc/postgresql/14/main/postgresql.conf
 ##### напишите что и почему поменяли
 data_directory = '/mnt/data/var/lib/postgresql/14/main'
 
--   попытайтесь запустить кластер - sudo -u postgres pg_ctlcluster 14 main start
-- 
+##### попытайтесь запустить кластер - sudo -u postgres pg_ctlcluster 14 main start напишите получилось или нет и почему
 
-
--   напишите получилось или нет и почему
 
 -   зайдите через через psql и проверьте содержимое ранее созданной таблицы
 
@@ -170,10 +167,10 @@ postgres=# select * from test;
  ----
  1
 (1 row)
-sudo rm -Rf /var/lib/postgresql/10/main.bak
+--sudo rm -Rf /var/lib/postgresql/10/main.bak
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTYwODY2NzAwNywtNjY1MTU5ODQ3LDE1OT
+eyJoaXN0b3J5IjpbMjA2OTg3Nzk5NCwtNjY1MTU5ODQ3LDE1OT
 g1ODIwNDIsLTE1NjI0MzA5NDksMTc0NjEyNTMxMiwtNTQ1OTY0
 OTEwLC0xMzUxMTA1MTkwLC04Mjk4NTQ2NSwyMTIwNTI3Njk4LC
 05ODEyMDQwNTcsNTE2MDk5MjYyLDE2NzY3NzU2NTMsLTE4MDI0
