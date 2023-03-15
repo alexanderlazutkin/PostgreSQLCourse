@@ -134,6 +134,7 @@ vda
 vdb    ext4     datapartition ecceaf63-6127-4524-a8ab-b9b38db37845
 
 ***Mount the New Filesystem***
+
 sudo mkdir -p /mnt/data
 
 sudo mount -o defaults /dev/vdb /mnt/data
@@ -152,6 +153,7 @@ sudo vi /etc/fstab
 добавить /dev/vdb /mnt/data ext4 defaults 0 1
 
 ##### перезагрузите инстанс и убедитесь, что диск остается примонтированным (если не так смотрим в сторону fstab)
+
 user@postgresql:~$ sudo reboot now
 
 >Connection to 51.250.29.213 closed by remote host.
@@ -163,6 +165,7 @@ user@postgresql:~$ df -h -x tmpfs
 /dev/vdb         20G   24K   19G   1% /mnt/data
 
 ##### сделайте пользователя postgres владельцем /mnt/data - chown -R postgres:postgres /mnt/data/
+
 sudo chown -R postgres:postgres /mnt/data/
 
 ##### перенесите содержимое /var/lib/postgres/14 в /mnt/data - mv /var/lib/postgresql/14 /mnt/data
@@ -206,7 +209,7 @@ postgres=# select * from test;
 --sudo rm -Rf /var/lib/postgresql/10/main.bak
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI0NTkxNzM1NCwtNjY1MTU5ODQ3LDE1OT
+eyJoaXN0b3J5IjpbMTY0MDQxOTYwOCwtNjY1MTU5ODQ3LDE1OT
 g1ODIwNDIsLTE1NjI0MzA5NDksMTc0NjEyNTMxMiwtNTQ1OTY0
 OTEwLC0xMzUxMTA1MTkwLC04Mjk4NTQ2NSwyMTIwNTI3Njk4LC
 05ODEyMDQwNTcsNTE2MDk5MjYyLDE2NzY3NzU2NTMsLTE4MDI0
