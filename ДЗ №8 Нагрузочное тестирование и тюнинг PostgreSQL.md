@@ -46,9 +46,7 @@ sudo -u postgres psql
 create database testdb;
 \c testdb
 
-### Настроить кластер PostgreSQL 15 на максимальную производительность не  
-обращая внимание на возможные проблемы с надежностью в случае  
-аварийной перезагрузки виртуальной машины  
+### Настроить кластер PostgreSQL 15 на максимальную производительность не обращая внимание на возможные проблемы с надежностью в случае  аварийной перезагрузки виртуальной машины  
 
 
 ### Нагрузить кластер через утилиту через утилиту pgbench ([https://postgrespro.ru/docs/postgrespro/14/pgbench](https://postgrespro.ru/docs/postgrespro/14/pgbench "https://postgrespro.ru/docs/postgrespro/14/pgbench"))  
@@ -62,6 +60,7 @@ create database testdb;
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NDg0NzU1NTYsLTU3Njg3OTM2OSwxNz
-gxOTUyMjYyLC0xNDk0MTMwMTc3LC0xMDA4ODE1MjY1XX0=
+eyJoaXN0b3J5IjpbMjEwOTE1MDQ0LC0xNTQ4NDc1NTU2LC01Nz
+Y4NzkzNjksMTc4MTk1MjI2MiwtMTQ5NDEzMDE3NywtMTAwODgx
+NTI2NV19
 -->
