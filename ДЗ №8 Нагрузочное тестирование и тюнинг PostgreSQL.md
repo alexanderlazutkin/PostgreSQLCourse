@@ -42,6 +42,9 @@ sudo -u postgres psql
 
 \password
 
+Создадим отдельную базу данных и роль для тестирования нагрузки:
+create database testdb;
+\c testdb
 
 ### Настроить кластер PostgreSQL 15 на максимальную производительность не  
 обращая внимание на возможные проблемы с надежностью в случае  
@@ -59,6 +62,6 @@ sudo -u postgres psql
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU3Njg3OTM2OSwxNzgxOTUyMjYyLC0xND
-k0MTMwMTc3LC0xMDA4ODE1MjY1XX0=
+eyJoaXN0b3J5IjpbLTE1NDg0NzU1NTYsLTU3Njg3OTM2OSwxNz
+gxOTUyMjYyLC0xNDk0MTMwMTc3LC0xMDA4ODE1MjY1XX0=
 -->
