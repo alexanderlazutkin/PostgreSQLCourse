@@ -10,6 +10,9 @@
 
 ### Развернуть виртуальную машину любым удобным способом  
 
+- Сделано в Yandex Cloud
+- _yc compute instance create --name pg-instance --hostname pg-instance --create-boot-disk size=15G,type=network-ssd,image-folder-id=standard-images,image-family=ubuntu-2204-lts --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 --zone ru-central1-a --metadata-from-file ssh-keys=C:/Users/User/.ssh/sshkeys.txt_
+
 ### Поставить на неё PostgreSQL 15 любым способом  
 
 ### Настроить кластер PostgreSQL 15 на максимальную производительность не  
@@ -28,5 +31,6 @@
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMDg4MTUyNjVdfQ==
+eyJoaXN0b3J5IjpbLTE1Mjg2ODQzOTAsLTEwMDg4MTUyNjVdfQ
+==
 -->
