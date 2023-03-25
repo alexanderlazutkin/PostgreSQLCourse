@@ -42,10 +42,11 @@ ssh user@84.201.139.251
 
 > systemctl status postgresql
 
-sudo -u postgres psql -c "SELECT version();"
-sudo -u postgres psql
+> sudo -u postgres psql -c "SELECT version();"
 
-\password
+> sudo -u postgres psql
+
+> \password
 
 ### Настроить кластер PostgreSQL 15 на максимальную производительность не  
 обращая внимание на возможные проблемы с надежностью в случае  
@@ -63,6 +64,6 @@ sudo -u postgres psql
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDQ5Mjc0ODIsLTE0OTQxMzAxNzcsLTEwMD
-g4MTUyNjVdfQ==
+eyJoaXN0b3J5IjpbMTc4MTk1MjI2MiwtMTQ5NDEzMDE3NywtMT
+AwODgxNTI2NV19
 -->
