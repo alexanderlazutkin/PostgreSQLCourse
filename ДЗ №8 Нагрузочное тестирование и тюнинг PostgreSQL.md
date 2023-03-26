@@ -27,9 +27,7 @@ curl -fSsL https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | 
 
 echo deb [arch=amd64,arm64,ppc64el signed-by=/usr/share/keyrings/postgresql.gpg] http://apt.postgresql.org/pub/repos/apt/ jammy-pgdg main | sudo tee -a /etc/apt/sources.list.d/postgresql.list
 
-
-
-Step 2: Install PostgreSQL 15 Database Server and Client
+#### Step 2: Install PostgreSQL 15 Database Server and Client
 sudo apt-get update
 sudo apt install postgresql-client-15 postgresql-15 -y
 
@@ -44,7 +42,6 @@ sudo -u postgres psql
 
 \password
 
-
 create database testdb;
 \c testdb
 
@@ -52,14 +49,14 @@ create database testdb;
 
 ### Нагрузить кластер через утилиту через утилиту pgbench ([https://postgrespro.ru/docs/postgrespro/14/pgbench](https://postgrespro.ru/docs/postgrespro/14/pgbench "https://postgrespro.ru/docs/postgrespro/14/pgbench"))  
 
-Сделаем первоначальное тестирование с дефолтными настройками :
+#### Сделаем первоначальное тестирование с дефолтными настройками :
 
 sudo -u postgres pgbench -i testdb
 sudo -u postgres pgbench -c8 -P 10 -T 120 -U postgres testdb
 
-У нас получилось, что для стандартной настройки при помощи pgbench tps составляет 617.
+***У нас получилось, что для стандартной настройки при помощи pgbench tps составляет 617.***
 
-Изменим параметры кластера  /etc/postgresql/15/main/postgresql.conf при помощи утилиты pgtune (https://pgtune.leopard.in.ua/):
+***Изменим параметры кластера  /etc/postgresql/15/main/postgresql.conf при помощи утилиты pgtune (https://pgtune.leopard.in.ua/):***
 
 sudo -u postgres nano /etc/postgresql/15/main/postgresql.conf
 
@@ -129,7 +126,7 @@ checkpoint_timeout - Максимальное время между автома
 Значительное влияние на производительность оказало снижение операций записи для транзакций (fsync, synchronous_commit ),  менее - maintenance_work_mem,  параметры WAL и котнтрольных точек. Данные настройки не могут обеспечивать гарантированную консистентность данных, но обеспечивают высокое быстродействие.  Самым слабым местом для традиционных[ СУБД является дисковая подсистема. Существующий дисковый массив так же нужно заменить на SSD, т.к. это увеличит скорость обращения к данным.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NzYyODk3NCwtODg3NDE1NjQzLDM1Mz
+eyJoaXN0b3J5IjpbMTUxNDczMzA1MCwtODg3NDE1NjQzLDM1Mz
 YzMjAzMCwtMTU0ODQ3NTU1NiwtNTc2ODc5MzY5LDE3ODE5NTIy
 NjIsLTE0OTQxMzAxNzcsLTEwMDg4MTUyNjVdfQ==
 -->
