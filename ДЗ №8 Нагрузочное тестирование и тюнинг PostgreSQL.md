@@ -60,25 +60,24 @@ sudo -u postgres pgbench -c8 -P 10 -T 120 -U postgres testdb
 
 sudo -u postgres nano /etc/postgresql/15/main/postgresql.conf
 
->#DB Version: 15
-#OS Type: linux
-#DB Type: oltp
-#Total Memory (RAM): 2 GB
-#CPUs num: 2
-#Data Storage: hdd
+ - #DB Version: 15
+ - #OS Type: linux
+ - #DB Type: oltp
+ - #Total Memory (RAM): 2 GB
+ - #CPUs num: 2
+ - #Data Storage: hdd
 
-
-shared_buffers = 512MB
-effective_cache_size = 1536MB
-maintenance_work_mem = 128MB
-checkpoint_completion_target = 0.9
-wal_buffers = 16MB
-default_statistics_target = 100
-random_page_cost = 4
-effective_io_concurrency = 2
-work_mem = 2621kB
-min_wal_size = 2GB
-max_wal_size = 8GB
+ - shared_buffers = 512MB 
+ - effective_cache_size = 1536MB
+ - maintenance_work_mem = 128MB 
+ - checkpoint_completion_target = 0.9
+ - wal_buffers = 16MB
+ - default_statistics_target = 100 
+ - random_page_cost =4 
+ - effective_io_concurrency = 2 
+ - work_mem = 2621kB 
+ - min_wal_size = 2GB
+ - max_wal_size = 8GB
 
 --sudo systemctl restart postgresql
 
@@ -126,7 +125,7 @@ checkpoint_timeout - Максимальное время между автома
 Значительное влияние на производительность оказало снижение операций записи для транзакций (fsync, synchronous_commit ),  менее - maintenance_work_mem,  параметры WAL и котнтрольных точек. Данные настройки не могут обеспечивать гарантированную консистентность данных, но обеспечивают высокое быстродействие.  Самым слабым местом для традиционных[ СУБД является дисковая подсистема. Существующий дисковый массив так же нужно заменить на SSD, т.к. это увеличит скорость обращения к данным.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjY2NzE3NzI0LC04ODc0MTU2NDMsMzUzNj
-MyMDMwLC0xNTQ4NDc1NTU2LC01NzY4NzkzNjksMTc4MTk1MjI2
-MiwtMTQ5NDEzMDE3NywtMTAwODgxNTI2NV19
+eyJoaXN0b3J5IjpbLTU5NzcxMTEwOSwtODg3NDE1NjQzLDM1Mz
+YzMjAzMCwtMTU0ODQ3NTU1NiwtNTc2ODc5MzY5LDE3ODE5NTIy
+NjIsLTE0OTQxMzAxNzcsLTEwMDg4MTUyNjVdfQ==
 -->
