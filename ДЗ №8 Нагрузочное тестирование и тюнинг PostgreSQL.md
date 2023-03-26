@@ -16,7 +16,8 @@
 
 ### Поставить на неё PostgreSQL 15 любым способом  
 
-ssh user@51.250.96.46
+
+ssh user@178.154.199.252
 sudo apt update
 sudo apt --list upgradable
 sudo apt upgrade
@@ -31,18 +32,19 @@ echo deb [arch=amd64,arm64,ppc64el signed-by=/usr/share/keyrings/postgresql.gpg]
 Step 2: Install PostgreSQL 15 Database Server and Client
 sudo apt-get update
 sudo apt install postgresql-client-15 postgresql-15 -y
-sudo apt install postgresql-client postgresql -y
 
 sudo systemctl enable postgresql
 sudo systemctl start postgresql
 systemctl status postgresql
 
 sudo -u postgres psql -c "SELECT version();"
+> PostgreSQL 15.2 (Ubuntu 15.2-1.pgdg22.04+1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0, 64-bit
+
 sudo -u postgres psql
 
 \password
 
-Создадим отдельную базу данных и роль для тестирования нагрузки:
+
 create database testdb;
 \c testdb
 
@@ -53,6 +55,12 @@ create database testdb;
 
 ### Настроить кластер PostgreSQL 15 на максимальную производительность не обращая внимание на возможные проблемы с надежностью в случае  аварийной перезагрузки виртуальной машины  
 
+Сделаем первоначальное тестирование с дефолтными настройками :
+
+sudo -u postgres pgbench -i testdb
+sudo -u postgres pgbench -c8 -P 10 -T 120 -U postgres testdb
+
+У нас получилось, что для стандартной настройки при помощи pgbench tps составляет 617.
 
 ### Написать какого значения tps удалось достичь, показать какие параметры в  
 какие значения устанавливали и почему  
@@ -62,7 +70,7 @@ create database testdb;
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMzUzNjMyMDMwLC0xNTQ4NDc1NTU2LC01Nz
-Y4NzkzNjksMTc4MTk1MjI2MiwtMTQ5NDEzMDE3NywtMTAwODgx
-NTI2NV19
+eyJoaXN0b3J5IjpbLTE2OTU0NzQ1MTMsMzUzNjMyMDMwLC0xNT
+Q4NDc1NTU2LC01NzY4NzkzNjksMTc4MTk1MjI2MiwtMTQ5NDEz
+MDE3NywtMTAwODgxNTI2NV19
 -->
