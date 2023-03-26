@@ -52,15 +52,51 @@ create database testdb;
 
 ### Нагрузить кластер через утилиту через утилиту pgbench ([https://postgrespro.ru/docs/postgrespro/14/pgbench](https://postgrespro.ru/docs/postgrespro/14/pgbench "https://postgrespro.ru/docs/postgrespro/14/pgbench"))  
 
-
-### Настроить кластер PostgreSQL 15 на максимальную производительность не обращая внимание на возможные проблемы с надежностью в случае  аварийной перезагрузки виртуальной машины  
-
 Сделаем первоначальное тестирование с дефолтными настройками :
 
 sudo -u postgres pgbench -i testdb
 sudo -u postgres pgbench -c8 -P 10 -T 120 -U postgres testdb
 
 У нас получилось, что для стандартной настройки при помощи pgbench tps составляет 617.
+
+Изменим параметры кластера  /etc/postgresql/15/main/postgresql.conf при помощи утилиты pgtune (https://pgtune.leopard.in.ua/):
+
+sudo -u postgres nano /etc/postgresql/15/main/postgresql.conf
+
+#DB Version: 15
+#OS Type: linux
+#DB Type: oltp
+#Total Memory (RAM): 2 GB
+#CPUs num: 2
+#Data Storage: hdd
+
+
+shared_buffers = 512MB
+effective_cache_size = 1536MB
+maintenance_work_mem = 128MB
+checkpoint_completion_target = 0.9
+wal_buffers = 16MB
+default_statistics_target = 100
+random_page_cost = 4
+effective_io_concurrency = 2
+work_mem = 2621kB
+min_wal_size = 2GB
+max_wal_size = 8GB
+
+--sudo systemctl restart postgresql
+
+sudo pg_ctlcluster 15 main reload
+sudo -u postgres 
+
+Выполним еще раз pgbench и получаем следующие данные:
+sudo -u postgres pgbench -c8 -P 10 -T 120 -U postgres testdb
+
+При установке рекомендованных настроек мы выиграли в производительности всего 638 -617 = 11 tps.
+
+
+### Настроить кластер PostgreSQL 15 на максимальную производительность не обращая внимание на возможные проблемы с надежностью в случае  аварийной перезагрузки виртуальной машины  
+
+Изменим параметры кластера  /etc/postgresql/15/main/postgresql.conf при помощи утилиты pgtune (https://pgtune.leopard.in.ua/):
 
 ### Написать какого значения tps удалось достичь, показать какие параметры в  
 какие значения устанавливали и почему  
@@ -70,7 +106,7 @@ sudo -u postgres pgbench -c8 -P 10 -T 120 -U postgres testdb
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2OTU0NzQ1MTMsMzUzNjMyMDMwLC0xNT
-Q4NDc1NTU2LC01NzY4NzkzNjksMTc4MTk1MjI2MiwtMTQ5NDEz
-MDE3NywtMTAwODgxNTI2NV19
+eyJoaXN0b3J5IjpbMTAzMjg2NTM3MywzNTM2MzIwMzAsLTE1ND
+g0NzU1NTYsLTU3Njg3OTM2OSwxNzgxOTUyMjYyLC0xNDk0MTMw
+MTc3LC0xMDA4ODE1MjY1XX0=
 -->
