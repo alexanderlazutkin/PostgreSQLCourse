@@ -126,11 +126,9 @@ checkpoint_timeout - Максимальное время между автома
 	- full_page_writes - записывает в журнал полный образ страницы при первом ее изменении после начала контрольной точки
 
 При установке настроек производительность увеличилась на 3063 - 638 = 2425 tps или в 3.8 раза.
-Значительное влияние на производительность оказало снижение операций ввода -вывода транза (fsync, synchronous_commit )
-
-maintenance_work_mem
+Значительное влияние на производительность оказало снижение операций записи транзакций (fsync, synchronous_commit ),  менее - maintenance_work_mem, показатели 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU1NTQxNzU1OSwzNTM2MzIwMzAsLTE1ND
+eyJoaXN0b3J5IjpbMTAzMjEzODYxMCwzNTM2MzIwMzAsLTE1ND
 g0NzU1NTYsLTU3Njg3OTM2OSwxNzgxOTUyMjYyLC0xNDk0MTMw
 MTc3LC0xMDA4ODE1MjY1XX0=
 -->
