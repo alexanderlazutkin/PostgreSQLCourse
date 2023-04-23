@@ -4,28 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "66b6928d07c608aa",
+        "id": "9be2db2c5cb4cf46",
         "type": "tabs",
         "children": [
           {
-            "id": "0971c37c7c67aacd",
+            "id": "cf7206ed82b2673a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ДЗ №10 Работа с индексами, join'ами, статистикой.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "cd430869fca550bb",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "ДЗ №10 Работа с индексами, join'ами, статистикой.md",
+                "file": "ДЗ №11 Секционирование таблицы.md",
                 "mode": "source",
                 "source": false
               }
@@ -97,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ДЗ №10 Работа с индексами, join'ами, статистикой.md",
+                "file": "ДЗ №11 Секционирование таблицы.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "ДЗ №10 Работа с индексами, join'ами, статистикой.md",
+                "file": "ДЗ №11 Секционирование таблицы.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "ДЗ №10 Работа с индексами, join'ами, статистикой.md"
+                "file": "ДЗ №11 Секционирование таблицы.md"
               }
             }
           }
@@ -159,10 +147,13 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "0971c37c7c67aacd",
+  "active": "cf7206ed82b2673a",
   "lastOpenFiles": [
-    "ДЗ №9 Репликация.md",
+    "README.md",
+    "ДЗ №11 Секционирование таблицы.md",
+    "ДЗ #7 Механизм блокировок.md",
     "ДЗ №10 Работа с индексами, join'ами, статистикой.md",
+    "ДЗ №9 Репликация.md",
     "Untitled.canvas",
     "ДЗ №8 Нагрузочное тестирование и тюнинг PostgreSQL.md"
   ]
