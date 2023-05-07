@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ДЗ №11 Секционирование таблицы.md",
+                "file": "ДЗ №12 Триггеры, поддержка заполнения витрин.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ДЗ №11 Секционирование таблицы.md",
+                "file": "ДЗ №12 Триггеры, поддержка заполнения витрин.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "ДЗ №11 Секционирование таблицы.md",
+                "file": "ДЗ №12 Триггеры, поддержка заполнения витрин.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "ДЗ №11 Секционирование таблицы.md"
+                "file": "ДЗ №12 Триггеры, поддержка заполнения витрин.md"
               }
             }
           }
@@ -149,12 +149,13 @@
   },
   "active": "cf7206ed82b2673a",
   "lastOpenFiles": [
-    "README.md",
     "ДЗ №11 Секционирование таблицы.md",
+    "ДЗ №12 Триггеры, поддержка заполнения витрин.md",
+    "Untitled.canvas",
+    "README.md",
     "ДЗ #7 Механизм блокировок.md",
     "ДЗ №10 Работа с индексами, join'ами, статистикой.md",
     "ДЗ №9 Репликация.md",
-    "Untitled.canvas",
     "ДЗ №8 Нагрузочное тестирование и тюнинг PostgreSQL.md"
   ]
 }
