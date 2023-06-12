@@ -1,0 +1,896 @@
+***************** Подготовка VM и данных на SQL Server *****************
+/*
+Диск #1 - MARVELL Raid VD 0 (3725 ГБ) Marvell 88SE9230 SATA 6Gb/s Controller
+
+VM 
+Ubuntu 20.04. 1 CPU, 2 CORE, 15Gb RAM, 400Gb HDD, PostgreSQL 15.2,
+IP   192.168.0.11
+MASK 255.255.255.0
+LAN segment: VMNet
+
+Установим Visual Studio 2022, SQL Server Management 2018
+
+
+WARM CACHE SQL SERVER: 
+SELECT SUM(CAST(BINARY_CHECKSUM(*) AS BIGINT)) FROM dbo.TableHistory
+
+
+CLEAN CHACHE SQL SERVER: 
+CHECKPOINT
+GO
+DBCC FREEPROCCACHE
+GO
+DBCC DROPCLEANBUFFERS
+GO
+
+*/
+create database TESTDB
+go
+
+use testdb
+go
+
+-- Создаем схему секционирования
+if not exists (select * from sys.partition_functions where name = N'function__datetime__month')
+	create partition function function__datetime__month (datetime) as range right for values (N'2021-08-01T00:00:00.000', N'2021-09-01T00:00:00.000', N'2021-10-01T00:00:00.000', N'2021-11-01T00:00:00.000', N'2021-12-01T00:00:00.000', N'2022-01-01T00:00:00.000', N'2022-02-01T00:00:00.000', N'2022-03-01T00:00:00.000', N'2022-04-01T00:00:00.000', N'2022-05-01T00:00:00.000', N'2022-06-01T00:00:00.000', N'2022-07-01T00:00:00.000', N'2022-08-01T00:00:00.000', N'2022-09-01T00:00:00.000', N'2022-10-01T00:00:00.000', N'2022-11-01T00:00:00.000', N'2022-12-01T00:00:00.000', N'2023-01-01T00:00:00.000', N'2023-02-01T00:00:00.000', N'2023-03-01T00:00:00.000', N'2023-04-01T00:00:00.000', N'2023-05-01T00:00:00.000', N'2023-06-01T00:00:00.000', N'2023-07-01T00:00:00.000', N'2023-08-01T00:00:00.000', N'2023-09-01T00:00:00.000', N'2023-10-01T00:00:00.000', N'2023-11-01T00:00:00.000', N'2023-12-01T00:00:00.000', N'2024-01-01T00:00:00.000', N'2024-02-01T00:00:00.000', N'2024-03-01T00:00:00.000', N'2024-04-01T00:00:00.000', N'2024-05-01T00:00:00.000', N'2024-06-01T00:00:00.000', N'2024-07-01T00:00:00.000', N'2024-08-01T00:00:00.000', N'2024-09-01T00:00:00.000', N'2024-10-01T00:00:00.000', N'2024-11-01T00:00:00.000', N'2024-12-01T00:00:00.000', N'2025-01-01T00:00:00.000', N'2025-02-01T00:00:00.000', N'2025-03-01T00:00:00.000', N'2025-04-01T00:00:00.000', N'2025-05-01T00:00:00.000', N'2025-06-01T00:00:00.000', N'2025-07-01T00:00:00.000', N'2025-08-01T00:00:00.000', N'2025-09-01T00:00:00.000', N'2025-10-01T00:00:00.000', N'2025-11-01T00:00:00.000', N'2025-12-01T00:00:00.000', N'2026-01-01T00:00:00.000', N'2026-02-01T00:00:00.000', N'2026-03-01T00:00:00.000', N'2026-04-01T00:00:00.000', N'2026-05-01T00:00:00.000', N'2026-06-01T00:00:00.000', N'2026-07-01T00:00:00.000', N'2026-08-01T00:00:00.000', N'2026-09-01T00:00:00.000', N'2026-10-01T00:00:00.000', N'2026-11-01T00:00:00.000', N'2026-12-01T00:00:00.000', N'2027-01-01T00:00:00.000', N'2027-02-01T00:00:00.000', N'2027-03-01T00:00:00.000', N'2027-04-01T00:00:00.000', N'2027-05-01T00:00:00.000', N'2027-06-01T00:00:00.000', N'2027-07-01T00:00:00.000', N'2027-08-01T00:00:00.000', N'2027-09-01T00:00:00.000', N'2027-10-01T00:00:00.000', N'2027-11-01T00:00:00.000', N'2027-12-01T00:00:00.000', N'2028-01-01T00:00:00.000', N'2028-02-01T00:00:00.000', N'2028-03-01T00:00:00.000', N'2028-04-01T00:00:00.000', N'2028-05-01T00:00:00.000', N'2028-06-01T00:00:00.000', N'2028-07-01T00:00:00.000', N'2028-08-01T00:00:00.000', N'2028-09-01T00:00:00.000', N'2028-10-01T00:00:00.000', N'2028-11-01T00:00:00.000', N'2028-12-01T00:00:00.000', N'2029-01-01T00:00:00.000', N'2029-02-01T00:00:00.000', N'2029-03-01T00:00:00.000', N'2029-04-01T00:00:00.000', N'2029-05-01T00:00:00.000', N'2029-06-01T00:00:00.000', N'2029-07-01T00:00:00.000', N'2029-08-01T00:00:00.000', N'2029-09-01T00:00:00.000', N'2029-10-01T00:00:00.000', N'2029-11-01T00:00:00.000', N'2029-12-01T00:00:00.000', N'2030-01-01T00:00:00.000', N'2030-02-01T00:00:00.000', N'2030-03-01T00:00:00.000', N'2030-04-01T00:00:00.000', N'2030-05-01T00:00:00.000', N'2030-06-01T00:00:00.000', N'2030-07-01T00:00:00.000', N'2030-08-01T00:00:00.000', N'2030-09-01T00:00:00.000', N'2030-10-01T00:00:00.000', N'2030-11-01T00:00:00.000', N'2030-12-01T00:00:00.000')
+go
+
+if not exists (select * from sys.partition_schemes where name = N'schema__datetime__month')
+	create partition scheme schema__datetime__month as partition function__datetime__month all to ( [PRIMARY] ); 
+go
+
+-- Определяем параметр максимальной степени параллелизма в конфигурации сервера (MAXDOP = 2)
+EXEC sys.sp_configure N'max degree of parallelism', N'2'
+GO
+RECONFIGURE WITH OVERRIDE
+GO
+
+
+-- Скрипт секционированной таблицы и индекса с компрессией
+drop TABLE if exists dbo.TableHistory
+CREATE TABLE dbo.TableHistory(sys_change_id bigint NOT NULL,sys_flow_type int NOT NULL,sys_operation_dt datetime NOT NULL,sys_operation_type char(1) NULL,Col1 bigint NULL,Col2 int NULL,Col3 datetime NOT NULL,Col4 varchar(2) NULL,Col5 datetime NULL) ON schema__datetime__month(sys_operation_dt)
+WITH (DATA_COMPRESSION = PAGE)
+GO
+ALTER TABLE  dbo.TableHistory
+ADD CONSTRAINT pk__TableHistory PRIMARY KEY CLUSTERED 
+(sys_change_id ASC,sys_operation_dt ASC)WITH (OPTIMIZE_FOR_SEQUENTIAL_KEY = ON, DATA_COMPRESSION = PAGE) ON schema__datetime__month(sys_operation_dt)
+
+
+
+
+
+-- Примеры вставки CSV в таблицу 10,50 и 100 млн строк
+- У SQL Server выполняется BULK-загрузка выполняется с минимальным протоколированием. Протоколирование нельзя отключить на таблице
+BULK INSERT dbo.TableHistory_10M
+FROM 'C:\_PG\sample1.csv'
+WITH ( FIRSTROW = 2,ROWTERMINATOR = '0x0a',TABLOCK,BATCHSIZE = 1048576);  
+go
+
+
+BULK INSERT dbo.TableHistory_50M
+FROM 'C:\_PG\sample50M.csv'
+WITH ( FIRSTROW = 2,ROWTERMINATOR = '0x0a',TABLOCK,BATCHSIZE = 1048576);  
+go
+
+
+BULK INSERT dbo.TableHistory_100M
+FROM 'C:\_PG\sample100M.csv'
+WITH ( FIRSTROW = 2,ROWTERMINATOR = '0x0a',TABLOCK,BATCHSIZE = 1048576);  
+go
+
+
+/*
+
+Сколько займет выгрузка 100M строк?
+ - ImportExportDataSql http://personeltest.ru/category-2080-sql-server.html
+   DB to CSV = 1h 10min 57 sec
+*/
+
+***************** Подготовка VM и данных на PostgreSQL *****************
+/*
+Ubuntu 20.04 (Focal Fossa) is the latest Long Term Release from Canonical.
+https://www.linuxvmimages.com/images/ubuntu-2004/
+
+USERNAME / PASSWORD: ubuntu / ubuntu
+Диск #1 - MARVELL Raid VD 0 (3725 ГБ) Marvell 88SE9230 SATA 6Gb/s Controller
+
+VM 
+Ubuntu 20.04. 1 CPU, 2 CORE, 15Gb RAM, 400Gb HDD, PostgreSQL 15.2,
+IP   192.168.0.11
+MASK 255.255.255.0
+LAN segment: VMNet
+
+Установим VS Code & Bash Debug from Visual Studio Marketplace
+Установим драйвер для SQL Server JDBC 9.4 для тестирования Pentaho Data Integrator (PDI)
+Установим мониторинг процессов в реальном времени (df () i (интервал,с) 1 c (детали по процессу)
+--https://haydenjames.io/use-atop-linux-server-performance-analysis/
+sudo apt install atop
+*/
+
+
+--Для начала обновите списки пакетов при помощи команды:
+sudo apt update 
+--Если вы используете Ubuntu с графическим интерфейсом, иначе: sudo apt -y install open-vm-tools
+sudo apt -y install open-vm-tools-desktop 
+
+-- Установка PostgreSQL
+sudo apt install postgresql postgresql-client -y
+--Включить PostgreSQL Package Repository
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /etc/apt/trusted.gpg.d/pgdg.asc &>/dev/null
+sudo apt update
+sudo apt install postgresql postgresql-client -y
+
+--sudo systemctl enable postgresql
+--sudo systemctl start postgresql
+--systemctl status postgresql
+
+sudo -u postgres psql -c "SELECT version();"
+>PostgreSQL 15.2 (Ubuntu 15.2-1.pgdg20.04+1)
+
+sudo -u postgres psql
+
+\password - Заменим пароль на "postgres" для пользователя postgres
+\q
+
+--Разрешим (все) удаленные подключения в
+sudo vi /etc/postgresql/15/main/pg_hba.conf
+  --sudo nano /etc/postgresql/15/main/pg_hba.conf
+sudo ufw allow 5432/tcp
+
+Проверим подключение
+
+-- Назначение root для тек.пользователя
+sudo su -
+
+
+
+
+-- Установим TDS Foreign data wrapper
+-- https://github.com/tds-fdw/tds_fdw/blob/master/InstallUbuntu.md + 
+-- https://habr.com/ru/companies/postgrespro/articles/309490/ +
+-- https://temofeev.ru/info/articles/import-dannykh-s-mssql-na-postgresql/
+
+
+sudo apt show postgresql-server-dev-all|grep Depends
+sudo apt install postgresql-server-dev-all
+sudo apt-get install freetds-common
+
+sudo apt-get install git
+git clone https://github.com/tds-fdw/tds_fdw.git
+cd tds_fdw
+make USE_PGXS=1
+sudo make USE_PGXS=1 install
+
+sudo -u postgres psql
+\c testdb
+---- Создаем расширение
+CREATE EXTENSION tds_fdw;
+---- Создаем объект сервера
+CREATE SERVER sqlserver FOREIGN DATA WRAPPER tds_fdw OPTIONS (servername '192.168.0.10', port '1433', database 'testdb', tds_version '7.4');
+---- Выполняем маппинг текущего пользователя на созданный сервер
+CREATE USER MAPPING FOR postgres SERVER sqlserver OPTIONS (username 'sa', password '0000');
+--CREATE USER MAPPING FOR CURRENT_USER SERVER sqlserver OPTIONS (username 'sa', password '0000');
+
+---- Импортируем схему со связанного сервера
+IMPORT FOREIGN SCHEMA dbo FROM SERVER sqlserver INTO public;
+
+--10M rows FOREIGN TABLE
+DROP FOREIGN TABLE if exists fdw_TableHistory_10M;
+CREATE FOREIGN TABLE fdw_TableHistory_10M (sys_change_id bigint,sys_flow_type int,sys_operation_dt timestamp,sys_operation_type char(1),Col1 bigint,Col2 int,Col3 timestamp,Col4 varchar(2),Col5 timestamp)	
+SERVER sqlserver OPTIONS (table_name 'dbo.TableHistory_10M', row_estimate_method 'showplan_all');
+
+--50M rows FOREIGN TABLE
+DROP FOREIGN TABLE if exists fdw_TableHistory_50M;
+CREATE FOREIGN TABLE fdw_TableHistory_50M (sys_change_id bigint,sys_flow_type int,sys_operation_dt timestamp,sys_operation_type char(1),Col1 bigint,Col2 int,Col3 timestamp,Col4 varchar(2),Col5 timestamp)	
+SERVER sqlserver OPTIONS (table_name 'dbo.TableHistory_50M', row_estimate_method 'showplan_all');
+
+--100M rows FOREIGN TABLE
+DROP FOREIGN TABLE if exists fdw_TableHistory_100M;
+CREATE FOREIGN TABLE fdw_TableHistory_100M (sys_change_id bigint,sys_flow_type int,sys_operation_dt timestamp,sys_operation_type char(1),Col1 bigint,Col2 int,Col3 timestamp,Col4 varchar(2),Col5 timestamp)	
+SERVER sqlserver OPTIONS (table_name 'dbo.TableHistory_100M', row_estimate_method 'showplan_all');
+	
+
+
+------Для проверки связи с SQL Server установим  tsql из FreeTDS (http://linux.mixed-spb.ru/databases/mssql_connect.php?ysclid=li7ltg44nw162753992)
+sudo apt install freetds-bin
+--Определим местоположение файла с конфигурацией FreeTDS (freetds.conf)
+tsql -C
+> freetds.conf directory: /etc/freetds
+
+-- Добавим конфигурацию
+[sqlserver]
+	host = 192.168.0.10
+	port = 1433
+	tds version = 7.4
+	user = sa
+	password = 0000
+
+--Проверим конфигурацию
+tsql -S sqlserver -U sa
+exit
+
+TDSVER=7.4 tsql -H sqlserver -p 1433 -U sa
+
+
+----- Установка pg_loader (https://pgloader.readthedocs.io/en/latest/install.html)
+sudo apt-get install -y pgloader
+sudo pgloader -V
+> pgloader version "3.6.7~devel"
+> compiled with SBCL 2.0.1.debian
+
+create role ubuntu with WITH SUPERUSER encrypted password 'ubuntu';
+grant all privileges on database testdb to ubuntu;
+-- DROP ROLE ubuntu;
+
+
+
+
+----- Установка PDI (https://www.ubuntupit.com/how-to-install-pentaho-data-integration-pdi-tool-on-ubuntu/)
+sudo apt install default-jre              # version 2:1.11-72, or
+sudo apt install openjdk-11-jre-headless  # version 11.0.19+7~us1-0ubuntu1~20.04.1
+sudo apt install openjdk-16-jre-headless  # version 16.0.1+9-1~20.04
+sudo apt install openjdk-17-jre-headless  # version 17.0.7+7~us1-0ubuntu1~20.04
+sudo apt install openjdk-8-jre-headless   # version 8u372-ga~us1-0ubuntu1~20.04
+sudo apt install openjdk-13-jre-headless  # version 13.0.7+5-0ubuntu1~20.04
+
+sudo apt install openjdk-8-jdk
+sudo update-alternatives --config java
+sudo nano /etc/apt/sources.list
+  Add this entry to the file and save:
+  deb http://cz.archive.ubuntu.com/ubuntu bionic main universe
+sudo apt-get update
+sudo apt-get install libwebkitgtk-1.0-0 -> if you are using Vega and jdk of 64 bits
+sudo apt-get install maven
+
+- Проверка подключения
+telnet 192.168.0.10 1433
+
+--sudo apt autoremove postgresql-server-dev-15
+
+
+
+
+--sudo systemctl enable postgresql
+--sudo systemctl start postgresql
+systemctl status postgresql
+
+sudo -u postgres psql -c "SELECT version();"
+--PostgreSQL 15.2 (Ubuntu 15.2-1.pgdg20.04+1)
+
+sudo -u postgres psql
+
+\password - Заменим пароль на "postgres" для пользователя postgres
+\q
+
+create database testdb;
+c\ testdb
+
+-- add permissions to postgres
+ls -l /home/ubuntu/Downloads/ --Чтобы увидеть текущие назначения владельца
+chmod 777 /home/ubuntu/Downloads/
+sudo chown -R postgres:postgres /home/ubuntu/Downloads/ -- Назначение прав
+--raise info (установить уровень логгирования)
+
+-- config PG as DW, setup https://pgtune.leopard.in.ua/ 
+# DB Version: 15
+# OS Type: linux
+# DB Type: dw
+# Total Memory (RAM): 15 GB
+# CPUs num: 1
+# Connections num: 20
+# Data Storage: HDD
+
+max_connections = 20
+shared_buffers = 3840MB
+effective_cache_size = 11520MB
+maintenance_work_mem = 1920MB
+checkpoint_completion_target = 0.9
+wal_buffers = 16MB
+default_statistics_target = 500
+random_page_cost = 4
+effective_io_concurrency = 2
+work_mem = 48MB
+min_wal_size = 4GB
+max_wal_size = 16GB
+
+SHOW config_file;
+> /etc/postgresql/15/main/postgresql.conf
+
+--ALTER SYSTEM RESET ALL;
+
+ALTER SYSTEM SET max_connections = 20;
+ALTER SYSTEM SET shared_buffers = '3840MB';
+ALTER SYSTEM SET effective_cache_size = '11520MB';
+ALTER SYSTEM SET maintenance_work_mem = '1920MB';
+ALTER SYSTEM SET checkpoint_completion_target = 0.9;
+ALTER SYSTEM SET wal_buffers = '16MB';
+ALTER SYSTEM SET default_statistics_target = 500;
+ALTER SYSTEM SET random_page_cost = 4;
+ALTER SYSTEM SET effective_io_concurrency = 2;
+ALTER SYSTEM SET work_mem = '48MB';
+ALTER SYSTEM SET min_wal_size = '4GB';
+ALTER SYSTEM SET max_wal_size = '16GB';
+ALTER SYSTEM set listen_addresses = '*';
+
+sudo nano /etc/postgresql/15/main/pg_hba.conf
+add
+host    all             all             0.0.0.0/0               scram-sha-256
+
+
+
+--ALTER SYSTEM set fsync = OFF;
+--ALTER SYSTEM set synchronous_commit = OFF;
+--ALTER SYSTEM set full_page_writes = OFF;
+
+select * from pg_settings where name in ('fsync','synchronous_commit','full_page_writes')
+
+--SELECT pg_reload_conf();
+sudo systemctl restart postgresql
+
+select * from pg_settings where name in ('max_connections'
+,'shared_buffers'
+,'effective_cache_size'
+,'maintenance_work_mem' 
+,'checkpoint_completion_target' 
+,'wal_buffers' 
+,'default_statistics_target' 
+,'random_page_cost' 
+,'effective_io_concurrency' 
+,'work_mem' 
+,'min_wal_size' 
+,'max_wal_size' 
+);
+
+
+
+/*
+ls -l /home/ubuntu/Downloads/
+sudo chown -R postgres:postgres /home/ubuntu/Downloads/
+sudo chown -R ubuntu:ubuntu /home/ubuntu/Downloads/
+
+ */
+
+drop table if exists public.TableHistory;
+
+CREATE TABLE public.TableHistory(
+	sys_change_id bigint NOT NULL,
+	sys_flow_type int NOT NULL,
+	sys_operation_dt timestamp NOT NULL,
+	sys_operation_type char(1) NULL,
+	Col1 bigint NULL,
+	Col2 int NULL,
+	Col3 timestamp NOT NULL,
+	Col4 varchar(2) NULL,
+	Col5 timestamp NULL
+) PARTITION BY RANGE (sys_operation_dt);
+
+ALTER TABLE  public.TableHistory ADD CONSTRAINT pk__TableHistory PRIMARY KEY (sys_change_id,sys_operation_dt);
+CLUSTER public.TableHistory  USING pk__TableHistory;
+
+
+create table public.TableHistory_202303 partition of public.TableHistory for values from (timestamptz'2023-03-01 00:00:00') to (timestamptz'2023-04-01 23:59:59' - interval '1 day');
+create table public.TableHistory__default partition of public.TableHistory default;
+
+
+---- TIMING
+--psql: \timing [ on | off ]
+--total execution time: EXPLAIN (ANALYZE, COSTS OFF, TIMING OFF)
+
+
+--truncate table public.TableHistory;
+
+
+***** COPY Инициализация таблицы ******
+/*
+ALTER SYSTEM set fsync = OFF;
+ALTER SYSTEM set synchronous_commit = OFF;
+ALTER SYSTEM set full_page_writes = OFF;
+
+select * from pg_settings where name in ('fsync','synchronous_commit','full_page_writes')
+*/
+
+
+
+/*
+ls -l /home/ubuntu/Downloads/
+sudo chown -R postgres:postgres /home/ubuntu/Downloads/
+sudo chown -R ubuntu:ubuntu /home/ubuntu/Downloads/
+
+*/
+
+
+
+--ALTER TABLE  public.TableHistory ADD CONSTRAINT pk__TableHistory PRIMARY KEY (sys_change_id,sys_operation_dt);
+--ALTER TABLE  public.TableHistory DROP CONSTRAINT pk__TableHistory 
+--CLUSTER public.TableHistory  USING pk__TableHistory;
+ALTER TABLE TableHistory SET UNLOGGED;
+
+COPY public.TableHistory FROM '/home/ubuntu/Downloads/sample1.csv'   DELIMITER E'\t' CSV HEADER;
+COPY public.TableHistory FROM '/home/ubuntu/Downloads/sample50M.csv' DELIMITER E'\t' CSV HEADER;
+COPY public.TableHistory FROM '/home/ubuntu/Downloads/sample100M.csv' DELIMITER E'\t' CSV HEADER;
+
+SELECT sys_change_id, sys_flow_type, sys_operation_dt, sys_operation_type, Col1, Col2, Col3, Col4, Col5
+FROM public.TableHistory limit 100;
+
+
+--ALTER SYSTEM SET autovacuum = ON;
+Краткие выводы использования выполнение COPY для первичной инициализации таблицы: 
+- Использование настроек 'fsync','synchronous_commit','full_page_writes' не воияет на производительность
+- Не имеет значения секционирована таблица или нет
+- Не имеет значения логгируемая таблица или нет
+
+
+--select sys_change_id, sys_operation_dt from public.TableHistory;
+
+
+***** FDW Инициализация таблицы ******
+Data  size 965 MB
+Index size 300 Mb
+-------------FDW PARTIONED TABLE ----------------------------
+drop table if exists public.TableHistory;
+CREATE TABLE public.TableHistory(
+	sys_change_id bigint NOT NULL,
+	sys_flow_type int NOT NULL,
+	sys_operation_dt timestamp NOT NULL,
+	sys_operation_type char(1) NULL,
+	Col1 bigint NULL,
+	Col2 int NULL,
+	Col3 timestamp NOT NULL,
+	Col4 varchar(2) NULL,
+	Col5 timestamp NULL
+) PARTITION BY RANGE (sys_operation_dt);
+--ALTER TABLE  public.TableHistory ADD CONSTRAINT pk__TableHistory PRIMARY KEY (sys_change_id,sys_operation_dt);
+--CLUSTER public.TableHistory  USING pk__TableHistory;
+create table public.TableHistory_202303 partition of public.TableHistory for values from (timestamptz'2023-03-01 00:00:00') to (timestamptz'2023-04-01 23:59:59' - interval '1 day');
+create table public.TableHistory__default partition of public.TableHistory default;
+
+
+
+-------------FDW + SIMPLE TABLE ----------------------------
+drop table if exists public.TableHistory;
+CREATE TABLE public.TableHistory(
+	sys_change_id bigint NOT NULL,
+	sys_flow_type int NOT NULL,
+	sys_operation_dt timestamp NOT NULL,
+	sys_operation_type char(1) NULL,
+	Col1 bigint NULL,
+	Col2 int NULL,
+	Col3 timestamp NOT NULL,
+	Col4 varchar(2) NULL,
+	Col5 timestamp NULL
+);
+--ALTER TABLE  public.TableHistory ADD CONSTRAINT pk__TableHistory PRIMARY KEY (sys_change_id,sys_operation_dt);
+--CLUSTER public.TableHistory  USING pk__TableHistory;
+--ALTER TABLE  public.TableHistory DROP CONSTRAINT pk__TableHistory;
+
+select count(*) from TableHistory fo limit 100;
+select * from fdw_TableHistory fo limit 100;
+
+--truncate table public.TableHistory;
+--ALTER TABLE public.TableHistory SET UNLOGGED;
+--ALTER TABLE public.TableHistory SET LOGGED;
+
+--EXPLAIN (ANALYZE, COSTS OFF, TIMING OFF)
+INSERT INTO public.TableHistory
+(sys_change_id, sys_flow_type, sys_operation_dt, sys_operation_type, Col1, Col2, Col3, Col4, Col5)
+select sys_change_id, sys_flow_type, sys_operation_dt, sys_operation_type, Col1, Col2, Col3, Col4, Col5
+from fdw_TableHistory_10M ;
+
+
+INSERT INTO public.TableHistory
+(sys_change_id, sys_flow_type, sys_operation_dt, sys_operation_type, Col1, Col2, Col3, Col4, Col5)
+select sys_change_id, sys_flow_type, sys_operation_dt, sys_operation_type, Col1, Col2, Col3, Col4, Col5
+from fdw_TableHistory_50M ;
+
+
+INSERT INTO public.TableHistory
+(sys_change_id, sys_flow_type, sys_operation_dt, sys_operation_type, Col1, Col2, Col3, Col4, Col5)
+select sys_change_id, sys_flow_type, sys_operation_dt, sys_operation_type, Col1, Col2, Col3, Col4, Col5
+from fdw_TableHistory_100M ;
+
+
+
+
+
+---------------PGLOADER---------------------------------------------------------------
+- Предлагает хороший уровень автоматизации, но есть ньюансы. PGLOADER позволяет создавать структуру таблицы приемника с учетом индексов, пре и пост обработками, но не поддерживает UNLOGGED (не получилось воспроизвести)
+
+sqlserver.load file:
+
+load database
+from mssql://sa:0000@192.168.0.10:1433/testdb
+into postgresql:///testdb
+including only table names like 'TableHistory_10M' in schema 'dbo'
+ALTER TABLE NAMES MATCHING 'TableHistory_10M' IN SCHEMA 'dbo' RENAME TO 'TableHistory'
+alter schema 'dbo' rename to 'public'
+before load do
+	$$ ALTER TABLE public.TableHistory SET UNLOGGED; $$,
+	$$ truncate table public.timing; $$,
+	$$ insert into public.timing (dt_start, dt_end) select now () as start_dt, now() as dt_end;$$ 
+after load do
+	$$ insert into public.timing (dt_start, dt_end) select now () as start_dt, now() as dt_end; $$;
+
+
+	
+	
+ubuntu@ubuntu2004:~/opt$ sudo -u ubuntu pgloader --verbose -L /home/ubuntu/opt/pgloader.log sqlserver.load 
+HEAP   LOGGED SIMPLE TABLE  - 10M rows  sec 205
+HEAP UNLOGGED SIMPLE TABLE  - 10M rows  sec 196 
+
+sqlserver50M.load file:
+
+load database
+from mssql://sa:0000@192.168.0.10:1433/testdb
+into postgresql:///testdb
+including only table names like 'TableHistory_50M' in schema 'dbo'
+ALTER TABLE NAMES MATCHING 'TableHistory_50M' IN SCHEMA 'dbo' RENAME TO 'TableHistory'
+alter schema 'dbo' rename to 'public'
+before load do
+	$$ truncate table public.timing; $$,
+	$$ insert into public.timing (dt_start, dt_end) select now () as start_dt, now() as dt_end;$$ 
+after load do
+	$$ insert into public.timing (dt_start, dt_end) select now () as start_dt, now() as dt_end; $$;
+	
+
+ubuntu@ubuntu2004:~/opt$ sudo -u ubuntu pgloader --verbose -L /home/ubuntu/opt/pgloader.log sqlserver50M.load 
+2023-06-04T19:34:27.013000Z NOTICE Starting pgloader, log system is ready.
+2023-06-04T19:34:27.027000Z LOG pgloader version "3.6.7~devel"
+2023-06-04T19:34:27.139000Z NOTICE Executing SQL block for before load
+2023-06-04T19:34:27.170000Z LOG Migrating from #<MSSQL-CONNECTION mssql://sa@192.168.0.10:1433/testdb {1006234193}>
+2023-06-04T19:34:27.170000Z LOG Migrating into #<PGSQL-CONNECTION pgsql://ubuntu@UNIX:5432/testdb {1006234A13}>
+Max connections reached, increase value of TDS_MAX_CONN
+2023-06-04T19:34:27.881000Z NOTICE Prepare PostgreSQL database.
+2023-06-04T19:34:28.030000Z NOTICE COPY public.TableHistory with 0 rows estimated [1/4]
+Max connections reached, increase value of TDS_MAX_CONN
+2023-06-04T19:50:52.882000Z NOTICE DONE copying public.TableHistory in 11m30.107s
+2023-06-04T19:50:52.895000Z NOTICE CREATE UNIQUE INDEX idx_87293_pk__TableHistory_50m ON public.TableHistory (sys_change_id, sys_operation_dt);
+2023-06-04T19:52:56.687000Z NOTICE Completing PostgreSQL database.
+2023-06-04T19:52:56.687000Z NOTICE Reset sequences
+2023-06-04T19:52:56.724000Z NOTICE ALTER TABLE public.TableHistory ADD PRIMARY KEY USING INDEX idx_87293_pk__TableHistory_50m;
+2023-06-04T19:52:56.733000Z NOTICE Executing SQL block for after load
+2023-06-04T19:52:56.741000Z LOG report summary reset
+             table name     errors       read   imported      bytes      total time       read      write
+-----------------------  ---------  ---------  ---------  ---------  --------------  ---------  ---------
+            before load          0          2          2                     0.024s    
+        fetch meta data          0          2          2                     0.645s    
+         Create Schemas          0          0          0                     0.000s    
+       Create SQL Types          0          0          0                     0.014s    
+          Create tables          0          2          2                     0.069s    
+         Set Table OIDs          0          1          1                     0.008s    
+-----------------------  ---------  ---------  ---------  ---------  --------------  ---------  ---------
+public.TableHistory          0   45088767   45088767     4.2 GB      16m24.851s  16m24.786s  11m30.107s
+-----------------------  ---------  ---------  ---------  ---------  --------------  ---------  ---------
+COPY Threads Completion          0          4          4                 16m24.852s    
+ Index Build Completion          0          1          1                   2m3.785s    
+         Create Indexes          0          1          1                   2m3.777s    
+        Reset Sequences          0          0          0                     0.032s    
+           Primary Keys          0          1          1                     0.003s    
+    Create Foreign Keys          0          0          0                     0.000s    
+        Create Triggers          0          0          0                     0.000s    
+       Install Comments          0          0          0                     0.000s    
+             after load          0          1          1                     0.008s    
+-----------------------  ---------  ---------  ---------  ---------  --------------  ---------  ---------
+      Total import time          ?   45088767   45088767     4.2 GB      20m32.457s 
+
+
+sqlserver50M.load file:
+
+load database
+from mssql://sa:0000@192.168.0.10:1433/testdb
+into postgresql:///testdb
+including only table names like 'TableHistory_50M' in schema 'dbo'
+ALTER TABLE NAMES MATCHING 'TableHistory_50M' IN SCHEMA 'dbo' RENAME TO 'TableHistory'
+alter schema 'dbo' rename to 'public'
+before load do
+    $$ ALTER TABLE public.TableHistory SET UNLOGGED; $$,
+	$$ truncate table public.timing; $$,
+	$$ insert into public.timing (dt_start, dt_end) select now () as start_dt, now() as dt_end;$$ 
+after load do
+	$$ insert into public.timing (dt_start, dt_end) select now () as start_dt, now() as dt_end; $$,
+	$$ ALTER TABLE public.TableHistory SET LOGGED; $$;
+
+
+
+ubuntu@ubuntu2004:~/opt$ sudo -u ubuntu pgloader --verbose -L /home/ubuntu/opt/pgloader.log sqlserver50M.load
+2023-06-05T18:06:12.014000Z NOTICE Starting pgloader, log system is ready.
+2023-06-05T18:06:12.046000Z LOG pgloader version "3.6.7~devel"
+2023-06-05T18:06:12.181000Z NOTICE Executing SQL block for before load
+2023-06-05T18:06:12.268000Z LOG Migrating from #<MSSQL-CONNECTION mssql://sa@192.168.0.10:1433/testdb {100626F7F3}>
+2023-06-05T18:06:12.268000Z LOG Migrating into #<PGSQL-CONNECTION pgsql://ubuntu@UNIX:5432/testdb {1006270083}>
+Max connections reached, increase value of TDS_MAX_CONN
+2023-06-05T18:06:13.229000Z NOTICE Prepare PostgreSQL database.
+2023-06-05T18:06:13.448000Z NOTICE COPY public.TableHistory with 0 rows estimated [1/4]
+Max connections reached, increase value of TDS_MAX_CONN
+2023-06-05T18:24:06.649000Z NOTICE DONE copying public.TableHistory in 13m36.066s
+2023-06-05T18:24:06.663000Z NOTICE CREATE UNIQUE INDEX idx_87351_pk__TableHistory_50m ON public.TableHistory (sys_change_id, sys_operation_dt);
+2023-06-05T18:25:40.715000Z NOTICE Completing PostgreSQL database.
+2023-06-05T18:25:40.715000Z NOTICE Reset sequences
+2023-06-05T18:25:41.222000Z NOTICE ALTER TABLE public.TableHistory ADD PRIMARY KEY USING INDEX idx_87351_pk__TableHistory_50m;
+2023-06-05T18:25:41.325000Z NOTICE Executing SQL block for after load
+2023-06-05T18:25:41.336000Z LOG report summary reset
+             table name     errors       read   imported      bytes      total time       read      write
+-----------------------  ---------  ---------  ---------  ---------  --------------  ---------  ---------
+            before load          0          3          3                     0.081s    
+        fetch meta data          0          2          2                     0.877s    
+         Create Schemas          0          0          0                     0.002s    
+       Create SQL Types          0          0          0                     0.013s    
+          Create tables          0          2          2                     0.097s    
+         Set Table OIDs          0          1          1                     0.010s    
+-----------------------  ---------  ---------  ---------  ---------  --------------  ---------  ---------
+public.TableHistory          0   50000000   50000000     4.6 GB      17m53.199s  17m52.587s  13m36.066s
+-----------------------  ---------  ---------  ---------  ---------  --------------  ---------  ---------
+COPY Threads Completion          0          4          4                 17m53.204s    
+ Index Build Completion          0          1          1                  1m34.043s    
+         Create Indexes          0          1          1                  1m34.031s    
+        Reset Sequences          0          0          0                     0.498s    
+           Primary Keys          0          1          1                     0.097s    
+    Create Foreign Keys          0          0          0                     0.000s    
+        Create Triggers          0          0          0                     0.000s    
+       Install Comments          0          0          0                     0.000s    
+             after load          0          2          2                     0.012s    
+-----------------------  ---------  ---------  ---------  ---------  --------------  ---------  ---------
+      Total import time          ?   50000000   50000000     4.6 GB       21m1.885s   
+
+
+
+
+
+sqlserver100M.load file:
+
+load database
+from mssql://sa:0000@192.168.0.10:1433/testdb
+into postgresql:///testdb
+including only table names like 'TableHistory_100M' in schema 'dbo'
+ALTER TABLE NAMES MATCHING 'TableHistory_100M' IN SCHEMA 'dbo' RENAME TO 'TableHistory'
+alter schema 'dbo' rename to 'public'
+before load do
+    $$ ALTER TABLE public.TableHistory SET UNLOGGED; $$,
+	$$ truncate table public.timing; $$,
+	$$ insert into public.timing (dt_start, dt_end) select now () as start_dt, now() as dt_end;$$ 
+after load do
+	$$ insert into public.timing (dt_start, dt_end) select now () as start_dt, now() as dt_end; $$,
+	$$ ALTER TABLE public.TableHistory SET LOGGED; $$;
+
+
+ubuntu@ubuntu2004:~/opt$ sudo -u ubuntu pgloader --verbose -L /home/ubuntu/opt/pgloader.log sqlserver100M.load
+2023-06-06T18:01:24.022000Z NOTICE Starting pgloader, log system is ready.
+2023-06-06T18:01:24.061000Z LOG pgloader version "3.6.7~devel"
+2023-06-06T18:01:24.213000Z NOTICE Executing SQL block for before load
+2023-06-06T18:01:24.258000Z LOG Migrating from #<MSSQL-CONNECTION mssql://sa@192.168.0.10:1433/testdb {1006254E83}>
+2023-06-06T18:01:24.258000Z LOG Migrating into #<PGSQL-CONNECTION pgsql://ubuntu@UNIX:5432/testdb {1006255703}>
+Max connections reached, increase value of TDS_MAX_CONN
+2023-06-06T18:01:24.923000Z NOTICE Prepare PostgreSQL database.
+2023-06-06T18:01:25.065000Z NOTICE COPY public.TableHistory with 0 rows estimated [2/4]
+Max connections reached, increase value of TDS_MAX_CONN
+2023-06-06T18:47:39.743000Z NOTICE DONE copying public.TableHistory in 30m51.345s
+2023-06-06T18:47:39.764000Z NOTICE CREATE UNIQUE INDEX idx_87552_pk__TableHistory_100m ON public.TableHistory (sys_change_id, sys_operation_dt);
+2023-06-06T18:53:52.311000Z NOTICE Completing PostgreSQL database.
+2023-06-06T18:53:52.442000Z NOTICE Reset sequences
+2023-06-06T18:53:53.364000Z NOTICE ALTER TABLE public.TableHistory ADD PRIMARY KEY USING INDEX idx_87552_pk__TableHistory_100m;
+2023-06-06T18:53:53.373000Z NOTICE Executing SQL block for after load
+2023-06-06T18:53:53.382000Z LOG report summary reset
+             table name     errors       read   imported      bytes      total time       read      write
+-----------------------  ---------  ---------  ---------  ---------  --------------  ---------  ---------
+            before load          0          2          2                     0.032s    
+        fetch meta data          0          2          2                     0.575s    
+         Create Schemas          0          0          0                     0.000s    
+       Create SQL Types          0          0          0                     0.018s    
+          Create tables          0          2          2                     0.044s    
+         Set Table OIDs          0          1          1                     0.008s    
+-----------------------  ---------  ---------  ---------  ---------  --------------  ---------  ---------
+public.TableHistory          0  100000000  100000000     9.3 GB      46m14.668s  46m14.632s  30m51.345s
+-----------------------  ---------  ---------  ---------  ---------  --------------  ---------  ---------
+COPY Threads Completion          0          4          4                 46m14.666s    
+ Index Build Completion          0          1          1                  6m12.545s    
+         Create Indexes          0          1          1                  6m12.497s    
+        Reset Sequences          0          0          0                     1.047s    
+           Primary Keys          0          1          1                     0.003s    
+    Create Foreign Keys          0          0          0                     0.000s    
+        Create Triggers          0          0          0                     0.000s    
+       Install Comments          0          0          0                     0.000s    
+             after load          0          2          2                     0.009s    
+-----------------------  ---------  ---------  ---------  ---------  --------------  ---------  ---------
+      Total import time          ?  100000000  100000000     9.3 GB      58m40.767s    
+
+
+
+
+
+
+
+
+
+
+
+
+------------- SSIS ODBC Destination ----------------------------
+-- 1 thread with 20K batchsize into HEAP UNLOGGED SIMPLE TABLE  - 10M rows  sec 842
+-- 4 thread with 20K batchsize into HEAP UNLOGGED SIMPLE TABLE  - 10M rows  sec 417
+
+------------- Pentaho 9.4 (mssql-jdbc-9.4.1.jre11.jar)----------------------------
+-- 1 thread with 20K batchsize into HEAP   LOGGED SIMPLE TABLE  - 10M rows  sec 316
+-- 1 thread with 20K batchsize into HEAP UNLOGGED SIMPLE TABLE  - 10M rows  sec 305
+-- 1 thread with 20K batchsize into HEAP   LOGGED SIMPLE TABLE  - 50M rows  sec 1506
+-- 1 thread with 20K batchsize into HEAP UNLOGGED SIMPLE TABLE  - 50M rows  sec 1501
+
+--------- Статистика по таблице (проверка Logged/Unlogged)
+select
+    relpersistence,-- U-unlogged, p -persistent
+    t.tablename,
+    indexname,
+    c.reltuples AS num_rows,
+    pg_size_pretty(pg_relation_size(quote_ident(t.tablename)::text)) AS table_size,
+    pg_size_pretty(pg_relation_size(quote_ident(indexrelname)::text)) AS index_size,
+    CASE WHEN indisunique THEN 'Y'
+       ELSE 'N'
+    END AS UNIQUE,
+    idx_scan AS number_of_scans,
+    idx_tup_read AS tuples_read,
+    idx_tup_fetch AS tuples_fetched
+FROM pg_tables t
+LEFT OUTER JOIN pg_class c ON t.tablename=c.relname
+LEFT OUTER JOIN
+    ( SELECT c.relname AS ctablename, ipg.relname AS indexname, x.indnatts AS number_of_columns, idx_scan, idx_tup_read, idx_tup_fetch, indexrelname, indisunique FROM pg_index x
+           JOIN pg_class c ON c.oid = x.indrelid
+           JOIN pg_class ipg ON ipg.oid = x.indexrelid
+           JOIN pg_stat_all_indexes psai ON x.indexrelid = psai.indexrelid )
+    AS foo
+    ON t.tablename = foo.ctablename
+WHERE t.schemaname='public'
+ORDER BY 1,2;
+
+user: postgres
+password: pg15
+
+
+
+
+------------- sqlpipe (VM Windows push data to VM PG)---------------------------
+
+/*
+EXEC sp_configure 'show advanced options', 1
+GO
+-- To update the currently configured value for advanced options.
+RECONFIGURE
+GO
+-- To enable the feature.
+EXEC sp_configure 'xp_cmdshell', 1
+GO
+-- To update the currently configured value for this feature.
+RECONFIGURE
+GO
+*/
+
+-- Объявляем переменные и таблицы
+DECLARE 
+  @source_hostname nvarchar(128) = '192.168.0.10'
+, @source_port nvarchar(128)= '1433'
+, @source_db nvarchar(128) = 'testdb'
+, @source_username nvarchar(128) = 'sa'
+, @source_password nvarchar(128) = '0000'
+, @target_hostname nvarchar(128) = '192.168.0.11'
+, @target_port nvarchar(128) = '5432'
+, @target_db nvarchar(128) = 'testdb'
+, @target_username nvarchar(128) = '"postgres"'
+, @target_password nvarchar(128) = 'postgres'
+, @sql_query varchar(8000)
+, @table            varchar(128) = 'dbo.TableHistory_10M'
+SET @sql_query = 'C:\_PG\_sqlpipe\Windows\sqlpipe.exe transfer \ --source-ds-type "mssql" \ --source-hostname "'+@source_hostname+'" \ --source-port '+@source_port+' \ --source-db-name "'+@source_db+'" \ --source-username "'+@source_username+'" \ --source-password "'+@source_password+'" \ --target-ds-type "postgresql" \ --target-hostname "'+@target_hostname+'" \ --target-port '+@target_port+' \ --target-db-name "'+@target_db+'" \ --target-username "'+@target_username+'" \ --target-password "'+@target_password+'" \ --target-schema "public" \ --target-table "TableHistory" \ --overwrite \ --query " SELECT sys_change_id,sys_flow_type,sys_operation_dt,sys_operation_type,Col1,Col2,Col3,Col4,Col5 FROM '+@table+'"'
+
+print @sql_query
+exec xp_cmdshell @sql_query
+--C:\_PG\_sqlpipe\Windows\sqlpipe.exe transfer \ --source-ds-type "mssql" \ --source-hostname "192.168.0.10" \ --source-port 1433 \ --source-db-name "testdb" \ --source-username "sa" \ --source-password "0000" \ --target-ds-type "postgresql" \ --target-hostname "192.168.0.11" \ --target-port 5432 \ --target-db-name "testdb" \ --target-username ""postgres"" \ --target-password "postgres" \ --target-schema "public" \ --target-table "TableHistory" \ --overwrite \ --query " SELECT sys_change_id,sys_flow_type,sys_operation_dt,sys_operation_type,Col1,Col2,Col3,Col4,Col5 FROM dbo.TableHistory_50M"
+
+
+
+--C:\_PG\_sqlpipe\Windows\sqlpipe.exe transfer \ --source-ds-type "mssql" \ --source-hostname "192.168.0.10" \ --source-port 1433 \ --source-db-name "testdb" \ --source-username "sa" \ --source-password "0000" \ --target-ds-type "postgresql" \ --target-hostname "192.168.0.11" \ --target-port 5432 \ --target-db-name "testdb" \ --target-username ""postgres"" \ --target-password "postgres" \ --target-schema "public" \ --target-table "TableHistory" \ --overwrite \ --query " SELECT sys_change_id,sys_flow_type,sys_operation_dt,sys_operation_type,Col1,Col2,Col3,Col4,Col5 FROM dbo.TableHistory_10M"
+
+
+С использованием sqlpipe удалось загрузить только 3226793 строк (за 3 минуты 47 сек) вместо 10М, после вылетает ошибка 
+...map[dsType:postgresql error:unexpected EOF query:... (Rest of query truncated)] db.Query() threw an error. 
+Ошибка воспроизводится. В момент ошибки начинает сильно виснуть виртуалка c PostgreSQL
+
+
+---- PULL (Linux side)
+./sqlpipeX86 transfer \ --source-ds-type "mssql" \ --source-hostname "192.168.0.10" \ --source-port 1433 \ --source-db-name "testdb" \ --source-username "sa" \ --source-password "0000" \ --target-ds-type "postgresql" \ --target-hostname "192.168.0.11" \ --target-port 5432 \ --target-db-name "testdb" \ --target-username ""postgres"" \ --target-password "postgres" \ --target-schema "public" \ --target-table "TableHistory" \ --overwrite \ --query " SELECT sys_change_id,sys_flow_type,sys_operation_dt,sys_operation_type,Col1,Col2,Col3,Col4,Col5 FROM dbo.TableHistory_10M"
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+ANALYZE
+public.TableHistory
+
+
+select count(1) from pg_ls_waldir();
+select * from pg_ls_waldir() where modification >='2023-05-27 17:52:00.000' ;
+/*
+ALTER SYSTEM set fsync = ON;
+ALTER SYSTEM set synchronous_commit = ON;
+ALTER SYSTEM set full_page_writes = ON;
+
+create user ubuntu with encrypted password 'ubuntu';
+grant all privileges on database testdb to ubuntu;
+
+ALTER SYSTEM SET max_connections = 200;
+ALTER SYSTEM SET shared_buffers = '3840MB';
+ALTER SYSTEM SET effective_cache_size = '11520MB';
+ALTER SYSTEM SET maintenance_work_mem = '1920MB';
+ALTER SYSTEM SET checkpoint_completion_target = 0.9;
+ALTER SYSTEM SET wal_buffers = '16MB';
+ALTER SYSTEM SET default_statistics_target = 500;
+ALTER SYSTEM SET random_page_cost = 4;
+ALTER SYSTEM SET effective_io_concurrency = 2;
+ALTER SYSTEM SET work_mem = '48MB';
+ALTER SYSTEM SET min_wal_size = '4GB';
+ALTER SYSTEM SET max_wal_size = '16GB';
+ALTER SYSTEM set listen_addresses = '*';
+
+select * from pg_settings where name like 'listen_addresses'
+select * from pg_settings where name in ('max_connections','fsync','synchronous_commit','full_page_writes')
+SELECT pg_reload_conf();
+
+ */
+
+
+
+----- Анализ состояния таблицы приемника и wal-----------
+select * from pg_ls_waldir() where modification >'2023-06-05 15:38:27.000 -0400' ;
+select max(modification), sum(size),count(1) from pg_ls_waldir() 
+
+
+
+select
+    relpersistence,-- U-unlogged, p -persistent
+    t.tablename,
+    indexname,
+    c.reltuples AS num_rows,
+    pg_size_pretty(pg_relation_size(quote_ident(t.tablename)::text)) AS table_size,
+    pg_size_pretty(pg_relation_size(quote_ident(indexrelname)::text)) AS index_size,
+    CASE WHEN indisunique THEN 'Y'
+       ELSE 'N'
+    END AS UNIQUE,
+    idx_scan AS number_of_scans,
+    idx_tup_read AS tuples_read,
+    idx_tup_fetch AS tuples_fetched
+FROM pg_tables t
+LEFT OUTER JOIN pg_class c ON t.tablename=c.relname
+LEFT OUTER JOIN
+    ( SELECT c.relname AS ctablename, ipg.relname AS indexname, x.indnatts AS number_of_columns, idx_scan, idx_tup_read, idx_tup_fetch, indexrelname, indisunique FROM pg_index x
+           JOIN pg_class c ON c.oid = x.indrelid
+           JOIN pg_class ipg ON ipg.oid = x.indexrelid
+           JOIN pg_stat_all_indexes psai ON x.indexrelid = psai.indexrelid )
+    AS foo
+    ON t.tablename = foo.ctablename
+WHERE t.schemaname='public'
+ORDER BY 1,2;
+
+
+select * from pg_stat_statements;
+
+create table if not exists public.timing (dt_start timestamptz null, dt_end timestamptz null);
+truncate table public.timing;
+insert into public.timing (dt_start, dt_end) select now () as start_dt, now() as dt_end;
+
+select * from public.timing;
+
+
+
+
