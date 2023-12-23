@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "9be2db2c5cb4cf46",
+        "id": "508942fcf9b780a0",
         "type": "tabs",
         "children": [
           {
-            "id": "849f5b2c49f3a171",
+            "id": "84688737439d5f00",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -58,14 +54,6 @@
             }
           },
           {
-            "id": "cbd22bc0b9857b82",
-            "type": "leaf",
-            "state": {
-              "type": "starred",
-              "state": {}
-            }
-          },
-          {
             "id": "451bcff68755cb86",
             "type": "leaf",
             "state": {
@@ -93,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -132,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "README.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -155,14 +139,15 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "849f5b2c49f3a171",
+  "active": "110efcfead2b522b",
   "lastOpenFiles": [
-    "Миграция данных с MSSQL в PostgreSQL.md",
     "ДЗ №12 Триггеры, поддержка заполнения витрин.md",
+    "Untitled.canvas",
+    "Untitled",
+    "Миграция данных с MSSQL в PostgreSQL.md",
     "README.md",
     "ДЗ #6 MVCC, vacuum и autovacuum.md",
     "ДЗ №11 Секционирование таблицы.md",
-    "Untitled.canvas",
     "ДЗ #7 Механизм блокировок.md",
     "ДЗ №10 Работа с индексами, join'ами, статистикой.md",
     "ДЗ №9 Репликация.md",
